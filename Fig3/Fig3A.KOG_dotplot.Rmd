@@ -1,0 +1,166 @@
+---
+title: "IP-MS KOG Analysis for C9ORF50 Study"
+author: "Chuanyang Liu, Lvyun Zhu"
+date: "2023-10-01"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+    code_folding: hide
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  dpi = 300
+)
+
+# Clean workspace
+rm(list=ls())
+
+# Set output directory for figures
+output_dir <- "./output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+```
+
+## KOG Functional Annotation
+
+This analysis presents the functional annotation results using KOG (EuKaryotic Orthologous Groups) classification for proteins identified in IP-MS experiments.
+
+### Load Required Libraries and Data
+
+```{r load_data, echo=TRUE}
+# Check and install required packages if needed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+required_packages <- c("xlsx", "ggstatsplot", "ggpubr", "ggplot2", "tidyverse")
+for (pkg in required_packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+  library(pkg, character.only = TRUE)
+}
+
+# Read KOG annotation data
+# Note: Ensure the data file is available in the specified path
+# If running from Github, place the data in the expected location
+data_path <- "./IP-MS/New/2.func.anno/2.func.anno/2.2.KOGs/kog.csv"
+if (file.exists(data_path)) {
+  dat <- read.csv(data_path)
+} else {
+  # Alternative path for running in the C9orf50-iMeta directory
+  data_path_alt <- "../../IP-MS/New/2.func.anno/2.func.anno/2.2.KOGs/kog.csv"
+  if (file.exists(data_path_alt)) {
+    dat <- read.csv(data_path_alt)
+  } else {
+    stop("Data file not found. Please ensure kog.csv is in the correct location.")
+  }
+}
+
+# Check data structure
+print("Data columns:")
+print(colnames(dat))
+print("\nData structure:")
+str(dat)
+```
+
+### First Visualization: All KOG Categories
+
+```{r first_plot, echo=TRUE}
+# Generate first dot chart showing all KOG categories
+ggdotchart(dat, x = "Class_description", y = "Protein_number",
+           color = "Protein_number",
+           rotate = FALSE,
+           sort.by.groups = TRUE,
+           add = "segments",
+           add.params = list(color = "lightgray", size = 1.2),
+           font.label = list(color = "black", size = 8,
+                            vjust = -2),
+           ggtheme = theme_pubr()) +
+  theme(axis.text.x = element_text(face = "bold", size = 10, color = "gray40",
+                                   angle = 70, vjust = 1, hjust = 1),
+        axis.text.y = element_text(size = 10, color = "gray40",
+                                   vjust = 1, hjust = 1))
+
+# Save the first plot
+ggsave(filename = file.path(output_dir, "KOG_all_categories.svg"), width = 10, height = 8)
+```
+
+### Quality Check
+
+```{r quality_check, echo=TRUE}
+# Basic quality check of the data
+print("Summary statistics:")
+summary(dat$Protein_number)
+
+print("\nUnique KOG classes:")
+length(unique(dat$Class_description))
+```
+
+### Second Visualization: Top KOG Categories
+
+```{r second_plot, echo=TRUE}
+# Filter data to include only categories with more than 20 proteins
+# and exclude the "General function prediction only" category
+dat2 <- dat[dat$Protein_number > 20 & 
+             dat$Class_description != "General function prediction only ",]
+
+# Generate second dot chart showing top KOG categories
+ggdotchart(dat2, x = "Class_description", y = "Protein_number",
+           color = "Color",
+           size = "Protein_number",
+           sorting = "descending",
+           palette = c("#9f1a1c", "grey", "#17629d"),
+           rotate = TRUE,
+           sort.by.groups = TRUE,
+           add = "segments",
+           add.params = list(color = "lightgrey", size = 1.0),
+           y.text.col = TRUE,
+           font.label = list(color = "black", size = 8,
+                            hjust = -0.5, vjust = 0),
+           ggtheme = theme_pubr()) +
+  geom_hline(yintercept = -log10(0.05), linetype = 2, color = "lightgray") +
+  geom_hline(yintercept = -log10(0.01), linetype = 2, color = "lightgray") +
+  theme(axis.text.x = element_text(face = "bold", size = 10, color = "gray40",
+                                   vjust = 0, hjust = 0),
+        axis.text.y = element_text(size = 10, color = "gray40",
+                                   vjust = 0, hjust = 1))
+
+# Save the second plot to the output directory
+ggsave(filename = file.path(output_dir, "KOG_top_categories.svg"), width = 6.0, height = 5.0)
+```
+
+### Reproducibility Notes
+
+This R Markdown file is designed for publication on GitHub as part of the supplemental materials for:
+
+**Title:** Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy  
+**Running title:** Splicing regulator C9ORF50 controls immune evasion and immunotherapy response
+
+**Authors:** Tong Shao#, Chuanyang Liu#, Jingyu Kuang#, Sisi Xie#, Ying Qu, Yingying Li, Fangzhou Liu, Lulu Zhang, Yanhua Qi, Ming Li, Tao Hou, Sujuan Zhang, Yu Liu, Zhixiang Yuan, Jiali Liu, Yanming Hu, Jingyang Wang, Chenghu Song, Shaowei Zhang, Lingyun Zhu, Jianzhong Shao, Aifu Lin*, Wenjun Mao*, Guangchuan Wang*, Lvyun Zhu*
+
+**Institution:** 1 College of Science, National University of Defense Technology, Changsha 410073, China
+
+**Equal contributions:** Tong Shao, Chuanyang Liu, Jingyu Kuang, Sisi Xie  
+**Correspondence:** zhulvyun@nudt.edu.cn (Lvyun Zhu), guangchuan.wang@sibcb.ac.cn (Guangchuan Wang), maowenjun1@njmu.edu.cn (Wenjun Mao), linaifu@zju.edu.cn (Aifu Lin)
+
+### Data Availability
+
+The KOG annotation data used in this analysis should be placed in the appropriate directory as indicated in the code. All figures will be saved to the `output_figures` directory.
+
+### Session Information
+
+```{r session_info, echo=TRUE}
+# Print session information for reproducibility
+sessionInfo()
+```
