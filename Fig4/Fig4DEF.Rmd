@@ -1,0 +1,317 @@
+---
+title: "Isoform Switch Analysis of C9ORF50 Knockout Effects"
+author: "Chuanyang Liu, Lvyun Zhu"
+date: "2023/10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# Clean workspace
+rm(list=ls())
+options(stringsAsFactors = FALSE)
+# Set working directory
+setwd("B:/Kinda_Help/Lvyun_Zhu-C9orf50/RNAseq/Transcriptome0327/")
+# Set output directory
+output_dir="./"
+```
+
+## 替代剪接分析概述
+
+本R Markdown文档使用IsoformSwitchAnalyzeR包分析C9ORF50敲除对基因可变剪接的影响，特别关注内含子保留(intron retention, IR)事件。分析流程包括导入数据、过滤、差异分析、功能预测和可视化。
+
+## 1. 包安装与加载
+
+以下代码块包含了所需R包的安装命令（已注释掉）和实际需要加载的包。
+
+```{r package-setup, echo=TRUE}
+# 以下是包安装命令，仅在首次运行时取消注释使用
+# BiocManager::install("IsoformSwitchAnalyzeR")
+# BiocManager::install("dplyr")
+# BiocManager::install("org.Mm.eg.db")
+# BiocManager::install("clusterProfiler")
+# BiocManager::install("forcats")
+
+# 加载所需包
+library(IsoformSwitchAnalyzeR)
+library(dplyr)
+```
+
+## 2. 导入和准备表达数据
+
+本部分导入从Salmon量化获得的转录本表达数据，并创建实验设计矩阵。
+
+```{r data-import, echo=TRUE}
+# 导入转录本表达数据（从Salmon量化结果）
+isoformExpr <- importIsoformExpression(parentDir="SalmonQuan", 
+                                      pattern="quant.sf")
+# 查看数据结构
+str(isoformExpr)
+
+# 创建实验设计矩阵
+samples <- c("sgC9_1", "sgC9_2", "sgC9_3", "sgNTC_1", "sgNTC_2", "sgNTC_3")
+conditions <- c(rep_len("sgC9", 3), rep_len("sgNTC", 3))  # 3个C9ORF50敲除样本和3个对照样本
+designM <- data.frame(sampleID=samples, condition=conditions)
+designM  # 显示设计矩阵
+```
+
+## 3. 构建IsoformSwitchAnalyzeR对象
+
+将表达数据、注释信息整合到一个SwitchAnalyzeRlist对象中，这是进行后续分析的基础。
+
+```{r create-switchlist, echo=TRUE}
+# 导入GTF文件（可选）
+gtf <- importGTF("B:/before/BigZips/Mus_musculus.GRCm39.109.chr.gtf")
+
+# 构建SwitchAnalyzeRlist对象
+switchList <- importRdata(isoformCountMatrix=isoformExpr$counts, 
+                         isoformRepExpression=isoformExpr$abundance, 
+                         designMatrix=designM, 
+                         isoformExonAnnoation="B:/before/BigZips/gencode.vM32.annotation.gtf", 
+                         isoformNtFasta="B:/before/BigZips/gencode.vM32.transcripts.fa")
+
+# 数据预过滤，移除低质量数据
+switchListF <- preFilter(switchList)
+```
+
+## 4. 差异剪接分析 (Figure 4D)
+
+使用DEXSeq进行差异剪接分析，识别C9ORF50敲除后发生显著表达变化的转录本。
+
+```{r differential-splicing, echo=TRUE}
+# 使用DEXSeq进行差异剪接分析，显著性水平设为0.05
+switchListD <- isoformSwitchTestDEXSeq(switchAnalyzeRlist=switchListF, alpha=0.05)
+
+# 分析开放阅读框(ORF)
+switchListO <- analyzeORF(switchListD)
+
+# 提取转录本序列用于后续分析
+switchListS <- extractSequence(switchListO, pathToOutput="IsoformSequence")
+
+# 提取并显示剪接开关摘要信息
+extractSwitchSummary(switchListS)
+```
+
+## 5. 替代剪接事件分析
+
+分析不同类型的替代剪接事件，特别关注内含子保留(IR)、ORF序列相似性和NMD状态变化。
+
+```{r alternative-splicing, echo=TRUE}
+# 分析替代剪接事件
+switchListA <- analyzeAlternativeSplicing(switchListS)
+
+# 分析剪接开关的功能后果
+switchListCQ <- analyzeSwitchConsequences(switchListA, 
+                                         consequencesToAnalyze=c("intron_retention", 
+                                                                "ORF_seq_similarity", 
+                                                                "NMD_status"))
+
+# 绘制最显著的剪接开关事件
+switchPlotTopSwitches(switchListCQ, n=Inf, pathToOutput="ASEvents")
+```
+
+## 6. 提取和保存关键结果
+
+提取最显著的剪接开关基因并保存到文件中。
+
+```{r extract-results, echo=TRUE}
+# 查看分析结果结构
+switchListCQ$isoformSwitchAnalysis %>% head()
+
+# 提取最显著的剪接开关基因
+c9.ge_df <- extractTopSwitches(
+  switchListCQ, 
+  filterForConsequences = FALSE,
+  n = NA,                # 提取所有结果
+  extractGenes = TRUE,   # 按基因汇总结果
+  sortByQvals = TRUE     # 按q值排序
+)
+
+# 保存结果到CSV文件
+write.csv(c9.ge_df, file = "C9TopSwitches.csv")
+
+# 保存R数据对象以便后续分析
+save(switchListS, switchListCQ, file = "SwitchR.rdata")
+```
+
+## 7. 内含子保留(IR)基因分析
+
+筛选并分析发生内含子保留的基因，这是本研究特别关注的剪接事件类型。
+
+```{r ir-analysis, echo=TRUE}
+# 加载保存的数据（如果从前面步骤直接运行则不需要）
+# load("SwitchR.rdata")
+
+# 提取转录本特征数据
+ASdata <- switchListCQ$isoformFeatures  
+
+# 筛选具有内含子保留的显著差异剪接基因（前500个）
+sigIR_sorted <- ASdata %>%
+  filter(IR > 0, isoform_switch_q_value < 0.05) %>%  # IR>0表示存在内含子保留
+  arrange(desc(abs(dIF))) %>%                        # 按dIF绝对值排序
+  distinct(gene_name, .keep_all = TRUE) %>%          # 每个基因保留一个记录
+  head(500)                                          # 取前500个
+
+# 合并基因注释信息
+library(org.Mm.eg.db)
+sigIR_annotated <- AnnotationDbi::select(
+  org.Mm.eg.db,
+  keys = sigIR_sorted$gene_name,
+  columns = c("SYMBOL", "GENENAME", "ENTREZID"),
+  keytype = "SYMBOL"
+) %>%
+  left_join(sigIR_sorted, by = c("SYMBOL" = "gene_name"))
+
+# 输出结果（实际有185个显著IR基因）
+write.csv(sigIR_annotated, "Top500_IR_genes.csv", row.names = FALSE)
+```
+
+## 8. GO富集分析
+
+对发生内含子保留的基因进行GO富集分析，以了解这些基因可能参与的生物学过程。
+
+```{r go-enrichment, echo=TRUE}
+library(clusterProfiler)
+
+# 执行GO生物学过程(BP)富集分析
+sigIR <- enrichGO(gene    = sigIR_annotated$ENTREZID,
+                  OrgDb   = org.Mm.eg.db,
+                  keyType = 'ENTREZID',
+                  ont     = "BP",
+                  pvalueCutoff  = 0.2,  # 放宽p值阈值以获取更多结果
+                  qvalueCutoff  = 0.2,
+                  readable = TRUE)
+
+# 提取结果并计算基因比例
+dat <- sigIR@result
+library(forcats)
+dat$generatio <- as.numeric(str_split(dat$GeneRatio, "/", simplify = T)[,1]) / 137
+
+# 选择前12个最富集的GO项
+dat2 <- dat[order(dat$GeneRatio, decreasing = T), ][1:12,]
+
+# 绘制GO富集结果点图
+go_plot <- ggplot(dat2, aes(generatio, fct_reorder(Description, generatio), color=generatio)) + 
+  geom_point(aes(size = -log10(pvalue)))+  # 点大小表示显著性
+  scale_color_gradient2(low='#46bac2', mid="grey95", high='#cb4319', 
+                       guide=guide_colorbar(reverse=TRUE))+  # 自定义颜色
+  theme_minimal() + 
+  ylab(NULL) +
+  theme(text = element_text(family = "Arial", colour = "black")) +
+  theme(axis.text.y = element_text(size = 10, colour = "black"))
+
+go_plot  # 显示图形
+
+# 保存图形
+ggsave(filename = "Figs/Isoformswithch4.svg", height = 4.2, width = 8.0)
+```
+
+## 9. 可视化Top IR基因
+
+绘制Top差异剪接基因的dIF值（差异剪接指数），直观展示剪接变化程度。
+
+```{r visualize-top-ir, echo=TRUE}
+# 可视化展示Top IR基因的dIF值
+top_ir_plot <- ggplot(sigIR_sorted %>% head(10),  # 仅显示前10个基因
+                     aes(x = reorder(SYMBOL, dIF), y = dIF)) +
+  geom_col(aes(fill = dIF > 0), width = 0.7) +  # 按正负值着色
+  scale_fill_manual(values = c("#377EB8", "#E41A1C")) +  # 蓝色表示负变化，红色表示正变化
+  coord_flip() +  # 水平条形图
+  labs(x = "Gene", y = "dIF value", title = "Top10 IR Genes") +
+  theme_minimal()
+
+top_ir_plot  # 显示图形
+
+# 保存图形
+ggsave("Top10_IR_genes.svg", width = 6, height = 4, dpi = 600)
+```
+
+## 10. 剪接事件摘要统计（Figure 4E）
+
+生成全局剪接事件统计摘要和富集分析。
+
+```{r splicing-summary, echo=TRUE}
+# 加载保存的数据（如果从前面步骤直接运行则不需要）
+# load("SwitchR.rdata")
+
+# 可视化特定基因的剪接变化
+switchPlot(switchListCQ, gene = 'Rnf8')  # 例如Rnf8基因
+
+# 生成剪接事件摘要统计
+summary_plot <- extractSplicingSummary(switchListCQ, asFractionTotal = FALSE)
+summary_plot  # 显示摘要图
+
+# 生成剪接事件富集分析
+enrichment_plot <- extractSplicingEnrichment(switchListCQ)
+enrichment_plot  # 显示富集图
+
+# 保存剪接摘要图
+ggsave("isoformSummary.svg", height = 3.5, width = 7.2, dpi = 600)
+
+# 保存富集分析图
+splicingEnrichment <- extractSplicingEnrichment(
+  switchListCQ,
+  splicingToAnalyze='all',
+  returnResult=TRUE,
+  returnSummary=TRUE,
+  plot = FALSE
+)
+splicingEnrichment + xlim(0.25, 0.75)  # 调整x轴范围
+
+ggsave("isoformSummary_stat.svg", height = 4.8, width = 7.8, dpi = 600)
+```
+
+## 11. 火山图和相关性分析 （Figure 4F）
+
+绘制火山图以直观展示差异剪接事件的显著性和效应大小，并分析基因表达与剪接变化的相关性。
+
+```{r volcano-plots, echo=TRUE}
+# 筛选不同类型的差异剪接事件
+sigIR <- filter(ASdata, IR > 0 & abs(dIF) > 0.1 & isoform_switch_q_value < 0.05)  # 显著IR事件
+sigothers <- filter(ASdata, IR == 0 & abs(dIF) > 0.1 & isoform_switch_q_value < 0.05)  # 其他显著事件
+non <- filter(ASdata, IR == 0 & abs(dIF) <= 0.1 & isoform_switch_q_value >= 0.05)  # 非显著事件
+
+# 绘制特定类型剪接事件的火山图
+volcano_selected <- ggplot(data=ASdata, aes(x=dIF, y=-log10(isoform_switch_q_value))) +
+  geom_point(data=non, alpha=1, size=2, color="grey85") +  # 非显著点设为灰色
+  geom_point(data=sigothers, alpha=1, size=2, color="#426CAA") +  # 其他显著事件设为蓝色
+  geom_point(data=sigIR, alpha=1, size=2, color="#C0595A") +  # IR事件设为红色
+  geom_hline(yintercept = -log10(0.05), linetype='dashed') +  # 显著性阈值线
+  geom_vline(xintercept = c(-0.1, 0.1), linetype='dashed') +  # 效应大小阈值线
+  facet_wrap(~ condition_2) +
+  theme_set(theme_set(theme_bw(base_size=15))) +
+  labs(x='dIF', y='-Log10 ( Isoform Switch Q Value )') +
+  theme_bw() + 
+  theme(plot.title = element_text(size=15, hjust = 0.5))
+
+volcano_selected  # 显示图形
+
+# 保存选择性火山图
+ggsave("volcano_AS_SELECTED.svg", width = 2.9, height = 3.4, dpi = 600)
+
+# 绘制基因表达变化与剪接变化的相关性图
+correlation_plot <- ggplot(data=switchListCQ$isoformFeatures, 
+                          aes(x=gene_log2_fold_change, y=dIF)) +
+  geom_point(aes(color=abs(dIF) > 0.1 & isoform_switch_q_value < 0.05), size=2) + 
+  facet_wrap(~ condition_2) +
+  geom_hline(yintercept = 0, linetype='dashed') +  # 零效应线
+  geom_vline(xintercept = 0, linetype='dashed') +  # 零表达变化线
+  scale_color_manual('Significant\nIsoform Switch', 
+                    values = c("grey85", "#fb1f0a")) +
+  labs(x='Gene log2 fold change', y='dIF') +
+  theme_bw()
+
+correlation_plot  # 显示图形
+
+# 保存相关性图
+ggsave("gene_expression_splicing_correlation.svg", width = 4.0, height = 3.4, dpi = 600)
+```
+
+## 结论
+
+本分析揭示了C9ORF50敲除对基因替代剪接模式的显著影响，特别是在内含子保留事件方面。通过识别差异剪接基因并进行功能富集分析，我们可以更好地理解C9ORF50在调控mRNA剪接中的作用，以及这些变化如何影响癌症免疫治疗反应。
+
+---
+
+*This analysis is part of the paper: "Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy"
+Running title: "Splicing regulator C9ORF50 controls immune evasion and immunotherapy response"*
