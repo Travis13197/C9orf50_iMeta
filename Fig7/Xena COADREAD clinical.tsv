@@ -1,0 +1,737 @@
+sample	samples	C9orf50	C9orf50	histological_type	pathologic_stage	pathologic_M	pathologic_N	pathologic_T	sample_type
+TCGA-5M-AAT5-01	TCGA-5M-AAT5-01	0.09559	2.158						Primary Tumor
+TCGA-NH-A8F7-01	TCGA-NH-A8F7-01	0.03039	2.093	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-NH-A50V-01	TCGA-NH-A50V-01	0.01249	2.075	Colon Adenocarcinoma	Stage IIIB	M0	N2a	T3	Primary Tumor
+TCGA-AY-6196-01	TCGA-AY-6196-01	-0.06181	2	Colon Mucinous Adenocarcinoma	Stage IIIC		N2b	T3	Primary Tumor
+TCGA-D5-6926-01	TCGA-D5-6926-01	-0.06851	1.994	Colon Adenocarcinoma	Stage IIIB	M0	N1	T4a	Primary Tumor
+TCGA-DM-A288-01	TCGA-DM-A288-01	-0.1362	1.926	Colon Mucinous Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-CM-6167-01	TCGA-CM-6167-01	-0.1944	1.868	Colon Adenocarcinoma	Stage IIIC	M0	N2b	T3	Primary Tumor
+TCGA-DM-A28K-01	TCGA-DM-A28K-01	-0.2169	1.845	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A02K-01	TCGA-AA-A02K-01	-0.3027	1.76	Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-A6-5664-01	TCGA-A6-5664-01	-0.3245	1.738	Colon Adenocarcinoma	Stage IIIC	MX	N2a	T4a	Primary Tumor
+TCGA-AF-6655-01	TCGA-AF-6655-01	-0.3557	1.707	Rectal Adenocarcinoma	Stage IIIA	M0	N1	T2	Primary Tumor
+TCGA-CM-5349-01	TCGA-CM-5349-01	-0.3568	1.705	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3732-11	TCGA-AG-3732-11	-0.3712	1.691	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-D5-6536-01	TCGA-D5-6536-01	-0.3734	1.689	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DC-6154-01	TCGA-DC-6154-01	-0.4166	1.646	Rectal Adenocarcinoma	Stage IVA	M1	N2b	T4a	Primary Tumor
+TCGA-A6-A567-01	TCGA-A6-A567-01	-0.4445	1.618	Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-DT-5265-01	TCGA-DT-5265-01	-0.4695	1.593	Rectal Mucinous Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-5M-AATA-01	TCGA-5M-AATA-01	-0.483	1.579						Primary Tumor
+TCGA-AG-3902-01	TCGA-AG-3902-01	-0.5049	1.557	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-6649-01	TCGA-A6-6649-01	-0.5195	1.543	Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-A6-6781-01	TCGA-A6-6781-01	-0.5197	1.543	Colon Mucinous Adenocarcinoma	Stage IIIC	MX	N1b	T4b	Primary Tumor
+TCGA-AA-3697-01	TCGA-AA-3697-01	-0.5474	1.515	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-D5-5540-01	TCGA-D5-5540-01	-0.5526	1.51	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6299-01	TCGA-G4-6299-01	-0.5666	1.496	Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AF-A56K-01	TCGA-AF-A56K-01	-0.575	1.487	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AZ-6607-01	TCGA-AZ-6607-01	-0.5795	1.483	Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-CM-5860-01	TCGA-CM-5860-01	-0.5946	1.468	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3522-11	TCGA-AA-3522-11	-0.596	1.466	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3713-11	TCGA-AA-3713-11	-0.6046	1.458	Colon Adenocarcinoma	Stage IV	M1	N0	T3	Solid Tissue Normal
+TCGA-D5-6534-01	TCGA-D5-6534-01	-0.6067	1.456	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-5M-AAT4-01	TCGA-5M-AAT4-01	-0.618	1.444	Colon Adenocarcinoma	Stage IV	M1b	N0	T3	Primary Tumor
+TCGA-CM-6676-01	TCGA-CM-6676-01	-0.6203	1.442	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-EI-6882-01	TCGA-EI-6882-01	-0.6211	1.441	Rectal Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-6651-01	TCGA-A6-6651-01	-0.6426	1.42	Colon Adenocarcinoma	Stage IIIB	MX	N1b	T3	Primary Tumor
+TCGA-NH-A50U-01	TCGA-NH-A50U-01	-0.6791	1.383	Colon Mucinous Adenocarcinoma	Stage IVA	M1a	N0	T4a	Primary Tumor
+TCGA-NH-A6GC-01	TCGA-NH-A6GC-01	-0.7005	1.362	Colon Mucinous Adenocarcinoma	Stage IVB	M1b	N1b	T4b	Primary Tumor
+TCGA-F4-6807-01	TCGA-F4-6807-01	-0.711	1.351	Colon Adenocarcinoma	Stage IIIC	M0	N2b	T3	Primary Tumor
+TCGA-A6-2682-01	TCGA-A6-2682-01	-0.715	1.347	Colon Adenocarcinoma	Stage IV	M1	N1	T4b	Primary Tumor
+TCGA-A6-5657-01	TCGA-A6-5657-01	-0.7271	1.335	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AF-A56L-01	TCGA-AF-A56L-01	-0.7349	1.327	Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-F5-6863-01	TCGA-F5-6863-01	-0.7478	1.314	Rectal Adenocarcinoma	Stage IIIB	M0	N1	T4a	Primary Tumor
+TCGA-AH-6547-01	TCGA-AH-6547-01	-0.754	1.308	Rectal Adenocarcinoma		MX	N0	T3	Primary Tumor
+TCGA-AD-A5EJ-01	TCGA-AD-A5EJ-01	-0.7624	1.3	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-EI-6508-01	TCGA-EI-6508-01	-0.7665	1.296	Rectal Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-D5-6922-01	TCGA-D5-6922-01	-0.7753	1.287	Colon Adenocarcinoma	Stage IIIA	M0	N1	T3	Primary Tumor
+TCGA-AF-2692-11	TCGA-AF-2692-11	-0.7947	1.268		Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-D5-6931-01	TCGA-D5-6931-01	-0.7972	1.265	Colon Adenocarcinoma	Stage IIIC	M0	N2	T4b	Primary Tumor
+TCGA-AA-A01X-01	TCGA-AA-A01X-01	-0.798	1.264	Colon Adenocarcinoma	Stage III	M0	N1	T2	Primary Tumor
+TCGA-NH-A6GA-01	TCGA-NH-A6GA-01	-0.8037	1.258	Colon Adenocarcinoma	Stage IIIC	MX	N2a	T4a	Primary Tumor
+TCGA-5M-AATE-01	TCGA-5M-AATE-01	-0.8155	1.247	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-QG-A5Z1-01	TCGA-QG-A5Z1-01	-0.832	1.23	Colon Adenocarcinoma	Stage IIIB	MX	N1b	T3	Primary Tumor
+TCGA-AG-4022-01	TCGA-AG-4022-01	-0.8439	1.218	Rectal Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-5M-AAT6-01	TCGA-5M-AAT6-01	-0.8527	1.209	Colon Adenocarcinoma	Stage IV	M1a	N2b	T4a	Primary Tumor
+TCGA-D5-6923-01	TCGA-D5-6923-01	-0.8551	1.207	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AF-2693-01	TCGA-AF-2693-01	-0.8616	1.201		Stage I	MX	N0	T2	Primary Tumor
+TCGA-AZ-6600-01	TCGA-AZ-6600-01	-0.8777	1.184	Colon Adenocarcinoma	Stage IV	M1	N1	T4	Primary Tumor
+TCGA-CA-6716-01	TCGA-CA-6716-01	-0.8777	1.184	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3712-01	TCGA-AA-3712-01	-0.8828	1.179	Colon Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-CM-5348-01	TCGA-CM-5348-01	-0.8863	1.176	Colon Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-AF-4110-01	TCGA-AF-4110-01	-0.893	1.169		Stage IVA	MX	N2b	T4a	Primary Tumor
+TCGA-CM-6170-01	TCGA-CM-6170-01	-0.8939	1.168	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3496-01	TCGA-AA-3496-01	-0.8975	1.165	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-DM-A28C-01	TCGA-DM-A28C-01	-0.9009	1.161	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-EI-6506-01	TCGA-EI-6506-01	-0.9012	1.161	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CK-6748-01	TCGA-CK-6748-01	-0.9121	1.15	Colon Mucinous Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-F5-6571-01	TCGA-F5-6571-01	-0.9219	1.14	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3663-11	TCGA-AA-3663-11	-0.929	1.133	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-F4-6704-11	TCGA-F4-6704-11	-0.9296	1.133	Colon Mucinous Adenocarcinoma	Stage IIIC	MX	N2b	T3	Solid Tissue Normal
+TCGA-CM-6679-01	TCGA-CM-6679-01	-0.9353	1.127	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AH-6897-01	TCGA-AH-6897-01	-0.9433	1.119	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-EI-6513-01	TCGA-EI-6513-01	-0.946	1.116	Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-A6-6650-01	TCGA-A6-6650-01	-0.9482	1.114	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3489-11	TCGA-AA-3489-11	-0.9688	1.093	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AF-6672-01	TCGA-AF-6672-01	-0.9777	1.084	Rectal Adenocarcinoma	Stage IV	MX	N2b	T4a	Primary Tumor
+TCGA-EI-7002-01	TCGA-EI-7002-01	-0.9822	1.08	Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-G4-6298-01	TCGA-G4-6298-01	-0.9825	1.08	Colon Adenocarcinoma	Stage IIIB	MX	N1	T4a	Primary Tumor
+TCGA-G4-6317-02	TCGA-G4-6317-02	-0.9897	1.072	Colon Adenocarcinoma	Stage IIIC	MX	N2	T3	Recurrent Tumor
+TCGA-G4-6293-01	TCGA-G4-6293-01	-1.019	1.043	Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AD-6901-01	TCGA-AD-6901-01	-1.024	1.038	Colon Adenocarcinoma		MX	N0	T3	Primary Tumor
+TCGA-G4-6311-01	TCGA-G4-6311-01	-1.027	1.035	Colon Adenocarcinoma	Stage III	MX	N1	T3	Primary Tumor
+TCGA-DM-A28F-01	TCGA-DM-A28F-01	-1.03	1.032	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-EI-6881-01	TCGA-EI-6881-01	-1.044	1.019	Rectal Adenocarcinoma	Stage IIIA	M0	N1	T3	Primary Tumor
+TCGA-AZ-6601-11	TCGA-AZ-6601-11	-1.048	1.015	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-A6-5666-01	TCGA-A6-5666-01	-1.049	1.013	Colon Adenocarcinoma	Stage IIC	M0	N0	T4b	Primary Tumor
+TCGA-A6-6648-01	TCGA-A6-6648-01	-1.05	1.012	Colon Adenocarcinoma	Stage IVA	M1a	N0	T3	Primary Tumor
+TCGA-AA-3662-01	TCGA-AA-3662-01	-1.053	1.009	Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-AZ-4323-01	TCGA-AZ-4323-01	-1.06	1.003	Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-DY-A1DD-01	TCGA-DY-A1DD-01	-1.061	1.001	Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AZ-4616-01	TCGA-AZ-4616-01	-1.065	0.9975	Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AF-3911-01	TCGA-AF-3911-01	-1.066	0.9958	Rectal Adenocarcinoma	Stage IIIC	MX	N2	T3	Primary Tumor
+TCGA-F5-6861-01	TCGA-F5-6861-01	-1.067	0.9954	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-2679-11	TCGA-A6-2679-11	-1.07	0.9925	Colon Adenocarcinoma	Stage IIB		N0	T3	Solid Tissue Normal
+TCGA-D5-5538-01	TCGA-D5-5538-01	-1.071	0.9915	Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-CK-4948-01	TCGA-CK-4948-01	-1.072	0.9904	Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-DY-A1DE-01	TCGA-DY-A1DE-01	-1.076	0.9859	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DC-5869-01	TCGA-DC-5869-01	-1.088	0.9744	Rectal Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-CM-4747-01	TCGA-CM-4747-01	-1.09	0.9723	Colon Adenocarcinoma	Stage IVA	M1a	N1b	T4a	Primary Tumor
+TCGA-G4-6297-01	TCGA-G4-6297-01	-1.092	0.97	Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-A6-5667-11	TCGA-A6-5667-11	-1.099	0.9636	Colon Adenocarcinoma	Stage IIIB	MX	N1a	T3	Solid Tissue Normal
+TCGA-EF-5831-01	TCGA-EF-5831-01	-1.1	0.9623	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6540-01	TCGA-D5-6540-01	-1.108	0.9547	Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-A6-2684-01	TCGA-A6-2684-01	-1.116	0.9467	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AZ-5403-01	TCGA-AZ-5403-01	-1.117	0.9452	Colon Adenocarcinoma	Stage II	MX	N0	T3	Primary Tumor
+TCGA-CM-4751-01	TCGA-CM-4751-01	-1.126	0.9367	Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-AA-A01P-01	TCGA-AA-A01P-01	-1.128	0.9345	Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-3506-01	TCGA-AA-3506-01	-1.137	0.9252	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-D5-6538-01	TCGA-D5-6538-01	-1.138	0.9244	Colon Adenocarcinoma	Stage IIIB	M0	N2	T3	Primary Tumor
+TCGA-AH-6643-01	TCGA-AH-6643-01	-1.148	0.9142	Rectal Adenocarcinoma	Stage IIIC	M0	N2b	T3	Primary Tumor
+TCGA-AU-6004-01	TCGA-AU-6004-01	-1.156	0.9066	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-G4-6304-01	TCGA-G4-6304-01	-1.157	0.9057	Colon Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-SS-A7HO-01	TCGA-SS-A7HO-01	-1.159	0.9033	Colon Adenocarcinoma	Stage IIB	M0	N0	T4a	Primary Tumor
+TCGA-AA-3509-01	TCGA-AA-3509-01	-1.162	0.9006	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3697-11	TCGA-AA-3697-11	-1.162	0.8998	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-F4-6459-01	TCGA-F4-6459-01	-1.171	0.8909	Colon Adenocarcinoma	Stage IIIB	M0	N2a	T3	Primary Tumor
+TCGA-DM-A282-01	TCGA-DM-A282-01	-1.172	0.8903	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6928-01	TCGA-D5-6928-01	-1.173	0.8889	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-EI-6511-01	TCGA-EI-6511-01	-1.181	0.8817	Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-F4-6569-01	TCGA-F4-6569-01	-1.197	0.8656	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CK-4952-01	TCGA-CK-4952-01	-1.199	0.8629	Colon Mucinous Adenocarcinoma	Stage IIIC	M0	N2	T4	Primary Tumor
+TCGA-AY-6197-01	TCGA-AY-6197-01	-1.2	0.8621	Colon Adenocarcinoma	Stage IIA		N0	T3	Primary Tumor
+TCGA-AD-6548-01	TCGA-AD-6548-01	-1.201	0.8616	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CI-6619-01	TCGA-CI-6619-01	-1.208	0.8546	Rectal Adenocarcinoma	Stage IV	M1	N1c	T3	Primary Tumor
+TCGA-CM-6675-01	TCGA-CM-6675-01	-1.21	0.8527	Colon Adenocarcinoma	Stage IVB	M1b	N2b	T3	Primary Tumor
+TCGA-AG-3731-01	TCGA-AG-3731-01	-1.243	0.8193	Rectal Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-F5-6864-01	TCGA-F5-6864-01	-1.249	0.8131	Rectal Adenocarcinoma	Stage IIIB	M0	N2a	T3	Primary Tumor
+TCGA-DC-6681-01	TCGA-DC-6681-01	-1.254	0.8085	Rectal Adenocarcinoma	Stage IVA	M1a	N2a	T3	Primary Tumor
+TCGA-G4-6310-01	TCGA-G4-6310-01	-1.256	0.8061	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-4021-01	TCGA-AG-4021-01	-1.26	0.8022	Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-CM-6164-01	TCGA-CM-6164-01	-1.262	0.8004	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A285-01	TCGA-DM-A285-01	-1.272	0.7904	Colon Mucinous Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-CK-4951-01	TCGA-CK-4951-01	-1.287	0.775	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AY-A69D-01	TCGA-AY-A69D-01	-1.288	0.7742	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-5861-01	TCGA-CM-5861-01	-1.291	0.7712	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F4-6854-01	TCGA-F4-6854-01	-1.301	0.7613	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3520-11	TCGA-AA-3520-11	-1.302	0.76	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-CM-6677-01	TCGA-CM-6677-01	-1.316	0.7459	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AD-6964-01	TCGA-AD-6964-01	-1.32	0.7419	Colon Adenocarcinoma			N2b	T4a	Primary Tumor
+TCGA-CK-4950-01	TCGA-CK-4950-01	-1.322	0.7398	Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-F4-6855-01	TCGA-F4-6855-01	-1.336	0.7265	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-5862-01	TCGA-CM-5862-01	-1.337	0.7256	Colon Adenocarcinoma	Stage IVA	M1a	N1a	T3	Primary Tumor
+TCGA-DM-A0X9-01	TCGA-DM-A0X9-01	-1.346	0.7159	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3592-01	TCGA-AG-3592-01	-1.348	0.7144	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-5665-11	TCGA-A6-5665-11	-1.35	0.7122	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AH-6549-01	TCGA-AH-6549-01	-1.35	0.7121	Rectal Adenocarcinoma		MX	NX	T3	Primary Tumor
+TCGA-AF-6136-01	TCGA-AF-6136-01	-1.359	0.7032	Rectal Adenocarcinoma	Stage IIIB	MX	N1b	T3	Primary Tumor
+TCGA-A6-A566-01	TCGA-A6-A566-01	-1.363	0.6991	Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1	T4	Primary Tumor
+TCGA-AZ-6605-11	TCGA-AZ-6605-11	-1.366	0.696	Colon Adenocarcinoma	Stage IIIB	M0	N1	T4	Solid Tissue Normal
+TCGA-G4-6307-01	TCGA-G4-6307-01	-1.384	0.6784	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-CM-6166-01	TCGA-CM-6166-01	-1.385	0.677	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-G4-6323-01	TCGA-G4-6323-01	-1.39	0.6723	Colon Adenocarcinoma	Stage IA	MX	N0	Tis	Primary Tumor
+TCGA-D5-6929-01	TCGA-D5-6929-01	-1.392	0.67	Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AD-6890-01	TCGA-AD-6890-01	-1.392	0.6699	Colon Adenocarcinoma		MX	N0	T1	Primary Tumor
+TCGA-A6-6142-01	TCGA-A6-6142-01	-1.398	0.6638	Colon Adenocarcinoma	Stage IVA	M1a	N1a	T3	Primary Tumor
+TCGA-AH-6643-11	TCGA-AH-6643-11	-1.413	0.6494	Rectal Adenocarcinoma	Stage IIIC	M0	N2b	T3	Solid Tissue Normal
+TCGA-DC-5337-01	TCGA-DC-5337-01	-1.42	0.6424	Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-A6-5662-11	TCGA-A6-5662-11	-1.423	0.6391	Colon Adenocarcinoma	Stage IVA	M1	N2	T3	Solid Tissue Normal
+TCGA-F4-6461-01	TCGA-F4-6461-01	-1.423	0.6389	Colon Adenocarcinoma	Stage IIIC	M0	N2	T4b	Primary Tumor
+TCGA-A6-5656-01	TCGA-A6-5656-01	-1.427	0.6352	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3663-01	TCGA-AA-3663-01	-1.43	0.6318	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-CL-5918-01	TCGA-CL-5918-01	-1.431	0.6312	Rectal Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-DC-6682-01	TCGA-DC-6682-01	-1.431	0.6312	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3742-11	TCGA-AG-3742-11	-1.44	0.6224	Rectal Adenocarcinoma	Stage I	M0	N0	T1	Solid Tissue Normal
+TCGA-G5-6572-02	TCGA-G5-6572-02	-1.443	0.6197	Rectal Adenocarcinoma					Recurrent Tumor
+TCGA-BM-6198-01	TCGA-BM-6198-01	-1.445	0.617	Rectal Adenocarcinoma	Stage IIIB		N1	T3	Primary Tumor
+TCGA-CA-5256-01	TCGA-CA-5256-01	-1.45	0.6119	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DC-6160-01	TCGA-DC-6160-01	-1.452	0.6104	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AU-3779-01	TCGA-AU-3779-01	-1.457	0.6052	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AD-6965-01	TCGA-AD-6965-01	-1.462	0.6007	Colon Adenocarcinoma	Stage IIIC	M0	N2b	T4a	Primary Tumor
+TCGA-DC-6683-01	TCGA-DC-6683-01	-1.463	0.5993	Rectal Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-AA-3712-11	TCGA-AA-3712-11	-1.464	0.5985	Colon Adenocarcinoma	Stage III	M0	N2	T3	Solid Tissue Normal
+TCGA-G4-6315-01	TCGA-G4-6315-01	-1.464	0.5985	Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-G4-6627-01	TCGA-G4-6627-01	-1.464	0.5978	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AZ-6599-01	TCGA-AZ-6599-01	-1.468	0.5941	Colon Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-CK-6751-01	TCGA-CK-6751-01	-1.471	0.5909	Colon Mucinous Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-DY-A0XA-01	TCGA-DY-A0XA-01	-1.472	0.5903	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6588-01	TCGA-G4-6588-01	-1.477	0.5857	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CK-5912-01	TCGA-CK-5912-01	-1.478	0.584	Colon Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-CL-5917-01	TCGA-CL-5917-01	-1.48	0.5824	Rectal Adenocarcinoma	Stage IIIC	MX	N2	T3	Primary Tumor
+TCGA-DY-A1DC-01	TCGA-DY-A1DC-01	-1.482	0.5802	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-5344-01	TCGA-CM-5344-01	-1.484	0.5784	Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-AZ-6605-01	TCGA-AZ-6605-01	-1.485	0.5773	Colon Adenocarcinoma	Stage IIIB	M0	N1	T4	Primary Tumor
+TCGA-DY-A1DG-01	TCGA-DY-A1DG-01	-1.487	0.5757	Rectal Adenocarcinoma	Stage IVA	M1	N1	T3	Primary Tumor
+TCGA-AG-3742-01	TCGA-AG-3742-01	-1.489	0.5737	Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AA-3655-11	TCGA-AA-3655-11	-1.489	0.5732	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-4N-A93T-01	TCGA-4N-A93T-01	-1.493	0.5693	Colon Adenocarcinoma	Stage IIIB	M0	N1b	T4a	Primary Tumor
+TCGA-AA-3685-01	TCGA-AA-3685-01	-1.493	0.5691	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3660-01	TCGA-AA-3660-01	-1.494	0.5686	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AH-6903-01	TCGA-AH-6903-01	-1.499	0.5628	Rectal Mucinous Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-G5-6233-01	TCGA-G5-6233-01	-1.501	0.5617	Rectal Adenocarcinoma	[Discrepancy]	M0	N2	T3	Primary Tumor
+TCGA-F5-6812-01	TCGA-F5-6812-01	-1.502	0.5606	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AZ-4684-01	TCGA-AZ-4684-01	-1.502	0.5606	Colon Adenocarcinoma	Stage IVA	M1	N2	T3	Primary Tumor
+TCGA-AZ-4313-01	TCGA-AZ-4313-01	-1.504	0.5586	Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AA-3516-11	TCGA-AA-3516-11	-1.504	0.5584	Colon Mucinous Adenocarcinoma	Stage III	M0	N2	T3	Solid Tissue Normal
+TCGA-QL-A97D-01	TCGA-QL-A97D-01	-1.504	0.5582	Colon Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-AD-6895-01	TCGA-AD-6895-01	-1.504	0.5581	Colon Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-D5-5539-01	TCGA-D5-5539-01	-1.507	0.5556	Colon Mucinous Adenocarcinoma	Stage IIIA	M0	N1	T3	Primary Tumor
+TCGA-DM-A0XD-01	TCGA-DM-A0XD-01	-1.509	0.5528	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6539-01	TCGA-D5-6539-01	-1.511	0.5511	Colon Adenocarcinoma	[Discrepancy]	M0	N0	T3	Primary Tumor
+TCGA-AY-A8YK-01	TCGA-AY-A8YK-01	-1.512	0.5503	Colon Adenocarcinoma	Stage IVA	M1	N2a	T3	Primary Tumor
+TCGA-AA-3655-01	TCGA-AA-3655-01	-1.513	0.5495	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-CA-6719-01	TCGA-CA-6719-01	-1.513	0.5495	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AF-2690-01	TCGA-AF-2690-01	-1.514	0.5487	Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-D5-6529-01	TCGA-D5-6529-01	-1.516	0.5462	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AZ-6598-11	TCGA-AZ-6598-11	-1.517	0.5448	Colon Adenocarcinoma	Stage II	MX	N0	T3	Solid Tissue Normal
+TCGA-EI-6509-01	TCGA-EI-6509-01	-1.518	0.5445	Rectal Adenocarcinoma	Stage IIIC	M0	N2b	T3	Primary Tumor
+TCGA-D5-6533-01	TCGA-D5-6533-01	-1.52	0.542	Colon Adenocarcinoma	[Discrepancy]	M0	N0	T4b	Primary Tumor
+TCGA-F5-6464-01	TCGA-F5-6464-01	-1.522	0.5403	Rectal Adenocarcinoma	Stage IIIC	M0	N2a	T4b	Primary Tumor
+TCGA-G4-6625-01	TCGA-G4-6625-01	-1.523	0.5395	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-6138-01	TCGA-A6-6138-01	-1.523	0.5389	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CM-6162-01	TCGA-CM-6162-01	-1.525	0.5373	Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-A6-2685-01	TCGA-A6-2685-01	-1.527	0.5356	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DC-4749-01	TCGA-DC-4749-01	-1.534	0.5282	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-A6-6782-01	TCGA-A6-6782-01	-1.535	0.527	Colon Adenocarcinoma	Stage IIB	MX	N0	T4a	Primary Tumor
+TCGA-CM-6678-01	TCGA-CM-6678-01	-1.541	0.5213	Colon Adenocarcinoma	Stage IVA	M1a	N1c	T4a	Primary Tumor
+TCGA-EI-6512-01	TCGA-EI-6512-01	-1.542	0.5202	Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-A6-5662-01	TCGA-A6-5662-01	-1.543	0.5189	Colon Adenocarcinoma	Stage IVA	M1	N2	T3	Primary Tumor
+TCGA-G4-6314-01	TCGA-G4-6314-01	-1.546	0.5162	Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-A6-5660-01	TCGA-A6-5660-01	-1.547	0.5156	Colon Adenocarcinoma	Stage IIIC	M0	N2b	T3	Primary Tumor
+TCGA-AA-A01Z-01	TCGA-AA-A01Z-01	-1.547	0.5152	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-CM-6161-01	TCGA-CM-6161-01	-1.548	0.5143	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-A6-5659-01	TCGA-A6-5659-01	-1.55	0.5119	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AF-2687-01	TCGA-AF-2687-01	-1.551	0.5117	Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AY-A54L-01	TCGA-AY-A54L-01	-1.552	0.5101	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-A6-5667-01	TCGA-A6-5667-01	-1.552	0.5099	Colon Adenocarcinoma	Stage IIIB	MX	N1a	T3	Primary Tumor
+TCGA-CI-6622-01	TCGA-CI-6622-01	-1.552	0.5098	Rectal Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-F4-6809-01	TCGA-F4-6809-01	-1.553	0.5096	Colon Adenocarcinoma	Stage IVA	M1	N1	T3	Primary Tumor
+TCGA-AG-3725-01	TCGA-AG-3725-01	-1.554	0.5082	Rectal Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-DM-A28A-01	TCGA-DM-A28A-01	-1.554	0.508	Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AZ-6601-01	TCGA-AZ-6601-01	-1.554	0.5078	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-CK-5913-01	TCGA-CK-5913-01	-1.556	0.5066	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-T9-A92H-01	TCGA-T9-A92H-01	-1.556	0.5066	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-2671-11	TCGA-A6-2671-11	-1.557	0.5052	Colon Adenocarcinoma	Stage IV	M1	N2	T3	Solid Tissue Normal
+TCGA-AM-5820-01	TCGA-AM-5820-01	-1.559	0.5033	Colon Adenocarcinoma	Stage IVA	M1	N2	T4a	Primary Tumor
+TCGA-AZ-6606-01	TCGA-AZ-6606-01	-1.561	0.5016	Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-G5-6641-01	TCGA-G5-6641-01	-1.564	0.4987	Rectal Mucinous Adenocarcinoma	Stage IIIA	MX	N1	T1	Primary Tumor
+TCGA-AZ-4682-01	TCGA-AZ-4682-01	-1.567	0.4952	Colon Adenocarcinoma	Stage IVA	M1	N0	T3	Primary Tumor
+TCGA-AZ-4614-01	TCGA-AZ-4614-01	-1.568	0.4942	Colon Adenocarcinoma	Stage IVA	M1	N1	T4a	Primary Tumor
+TCGA-CK-5914-01	TCGA-CK-5914-01	-1.572	0.4906	Colon Adenocarcinoma	Stage IIIB	MX	N1	T3	Primary Tumor
+TCGA-AF-A56N-01	TCGA-AF-A56N-01	-1.572	0.49	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-2682-11	TCGA-A6-2682-11	-1.573	0.4894	Colon Adenocarcinoma	Stage IV	M1	N1	T4b	Solid Tissue Normal
+TCGA-CM-6163-01	TCGA-CM-6163-01	-1.573	0.4892	Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-NH-A8F7-06	TCGA-NH-A8F7-06	-1.574	0.4887	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Metastatic
+TCGA-WS-AB45-01	TCGA-WS-AB45-01	-1.574	0.4878	Colon Mucinous Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-AA-3675-01	TCGA-AA-3675-01	-1.574	0.4878	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3531-11	TCGA-AA-3531-11	-1.576	0.4865	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-QG-A5YW-01	TCGA-QG-A5YW-01	-1.577	0.4848	Colon Mucinous Adenocarcinoma	Stage IIIC	MX	N2b	T3	Primary Tumor
+TCGA-A6-2686-11	TCGA-A6-2686-11	-1.578	0.4838	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AF-2689-11	TCGA-AF-2689-11	-1.581	0.4809	Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Solid Tissue Normal
+TCGA-QG-A5YV-01	TCGA-QG-A5YV-01	-1.583	0.4788	Colon Adenocarcinoma	Stage IIIC	MX	N1a	T4b	Primary Tumor
+TCGA-NH-A5IV-01	TCGA-NH-A5IV-01	-1.584	0.4783	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-D5-7000-01	TCGA-D5-7000-01	-1.585	0.4772	Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-A6-2685-11	TCGA-A6-2685-11	-1.586	0.4767	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AF-2691-11	TCGA-AF-2691-11	-1.586	0.4761	Rectal Adenocarcinoma	Stage I	M0	N0	T1	Solid Tissue Normal
+TCGA-AA-3713-01	TCGA-AA-3713-01	-1.591	0.471	Colon Adenocarcinoma	Stage IV	M1	N0	T3	Primary Tumor
+TCGA-AY-A71X-01	TCGA-AY-A71X-01	-1.593	0.4692	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AD-A5EK-01	TCGA-AD-A5EK-01	-1.594	0.4679	Colon Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-F4-6703-01	TCGA-F4-6703-01	-1.596	0.4659	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CA-5254-01	TCGA-CA-5254-01	-1.599	0.4634	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-EI-6917-01	TCGA-EI-6917-01	-1.603	0.4591	Rectal Adenocarcinoma	Stage IIIA	M0	N1	T3	Primary Tumor
+TCGA-AD-6888-01	TCGA-AD-6888-01	-1.607	0.4555	Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-F5-6810-01	TCGA-F5-6810-01	-1.607	0.4555						Primary Tumor
+TCGA-D5-6898-01	TCGA-D5-6898-01	-1.609	0.4529	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-DM-A28M-01	TCGA-DM-A28M-01	-1.615	0.4474	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-5868-01	TCGA-CM-5868-01	-1.62	0.4419	Colon Adenocarcinoma	Stage IVA	M1a	N1a	T4a	Primary Tumor
+TCGA-AD-6899-01	TCGA-AD-6899-01	-1.623	0.439	Colon Mucinous Adenocarcinoma	Stage IIIC	MX	N2b	T4a	Primary Tumor
+TCGA-CI-6623-01	TCGA-CI-6623-01	-1.626	0.4363	Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-D5-6541-01	TCGA-D5-6541-01	-1.627	0.4349	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AD-6963-01	TCGA-AD-6963-01	-1.628	0.434	Colon Adenocarcinoma		MX	N0	T3	Primary Tumor
+TCGA-DM-A1D7-01	TCGA-DM-A1D7-01	-1.631	0.4317	[Discrepancy]	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-QG-A5Z2-01	TCGA-QG-A5Z2-01	-1.637	0.4252	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-D5-5541-01	TCGA-D5-5541-01	-1.638	0.4246	Colon Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-DM-A1D9-01	TCGA-DM-A1D9-01	-1.65	0.4126	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A1D8-01	TCGA-DM-A1D8-01	-1.65	0.4119	Colon Adenocarcinoma			N1	T3	Primary Tumor
+TCGA-EI-6885-01	TCGA-EI-6885-01	-1.67	0.3926	Rectal Adenocarcinoma	Stage IV	M1	N1b	T3	Primary Tumor
+TCGA-DM-A0XF-01	TCGA-DM-A0XF-01	-2.062	0	[Discrepancy]	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-DM-A1HB-01	TCGA-DM-A1HB-01	-2.062	0	[Discrepancy]	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-EI-7004-01	TCGA-EI-7004-01	-2.062	0	Rectal Mucinous Adenocarcinoma	[Discrepancy]	M0	N2b	T4a	Primary Tumor
+TCGA-AF-3400-11	TCGA-AF-3400-11	-2.062	0	Rectal Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-EI-6510-01	TCGA-EI-6510-01	-2.062	0	Rectal Adenocarcinoma	[Discrepancy]	MX	N0	T2	Primary Tumor
+TCGA-CL-4957-01	TCGA-CL-4957-01	-2.062	0	Rectal Adenocarcinoma	[Discrepancy]	M0	N1	T3	Primary Tumor
+TCGA-EI-6884-01	TCGA-EI-6884-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIA	M0	N1	T3	Primary Tumor
+TCGA-DY-A1H8-01	TCGA-DY-A1H8-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIA	M0	N1	T2	Primary Tumor
+TCGA-DC-6155-01	TCGA-DC-6155-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIA	M0	N1b	T2	Primary Tumor
+TCGA-AG-3725-11	TCGA-AG-3725-11	-2.062	0	Rectal Adenocarcinoma	Stage III	M0	N2	T3	Solid Tissue Normal
+TCGA-EI-6883-01	TCGA-EI-6883-01	-2.062	0	Rectal Adenocarcinoma	Stage IIC	M0	N0	T3	Primary Tumor
+TCGA-CI-6620-01	TCGA-CI-6620-01	-2.062	0	Rectal Adenocarcinoma	Stage IVA	M1	N1	T3	Primary Tumor
+TCGA-F5-6702-01	TCGA-F5-6702-01	-2.062	0	Rectal Adenocarcinoma	Stage IVA	M1	N1	T3	Primary Tumor
+TCGA-DC-6156-01	TCGA-DC-6156-01	-2.062	0	Rectal Adenocarcinoma	Stage IVA	M1a	N2b	T4a	Primary Tumor
+TCGA-DY-A1DF-01	TCGA-DY-A1DF-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-F5-6813-01	TCGA-F5-6813-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIC	M0	N2	T4a	Primary Tumor
+TCGA-EF-5830-01	TCGA-EF-5830-01	-2.062	0	Rectal Adenocarcinoma	Stage IIB	M0	N0	T4a	Primary Tumor
+TCGA-AG-3731-11	TCGA-AG-3731-11	-2.062	0	Rectal Adenocarcinoma	Stage IV	M1	N1	T3	Solid Tissue Normal
+TCGA-AG-3591-01	TCGA-AG-3591-01	-2.062	0	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-EI-6507-01	TCGA-EI-6507-01	-2.062	0	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-EI-6514-01	TCGA-EI-6514-01	-2.062	0	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F5-6465-01	TCGA-F5-6465-01	-2.062	0	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F5-6811-01	TCGA-F5-6811-01	-2.062	0	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F5-6814-01	TCGA-F5-6814-01	-2.062	0	Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CI-6621-01	TCGA-CI-6621-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIB	MX	N1	T3	Primary Tumor
+TCGA-G5-6235-01	TCGA-G5-6235-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIB	MX	N1	T3	Primary Tumor
+TCGA-DC-4745-01	TCGA-DC-4745-01	-2.062	0	Rectal Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-AF-5654-11	TCGA-AF-5654-11	-2.062	0	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AF-5654-01	TCGA-AF-5654-01	-2.062	0	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3732-01	TCGA-AG-3732-01	-2.062	0	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CI-6624-01	TCGA-CI-6624-01	-2.062	0	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-DC-6157-01	TCGA-DC-6157-01	-2.062	0	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-DC-6158-01	TCGA-DC-6158-01	-2.062	0	Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AH-6544-01	TCGA-AH-6544-01	-2.062	0	Rectal Adenocarcinoma		M1	N1	T3	Primary Tumor
+TCGA-AH-6644-01	TCGA-AH-6644-01	-2.062	0	Rectal Adenocarcinoma		MX	NX	T3	Primary Tumor
+TCGA-G5-6572-01	TCGA-G5-6572-01	-2.062	0	Rectal Adenocarcinoma					Primary Tumor
+TCGA-A6-A565-01	TCGA-A6-A565-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIIC	MX	N2	T3	Primary Tumor
+TCGA-F4-6704-01	TCGA-F4-6704-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIIC	MX	N2b	T3	Primary Tumor
+TCGA-4T-AA8H-01	TCGA-4T-AA8H-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-A6-6780-01	TCGA-A6-6780-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-CA-5796-01	TCGA-CA-5796-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CA-6717-01	TCGA-CA-6717-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6930-01	TCGA-D5-6930-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A1D6-01	TCGA-DM-A1D6-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A280-01	TCGA-DM-A280-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F4-6463-01	TCGA-F4-6463-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6302-01	TCGA-G4-6302-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6322-01	TCGA-G4-6322-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIIB	MX	N1	T3	Primary Tumor
+TCGA-CM-5863-01	TCGA-CM-5863-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-AD-5900-01	TCGA-AD-5900-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-F4-6856-01	TCGA-F4-6856-01	-2.062	0	Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-G4-6306-01	TCGA-G4-6306-01	-2.062	0	Colon Adenocarcinoma	[Discrepancy]	M0	N0	T2	Primary Tumor
+TCGA-AZ-6608-01	TCGA-AZ-6608-01	-2.062	0	Colon Adenocarcinoma	Stage IIIA	M0	N1	T2	Primary Tumor
+TCGA-G4-6320-01	TCGA-G4-6320-01	-2.062	0	Colon Adenocarcinoma	Stage III	MX	N1	T3	Primary Tumor
+TCGA-G4-6321-01	TCGA-G4-6321-01	-2.062	0	Colon Adenocarcinoma	Stage III	MX	N1	T2	Primary Tumor
+TCGA-AY-5543-01	TCGA-AY-5543-01	-2.062	0	Colon Adenocarcinoma	Stage IVA	M1	N1a	T3	Primary Tumor
+TCGA-A6-6652-01	TCGA-A6-6652-01	-2.062	0	Colon Adenocarcinoma	Stage IVA	M1	N0	T3	Primary Tumor
+TCGA-AZ-6598-01	TCGA-AZ-6598-01	-2.062	0	Colon Adenocarcinoma	Stage II	MX	N0	T3	Primary Tumor
+TCGA-AA-3511-11	TCGA-AA-3511-11	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T4	Solid Tissue Normal
+TCGA-AA-3511-01	TCGA-AA-3511-01	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T4	Primary Tumor
+TCGA-A6-2680-11	TCGA-A6-2680-11	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3496-11	TCGA-AA-3496-11	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3660-11	TCGA-AA-3660-11	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3489-01	TCGA-AA-3489-01	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3492-01	TCGA-AA-3492-01	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-G4-6295-01	TCGA-G4-6295-01	-2.062	0	Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-G4-6317-01	TCGA-G4-6317-01	-2.062	0	Colon Adenocarcinoma	Stage IIIC	MX	N2	T3	Primary Tumor
+TCGA-NH-A6GB-01	TCGA-NH-A6GB-01	-2.062	0	Colon Adenocarcinoma	Stage IIIC	MX	N2b	T3	Primary Tumor
+TCGA-DM-A1DA-01	TCGA-DM-A1DA-01	-2.062	0	Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-DM-A1HA-01	TCGA-DM-A1HA-01	-2.062	0	Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-DM-A28H-01	TCGA-DM-A28H-01	-2.062	0	Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-CK-6746-01	TCGA-CK-6746-01	-2.062	0	Colon Adenocarcinoma	Stage IIB	MX	N0	T4b	Primary Tumor
+TCGA-AZ-6600-11	TCGA-AZ-6600-11	-2.062	0	Colon Adenocarcinoma	Stage IV	M1	N1	T4	Solid Tissue Normal
+TCGA-G4-6294-01	TCGA-G4-6294-01	-2.062	0	Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-G4-6303-01	TCGA-G4-6303-01	-2.062	0	Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AA-3662-11	TCGA-AA-3662-11	-2.062	0	Colon Adenocarcinoma	Stage IV	M1	N2	T4	Solid Tissue Normal
+TCGA-NH-A8F8-01	TCGA-NH-A8F8-01	-2.062	0	Colon Adenocarcinoma	Stage IV	M1	N2b	T4a	Primary Tumor
+TCGA-A6-2683-11	TCGA-A6-2683-11	-2.062	0	Colon Adenocarcinoma	Stage IV	M1	N0	T4	Solid Tissue Normal
+TCGA-D5-5537-01	TCGA-D5-5537-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	MX	N2	T3	Primary Tumor
+TCGA-A6-2675-11	TCGA-A6-2675-11	-2.062	0	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Solid Tissue Normal
+TCGA-A6-2675-01	TCGA-A6-2675-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-CK-6747-01	TCGA-CK-6747-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-NH-A50T-01	TCGA-NH-A50T-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-QG-A5YX-01	TCGA-QG-A5YX-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	MX	N0	T3	Primary Tumor
+TCGA-AA-3517-11	TCGA-AA-3517-11	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3518-11	TCGA-AA-3518-11	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3527-11	TCGA-AA-3527-11	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3534-11	TCGA-AA-3534-11	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-A6-2686-01	TCGA-A6-2686-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-4105-01	TCGA-A6-4105-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-5661-01	TCGA-A6-5661-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-5665-01	TCGA-A6-5665-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-6140-01	TCGA-A6-6140-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-6141-01	TCGA-A6-6141-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AD-6889-01	TCGA-AD-6889-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AM-5821-01	TCGA-AM-5821-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AZ-4315-01	TCGA-AZ-4315-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CA-5255-01	TCGA-CA-5255-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CA-5797-01	TCGA-CA-5797-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CA-6718-01	TCGA-CA-6718-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-4743-01	TCGA-CM-4743-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-6165-01	TCGA-CM-6165-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-6168-01	TCGA-CM-6168-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-6169-01	TCGA-CM-6169-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-6674-01	TCGA-CM-6674-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6531-01	TCGA-D5-6531-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6532-01	TCGA-D5-6532-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6920-01	TCGA-D5-6920-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6924-01	TCGA-D5-6924-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6927-01	TCGA-D5-6927-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6932-01	TCGA-D5-6932-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A1D0-01	TCGA-DM-A1D0-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A1D4-01	TCGA-DM-A1D4-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A1DB-01	TCGA-DM-A1DB-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A28E-01	TCGA-DM-A28E-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-DM-A28G-01	TCGA-DM-A28G-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F4-6570-01	TCGA-F4-6570-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-F4-6805-01	TCGA-F4-6805-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6586-01	TCGA-G4-6586-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6626-01	TCGA-G4-6626-01	-2.062	0	Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-D5-6537-01	TCGA-D5-6537-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	MX	N1a	T3	Primary Tumor
+TCGA-RU-A8FL-01	TCGA-RU-A8FL-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	MX	N2a	T3	Primary Tumor
+TCGA-D5-6535-01	TCGA-D5-6535-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	MX	N1	T3	Primary Tumor
+TCGA-A6-6137-01	TCGA-A6-6137-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1c	T3	Primary Tumor
+TCGA-AY-6386-01	TCGA-AY-6386-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-CM-6172-01	TCGA-CM-6172-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1a	T3	Primary Tumor
+TCGA-CM-6680-01	TCGA-CM-6680-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N2a	T3	Primary Tumor
+TCGA-CK-4947-01	TCGA-CK-4947-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T4	Primary Tumor
+TCGA-A6-2678-11	TCGA-A6-2678-11	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Solid Tissue Normal
+TCGA-AA-3525-11	TCGA-AA-3525-11	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Solid Tissue Normal
+TCGA-A6-6654-01	TCGA-A6-6654-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-A6-A56B-01	TCGA-A6-A56B-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-A6-A5ZU-01	TCGA-A6-A5ZU-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AZ-4615-01	TCGA-AZ-4615-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-CA-6715-01	TCGA-CA-6715-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-F4-6460-01	TCGA-F4-6460-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-G4-6309-01	TCGA-G4-6309-01	-2.062	0	Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AZ-6599-11	TCGA-AZ-6599-11	-2.062	0	Colon Adenocarcinoma	Stage I	MX	N0	T2	Solid Tissue Normal
+TCGA-CK-5915-01	TCGA-CK-5915-01	-2.062	0	Colon Adenocarcinoma	Stage I	MX	N0	T2	Primary Tumor
+TCGA-AZ-5407-01	TCGA-AZ-5407-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-CK-5916-01	TCGA-CK-5916-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-F4-6808-01	TCGA-F4-6808-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-A6-2684-11	TCGA-A6-2684-11	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-A6-5659-11	TCGA-A6-5659-11	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-3514-11	TCGA-AA-3514-11	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-3L-AA1B-01	TCGA-3L-AA1B-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-A6-6653-01	TCGA-A6-6653-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3495-01	TCGA-AA-3495-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3502-01	TCGA-AA-3502-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3526-01	TCGA-AA-3526-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A02Y-01	TCGA-AA-A02Y-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CM-4744-01	TCGA-CM-4744-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CM-5864-01	TCGA-CM-5864-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CM-6171-01	TCGA-CM-6171-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-D5-6530-01	TCGA-D5-6530-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-F4-6806-01	TCGA-F4-6806-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-G4-6628-01	TCGA-G4-6628-01	-2.062	0	Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AZ-6603-11	TCGA-AZ-6603-11	-2.062	0	Colon Adenocarcinoma		MX	N1	T2	Solid Tissue Normal
+TCGA-AZ-6603-01	TCGA-AZ-6603-01	-2.062	0	Colon Adenocarcinoma		MX	N1	T2	Primary Tumor
+TCGA-F4-6857-01	TCGA-F4-6857-01	-2.062	0						Primary Tumor
+TCGA-AG-A020-11	TCGA-AG-A020-11			Rectal Mucinous Adenocarcinoma	Stage III	M0	N1	T3	Solid Tissue Normal
+TCGA-AG-A020-01	TCGA-AG-A020-01			Rectal Mucinous Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AG-3583-01	TCGA-AG-3583-01			Rectal Mucinous Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AF-3400-01	TCGA-AF-3400-01			Rectal Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3578-01	TCGA-AG-3578-01			Rectal Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3594-01	TCGA-AG-3594-01			Rectal Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3887-01	TCGA-AG-3887-01			Rectal Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3901-01	TCGA-AG-3901-01			Rectal Mucinous Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-A008-01	TCGA-AG-A008-01			Rectal Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3727-01	TCGA-AG-3727-01			Rectal Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AG-A036-11	TCGA-AG-A036-11			Rectal Adenocarcinoma	Stage III	M0	N2	T3	Solid Tissue Normal
+TCGA-AG-A036-01	TCGA-AG-A036-01			Rectal Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-AG-A026-01	TCGA-AG-A026-01			Rectal Adenocarcinoma	Stage II	M0	N0	T4	Primary Tumor
+TCGA-AG-A01W-11	TCGA-AG-A01W-11			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AG-A01Y-11	TCGA-AG-A01Y-11			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AG-A02N-11	TCGA-AG-A02N-11			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AG-3574-01	TCGA-AG-3574-01			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AG-3575-01	TCGA-AG-3575-01			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AG-A01W-01	TCGA-AG-A01W-01			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AG-A01Y-01	TCGA-AG-A01Y-01			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AG-A02N-01	TCGA-AG-A02N-01			Rectal Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AG-3600-01	TCGA-AG-3600-01			Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AG-3602-01	TCGA-AG-3602-01			Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AG-3609-01	TCGA-AG-3609-01			Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AG-3999-01	TCGA-AG-3999-01			Rectal Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AF-3913-11	TCGA-AF-3913-11			Rectal Adenocarcinoma	Stage IV	M1	N1	T3	Solid Tissue Normal
+TCGA-AF-3913-01	TCGA-AF-3913-01			Rectal Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AG-3582-01	TCGA-AG-3582-01			Rectal Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AG-3605-01	TCGA-AG-3605-01			Rectal Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AG-A02G-01	TCGA-AG-A02G-01			Rectal Adenocarcinoma	Stage IV	M1	N1	T2	Primary Tumor
+TCGA-AG-4007-01	TCGA-AG-4007-01			Rectal Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-AG-A023-01	TCGA-AG-A023-01			Rectal Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-AF-2689-01	TCGA-AF-2689-01			Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AG-3584-01	TCGA-AG-3584-01			Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AG-4005-01	TCGA-AG-4005-01			Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AG-A016-01	TCGA-AG-A016-01			Rectal Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AG-A01N-01	TCGA-AG-A01N-01			Rectal Adenocarcinoma	Stage IV	M1	N0	T2	Primary Tumor
+TCGA-AG-3593-01	TCGA-AG-3593-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3598-01	TCGA-AG-3598-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3608-01	TCGA-AG-3608-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3611-01	TCGA-AG-3611-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3894-01	TCGA-AG-3894-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3898-01	TCGA-AG-3898-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-4001-01	TCGA-AG-4001-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-4008-01	TCGA-AG-4008-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-4015-01	TCGA-AG-4015-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-A00H-01	TCGA-AG-A00H-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-A00Y-01	TCGA-AG-A00Y-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-A011-01	TCGA-AG-A011-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-A01J-01	TCGA-AG-A01J-01			Rectal Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AF-3914-01	TCGA-AF-3914-01			Rectal Adenocarcinoma	Stage IIIB	M0	N2a	T3	Primary Tumor
+TCGA-AG-3601-01	TCGA-AG-3601-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T4	Primary Tumor
+TCGA-AG-3612-01	TCGA-AG-3612-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-3728-01	TCGA-AG-3728-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-3885-01	TCGA-AG-3885-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-3893-01	TCGA-AG-3893-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-3909-01	TCGA-AG-3909-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-A00C-01	TCGA-AG-A00C-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-A01L-01	TCGA-AG-A01L-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AG-A032-01	TCGA-AG-A032-01			Rectal Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AF-2691-01	TCGA-AF-2691-01			Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AG-3580-01	TCGA-AG-3580-01			Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AG-3892-01	TCGA-AG-3892-01			Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AG-A015-01	TCGA-AG-A015-01			Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AG-A025-01	TCGA-AG-A025-01			Rectal Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AG-3581-01	TCGA-AG-3581-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3587-01	TCGA-AG-3587-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3726-01	TCGA-AG-3726-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3878-01	TCGA-AG-3878-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3882-01	TCGA-AG-3882-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3883-01	TCGA-AG-3883-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3890-01	TCGA-AG-3890-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3891-01	TCGA-AG-3891-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3896-01	TCGA-AG-3896-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-A002-01	TCGA-AG-A002-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-A014-01	TCGA-AG-A014-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-A02X-01	TCGA-AG-A02X-01			Rectal Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A01R-11	TCGA-AA-A01R-11			Colon Mucinous Adenocarcinoma	Stage III	M0	N2	T3	Solid Tissue Normal
+TCGA-AA-A03F-11	TCGA-AA-A03F-11			Colon Mucinous Adenocarcinoma	Stage III	M0	N2	T3	Solid Tissue Normal
+TCGA-AA-3516-01	TCGA-AA-3516-01			Colon Mucinous Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-AA-A01R-01	TCGA-AA-A01R-01			Colon Mucinous Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-AA-A03F-01	TCGA-AA-A03F-01			Colon Mucinous Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-AA-A024-01	TCGA-AA-A024-01			Colon Mucinous Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-A01D-01	TCGA-AA-A01D-01			Colon Mucinous Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-A6-3809-11	TCGA-A6-3809-11			Colon Mucinous Adenocarcinoma	Stage IIB	M0	N0	T4	Solid Tissue Normal
+TCGA-A6-3809-01	TCGA-A6-3809-01			Colon Mucinous Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-AA-3947-01	TCGA-AA-3947-01			Colon Mucinous Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-AA-A00N-01	TCGA-AA-A00N-01			Colon Mucinous Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-AA-3684-01	TCGA-AA-3684-01			Colon Mucinous Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-A6-2674-11	TCGA-A6-2674-11			Colon Mucinous Adenocarcinoma	Stage IV	M1	N2	T3	Solid Tissue Normal
+TCGA-A6-2674-01	TCGA-A6-2674-01			Colon Mucinous Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3692-01	TCGA-AA-3692-01			Colon Mucinous Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-G4-6302-11	TCGA-G4-6302-11			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3555-01	TCGA-AA-3555-01			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3837-01	TCGA-AA-3837-01			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3852-01	TCGA-AA-3852-01			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3950-01	TCGA-AA-3950-01			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3966-01	TCGA-AA-3966-01			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A01G-01	TCGA-AA-A01G-01			Colon Mucinous Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6322-11	TCGA-G4-6322-11			Colon Mucinous Adenocarcinoma	Stage IIIB	MX	N1	T3	Solid Tissue Normal
+TCGA-CM-4748-01	TCGA-CM-4748-01			Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1a	T4a	Primary Tumor
+TCGA-AA-A00J-01	TCGA-AA-A00J-01			Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1	T4	Primary Tumor
+TCGA-AA-3949-01	TCGA-AA-3949-01			Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-3994-01	TCGA-AA-3994-01			Colon Mucinous Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-3877-01	TCGA-AA-3877-01			Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AA-3543-01	TCGA-AA-3543-01			Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3821-01	TCGA-AA-3821-01			Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3854-01	TCGA-AA-3854-01			Colon Mucinous Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CM-5341-01	TCGA-CM-5341-01			Colon Adenocarcinoma	Stage IIIA	M0	N1a	T2	Primary Tumor
+TCGA-AA-3842-01	TCGA-AA-3842-01			Colon Adenocarcinoma	Stage IIIA	M0	N1	T2	Primary Tumor
+TCGA-AA-3976-01	TCGA-AA-3976-01			Colon Adenocarcinoma	Stage IIIA	M0	N1	T2	Primary Tumor
+TCGA-AA-A01C-01	TCGA-AA-A01C-01			Colon Adenocarcinoma	Stage IIIA	M0	N1	T2	Primary Tumor
+TCGA-CM-4750-01	TCGA-CM-4750-01			Colon Adenocarcinoma	Stage IIIA	M0	N1b	T1	Primary Tumor
+TCGA-G4-6311-11	TCGA-G4-6311-11			Colon Adenocarcinoma	Stage III	MX	N1	T3	Solid Tissue Normal
+TCGA-G4-6320-11	TCGA-G4-6320-11			Colon Adenocarcinoma	Stage III	MX	N1	T3	Solid Tissue Normal
+TCGA-AA-3519-11	TCGA-AA-3519-11			Colon Adenocarcinoma	Stage III	M0	N1	T3	Solid Tissue Normal
+TCGA-AA-A01P-11	TCGA-AA-A01P-11			Colon Adenocarcinoma	Stage III	M0	N1	T3	Solid Tissue Normal
+TCGA-AA-A01S-11	TCGA-AA-A01S-11			Colon Adenocarcinoma	Stage III	M0	N1	T3	Solid Tissue Normal
+TCGA-AA-A01T-11	TCGA-AA-A01T-11			Colon Adenocarcinoma	Stage III	M0	N1	T3	Solid Tissue Normal
+TCGA-AA-3519-01	TCGA-AA-3519-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-3666-01	TCGA-AA-3666-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-3672-01	TCGA-AA-3672-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-3681-01	TCGA-AA-3681-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-3971-01	TCGA-AA-3971-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-A01S-01	TCGA-AA-A01S-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-A01T-01	TCGA-AA-A01T-01			Colon Adenocarcinoma	Stage III	M0	N1	T3	Primary Tumor
+TCGA-AA-A01X-11	TCGA-AA-A01X-11			Colon Adenocarcinoma	Stage III	M0	N1	T2	Solid Tissue Normal
+TCGA-AA-3678-01	TCGA-AA-3678-01			Colon Adenocarcinoma	Stage III	M0	N1	T2	Primary Tumor
+TCGA-AA-3811-01	TCGA-AA-3811-01			Colon Adenocarcinoma	Stage III	M0	N2	T3	Primary Tumor
+TCGA-AA-3941-01	TCGA-AA-3941-01			Colon Adenocarcinoma	Stage IVA	M1a	N1b	T4	Primary Tumor
+TCGA-AA-A022-11	TCGA-AA-A022-11			Colon Adenocarcinoma	Stage II	M0	N0	T4	Solid Tissue Normal
+TCGA-AA-A022-01	TCGA-AA-A022-01			Colon Adenocarcinoma	Stage II	M0	N0	T4	Primary Tumor
+TCGA-AA-3492-11	TCGA-AA-3492-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3509-11	TCGA-AA-3509-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3510-11	TCGA-AA-3510-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3521-11	TCGA-AA-3521-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3524-11	TCGA-AA-3524-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-A01Z-11	TCGA-AA-A01Z-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-A02O-11	TCGA-AA-A02O-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-G4-6295-11	TCGA-G4-6295-11			Colon Adenocarcinoma	Stage II	M0	N0	T3	Solid Tissue Normal
+TCGA-A6-2680-01	TCGA-A6-2680-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3510-01	TCGA-AA-3510-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3520-01	TCGA-AA-3520-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3521-01	TCGA-AA-3521-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3524-01	TCGA-AA-3524-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3664-01	TCGA-AA-3664-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3673-01	TCGA-AA-3673-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3715-01	TCGA-AA-3715-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-3864-01	TCGA-AA-3864-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-A01Q-01	TCGA-AA-A01Q-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-A029-01	TCGA-AA-A029-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-AA-A02O-01	TCGA-AA-A02O-01			Colon Adenocarcinoma	Stage II	M0	N0	T3	Primary Tumor
+TCGA-A6-2677-11	TCGA-A6-2677-11			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Solid Tissue Normal
+TCGA-A6-3807-11	TCGA-A6-3807-11			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Solid Tissue Normal
+TCGA-AA-3529-11	TCGA-AA-3529-11			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Solid Tissue Normal
+TCGA-A6-2677-01	TCGA-A6-2677-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-A6-3807-01	TCGA-A6-3807-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3529-01	TCGA-AA-3529-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3542-01	TCGA-AA-3542-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3548-01	TCGA-AA-3548-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3552-01	TCGA-AA-3552-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3560-01	TCGA-AA-3560-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3562-01	TCGA-AA-3562-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3844-01	TCGA-AA-3844-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3848-01	TCGA-AA-3848-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-3952-01	TCGA-AA-3952-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-A00F-01	TCGA-AA-A00F-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-A00O-01	TCGA-AA-A00O-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AA-A01K-01	TCGA-AA-A01K-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-AY-4070-01	TCGA-AY-4070-01			Colon Adenocarcinoma	Stage IIIC	M0	N2	T3	Primary Tumor
+TCGA-A6-2676-11	TCGA-A6-2676-11			Colon Adenocarcinoma	Stage IIB	M0	N0	T4	Solid Tissue Normal
+TCGA-A6-2676-01	TCGA-A6-2676-01			Colon Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-AA-A010-01	TCGA-AA-A010-01			Colon Adenocarcinoma	Stage IIB	M0	N0	T4	Primary Tumor
+TCGA-A6-2679-01	TCGA-A6-2679-01			Colon Adenocarcinoma	Stage IIB		N0	T3	Primary Tumor
+TCGA-AA-3693-01	TCGA-AA-3693-01			Colon Adenocarcinoma	Stage IV	M1	N1	T4	Primary Tumor
+TCGA-AA-3973-01	TCGA-AA-3973-01			Colon Adenocarcinoma	Stage IV	M1	N1	T4	Primary Tumor
+TCGA-AA-3688-01	TCGA-AA-3688-01			Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AA-3696-01	TCGA-AA-3696-01			Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AA-3972-01	TCGA-AA-3972-01			Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AA-A02E-01	TCGA-AA-A02E-01			Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AA-A02F-01	TCGA-AA-A02F-01			Colon Adenocarcinoma	Stage IV	M1	N1	T3	Primary Tumor
+TCGA-AA-3680-01	TCGA-AA-3680-01			Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-AA-3869-01	TCGA-AA-3869-01			Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-AA-3872-01	TCGA-AA-3872-01			Colon Adenocarcinoma	Stage IV	M1	N2	T4	Primary Tumor
+TCGA-AA-3488-11	TCGA-AA-3488-11			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Solid Tissue Normal
+TCGA-G4-6297-11	TCGA-G4-6297-11			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Solid Tissue Normal
+TCGA-G4-6314-11	TCGA-G4-6314-11			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Solid Tissue Normal
+TCGA-A6-2671-01	TCGA-A6-2671-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3488-01	TCGA-AA-3488-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3679-01	TCGA-AA-3679-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3695-01	TCGA-AA-3695-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3867-01	TCGA-AA-3867-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3870-01	TCGA-AA-3870-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3930-01	TCGA-AA-3930-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-3989-01	TCGA-AA-3989-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-AA-A02H-01	TCGA-AA-A02H-01			Colon Adenocarcinoma	Stage IV	M1	N2	T3	Primary Tumor
+TCGA-A6-2683-01	TCGA-A6-2683-01			Colon Adenocarcinoma	Stage IV	M1	N0	T4	Primary Tumor
+TCGA-AA-3494-11	TCGA-AA-3494-11			Colon Adenocarcinoma	Stage IV	M1	N0	T3	Solid Tissue Normal
+TCGA-AA-3494-01	TCGA-AA-3494-01			Colon Adenocarcinoma	Stage IV	M1	N0	T3	Primary Tumor
+TCGA-AA-A02J-01	TCGA-AA-A02J-01			Colon Adenocarcinoma	Stage IV	M1	N0	T3	Primary Tumor
+TCGA-A6-2681-11	TCGA-A6-2681-11			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-A6-3808-11	TCGA-A6-3808-11			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-A6-3810-11	TCGA-A6-3810-11			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-AA-3532-11	TCGA-AA-3532-11			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-G4-6625-11	TCGA-G4-6625-11			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Solid Tissue Normal
+TCGA-A6-2670-01	TCGA-A6-2670-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-2681-01	TCGA-A6-2681-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-3808-01	TCGA-A6-3808-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-A6-3810-01	TCGA-A6-3810-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3517-01	TCGA-AA-3517-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3518-01	TCGA-AA-3518-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3522-01	TCGA-AA-3522-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3527-01	TCGA-AA-3527-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3531-01	TCGA-AA-3531-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3532-01	TCGA-AA-3532-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3534-01	TCGA-AA-3534-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3554-01	TCGA-AA-3554-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3561-01	TCGA-AA-3561-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3710-01	TCGA-AA-3710-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3812-01	TCGA-AA-3812-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3814-01	TCGA-AA-3814-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3815-01	TCGA-AA-3815-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3818-01	TCGA-AA-3818-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3819-01	TCGA-AA-3819-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3831-01	TCGA-AA-3831-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3833-01	TCGA-AA-3833-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3841-01	TCGA-AA-3841-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3845-01	TCGA-AA-3845-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3846-01	TCGA-AA-3846-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3851-01	TCGA-AA-3851-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3856-01	TCGA-AA-3856-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3861-01	TCGA-AA-3861-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3862-01	TCGA-AA-3862-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3939-01	TCGA-AA-3939-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3956-01	TCGA-AA-3956-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3970-01	TCGA-AA-3970-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3979-01	TCGA-AA-3979-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3984-01	TCGA-AA-3984-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A004-01	TCGA-AA-A004-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A00A-01	TCGA-AA-A00A-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A00E-01	TCGA-AA-A00E-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A00K-01	TCGA-AA-A00K-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A00L-01	TCGA-AA-A00L-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A00Z-01	TCGA-AA-A00Z-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A017-01	TCGA-AA-A017-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-A02R-01	TCGA-AA-A02R-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AZ-4681-01	TCGA-AZ-4681-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-CM-4752-01	TCGA-CM-4752-01			Colon Adenocarcinoma	Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-G4-6298-11	TCGA-G4-6298-11			Colon Adenocarcinoma	Stage IIIB	MX	N1	T4a	Solid Tissue Normal
+TCGA-AA-3955-01	TCGA-AA-3955-01			Colon Adenocarcinoma	Stage IIIB	M0	N2a	T2	Primary Tumor
+TCGA-AA-A00Q-01	TCGA-AA-A00Q-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T4	Primary Tumor
+TCGA-A6-2672-11	TCGA-A6-2672-11			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Solid Tissue Normal
+TCGA-A6-2672-01	TCGA-A6-2672-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-A6-2678-01	TCGA-A6-2678-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-3525-01	TCGA-AA-3525-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-3860-01	TCGA-AA-3860-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-3982-01	TCGA-AA-3982-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-A00U-01	TCGA-AA-A00U-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AA-A01F-01	TCGA-AA-A01F-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-AZ-4308-01	TCGA-AZ-4308-01			Colon Adenocarcinoma	Stage IIIB	M0	N1	T3	Primary Tumor
+TCGA-A6-4107-11	TCGA-A6-4107-11			Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Solid Tissue Normal
+TCGA-A6-4107-01	TCGA-A6-4107-01			Colon Adenocarcinoma	Stage IIIB	M0	N1b	T3	Primary Tumor
+TCGA-AA-3875-01	TCGA-AA-3875-01			Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AA-A00W-01	TCGA-AA-A00W-01			Colon Adenocarcinoma	Stage I	M0	N0	T1	Primary Tumor
+TCGA-AA-3495-11	TCGA-AA-3495-11			Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-3502-11	TCGA-AA-3502-11			Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-3506-11	TCGA-AA-3506-11			Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-3526-11	TCGA-AA-3526-11			Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-A01V-11	TCGA-AA-A01V-11			Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-A03J-11	TCGA-AA-A03J-11			Colon Adenocarcinoma	Stage I	M0	N0	T2	Solid Tissue Normal
+TCGA-AA-3514-01	TCGA-AA-3514-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3530-01	TCGA-AA-3530-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3538-01	TCGA-AA-3538-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3544-01	TCGA-AA-3544-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3549-01	TCGA-AA-3549-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3553-01	TCGA-AA-3553-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3558-01	TCGA-AA-3558-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3667-01	TCGA-AA-3667-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3850-01	TCGA-AA-3850-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3855-01	TCGA-AA-3855-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3858-01	TCGA-AA-3858-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3866-01	TCGA-AA-3866-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3968-01	TCGA-AA-3968-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3975-01	TCGA-AA-3975-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3980-01	TCGA-AA-3980-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3986-01	TCGA-AA-3986-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A00D-01	TCGA-AA-A00D-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A00R-01	TCGA-AA-A00R-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A01I-01	TCGA-AA-A01I-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A01V-01	TCGA-AA-A01V-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A02W-01	TCGA-AA-A02W-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-A03J-01	TCGA-AA-A03J-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-CM-4746-01	TCGA-CM-4746-01			Colon Adenocarcinoma	Stage I	M0	N0	T2	Primary Tumor
+TCGA-AA-3977-01	TCGA-AA-3977-01			Colon Adenocarcinoma			N0	T2	Primary Tumor
+TCGA-AG-3586-01	TCGA-AG-3586-01				Stage III	M0	N2	T3	Primary Tumor
+TCGA-AF-2692-01	TCGA-AF-2692-01				Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AG-3881-01	TCGA-AG-3881-01				Stage IIA	M0	N0	T3	Primary Tumor
+TCGA-AA-3556-01	TCGA-AA-3556-01				Stage I	M0	N0	T2	Primary Tumor
+TCGA-AG-3599-01	TCGA-AG-3599-01				Stage I	M0	N0	T2	Primary Tumor
+TCGA-AY-4071-01	TCGA-AY-4071-01				Stage I		N0	T1	Primary Tumor
+TCGA-DM-A286-01	TCGA-DM-A286-01								Primary Tumor
+TCGA-AF-6784-01	TCGA-AF-6784-01								
