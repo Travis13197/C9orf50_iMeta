@@ -1,0 +1,410 @@
+---
+title: "Single-cell RNA-seq Analysis Reveals C9orf50 Regulation of T cell Subsets - Figure 6D-E-F"
+author: 
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+# T cell Subset Analysis for Figure 6D-E-F
+
+This R Markdown document contains the code for generating Figure 6D-E-F from the C9orf50 project, including tSNE visualization of T cells, stacked bar charts of cell composition, and scatter plots comparing cell proportions between experimental groups.
+
+## Setup
+
+```r
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set working directory to ensure reproducibility
+setwd(".../.../...")
+
+# Create output directory if it doesn't exist
+if (!dir.exists("output_figures")) {
+  dir.create("output_figures")
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
+# List of required packages
+required_packages <- c("dplyr", "Seurat", "patchwork", "SingleCellExperiment", 
+                      "tidyverse", "Matrix", "scales", "cowplot", 
+                      "ggplot2", "ggpubr", "reshape2")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Data Loading
+
+```r
+# Load T cell subset data
+load(".../.../rdata/2_1_Tcellsubset.rdata")
+
+# Load additional data if needed
+# load(".../.../rdata/2_2_Tcell_annoed.rdata")
+```
+
+## Normalization and Dimensionality Reduction
+
+```r
+# Normalize and run dimensionality reduction
+library(glmGamPoi)
+
+# SCTransform normalization
+scc9T <- SCTransform(scc9T, vst.flavor = "v2", verbose = FALSE)
+
+# Run PCA, UMAP and t-SNE
+scc9T <- RunPCA(scc9T, verbose = FALSE)
+scc9T <- RunUMAP(scc9T, reduction = "pca", dims = 1:30, verbose = FALSE)
+scc9T <- RunTSNE(scc9T, dims = 1:30)
+
+# Find neighbors and clusters
+scc9T <- FindNeighbors(scc9T, reduction = "pca", dims = 1:30)
+scc9T <- FindClusters(scc9T, resolution = 0.9)
+
+# Save processed data
+save(scc9T, file = ".../.../rdata/2_2_Tcellsubset_res0.9.rdata")
+```
+
+## Figure 6D: T cell tSNE Visualization
+
+```r
+# Set color palette
+my36colors <- c("#1687a7","#F38181", "#dd3672","#2470a0",  "#F1BB72",
+               "#E59CC4","#53A85F", "#AB3282", "#23452F", "#BD956A", 
+               "#8C549C", "#E0D4CA", "#5F3D69", "#E4C755", "#F7F398", 
+               "#AA9A59", "#E63863", "#E39A35", "#C1E6F3", "#6778AE", 
+               "#91D0BE", "#B53E2B", "#712820", "#DCC1DD", "#CCE0F5", 
+               "#CCC9E6", "#625D9E", "#68A180", "#3A6963", "#968175")
+
+# Create tSNE plot split by experimental group - Figure 6D
+tcell_tsne_plot <- DimPlot(scc9T, reduction = "tsne", split.by = "exp.group",
+                          label = F,    # Do not show labels
+                          cols = my36colors,    # Use defined color palette
+                          pt.size = 0.5,
+                          repel = T) +
+  theme(panel.border = element_rect(fill=NA, color="black", linewidth = 1, linetype="solid"))
+
+# Save Figure 6D
+ggsave("output_figures/Fig6D.Tcell_tsne_split_by_group.jpg", 
+       plot = tcell_tsne_plot,
+       width = 7.6, height = 3.2, dpi = 600)
+ggsave("output_figures/Fig6D.Tcell_tsne_split_by_group.svg", 
+       plot = tcell_tsne_plot,
+       width = 7.6, height = 3.2, dpi = 600)
+
+# Display plot
+tcell_tsne_plot
+```
+
+## Cell Annotation
+
+```r
+# Load required packages for cell annotation
+library(celldex)
+library(SingleR)
+
+# Load reference datasets if available
+# load(".../.../celldex_mouse.rdata")
+
+# Perform cell annotation using SingleR (if reference data is available)
+# pred.scRNA.ref.fine2 <- SingleR(test = scc9T@assays$SCT@data, 
+#                               ref = ref,
+#                               labels = ref$label.fine, 
+#                               clusters = scc9T@meta.data$SCT_snn_res.0.9,
+#                               fine.tune = TRUE)
+
+# Rename cell clusters with annotation results
+third.T.cluster.ids <- c("0"="CD8+ Naïve", 
+                        "1"="CD8+ Naïve", 
+                        "2"="CD4+ Th2", 
+                        "3"="CD4+ Naïve", 
+                        "4"="CD4+ Th17", 
+                        "5"="CD4+ Treg", 
+                        "6"="Unclassified T", 
+                        "7"="CD4+ Th1", 
+                        "8"="CD4+ Naïve", 
+                        "9"="CD4+ Th22", 
+                        "10"="CD4+ Tfh", 
+                        "11"="Unclassified T", 
+                        "12"="CD8+ Effector", 
+                        "13"="CD4+ Th9", 
+                        "14"="CD8+ Naïve", 
+                        "15"="Unclassified T", 
+                        "16"="Unclassified T", 
+                        "17"="CD8+ Effector exhausted",
+                        "18"="Unclassified T")
+
+scc9T <- RenameIdents(scc9T, third.T.cluster.ids)
+scc9T@meta.data$celltype3T <- scc9T@active.ident
+
+# Save annotated data
+save(scc9T, file = ".../.../rdata/2_2_Tcell_annoed_mod.rdata")
+```
+
+## Figure 6E: Stacked Bar Chart of Cell Composition
+
+```r
+# Create merged group variable (sgNTC and C9orf50)
+scc9T$group <- ifelse(grepl("C9_KO", scc9T$seq.group), "C9_KO", "NTC")
+
+# Calculate merged cell counts
+cellcount_merged <- table(Idents(scc9T), scc9T$group)
+
+# Convert to data frame format
+cellcount_merged_long <- as.data.frame(cellcount_merged)
+colnames(cellcount_merged_long) <- c("CellType", "Group", "Count")
+
+# Filter to include only major cell types for better visualization
+cellcount_filtered <- cellcount_merged_long %>% 
+  filter(CellType %in% c("CD4+ Th2", "CD4+ Naïve", "CD8+ Naïve", 
+                        "CD4+ Treg", "CD8+ Effector", 
+                        "CD8+ Effector exhausted", "CD4+ Th1"))
+
+# Reorder cell types for better visualization
+cellcount_filtered$CellType <- factor(cellcount_filtered$CellType,
+                                    levels = c("CD8+ Naïve", "CD4+ Naïve", "CD4+ Th1",
+                                               "CD4+ Th2", "CD4+ Treg", "CD8+ Effector",
+                                               "CD8+ Effector exhausted"))
+
+# Create stacked bar chart - Figure 6E
+stacked_bar_plot <- ggplot(cellcount_filtered, aes(x = Group, y = Count, fill = CellType)) +
+  geom_bar(
+    stat = "identity",         # Use raw count data
+    position = "stack",        # Stack bars
+    width = 0.7,               # Bar width
+    color = "black",           # Border color
+    linewidth = 0.3            # Border line width
+  ) + 
+  scale_fill_manual(values = my36colors) +  # Use defined color palette
+  theme_classic() +                        # Clean theme
+  labs(x = "Group", y = "Cell Number") +   # Axis labels
+  coord_flip() +                           # Horizontal bars
+  theme(
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.5), # Panel border
+    axis.text = element_text(color = "black"),                # Axis text color
+    axis.title = element_text(face = "bold", size = 12)       # Bold axis titles
+  )
+
+# Save Figure 6E
+ggsave("output_figures/Fig6E.Cell_composition_stacked_bar.jpg", 
+       plot = stacked_bar_plot,
+       width = 6, height = 2.3, dpi = 600)
+ggsave("output_figures/Fig6E.Cell_composition_stacked_bar.svg", 
+       plot = stacked_bar_plot,
+       width = 6, height = 2.3, dpi = 600)
+
+# Display plot
+stacked_bar_plot
+```
+
+## Figure 6F: Scatter Plots of Cell Proportions
+
+```r
+# Calculate cell proportions by group
+cellcount_df <- as.data.frame(table(Idents(scc9T), scc9T$seq.group))
+
+# Process grouping information
+cellcount_merged <- cellcount_df %>% 
+  mutate(
+    group = gsub("_.*", "", Var2)  # Extract group prefix (e.g., "C9_KO" from "C9_KO_1")
+  ) %>% 
+  group_by(Var1, group) %>% 
+  summarise(Freq = sum(Freq), .groups = "drop")
+
+# Calculate group totals for proportion calculation
+group_totals <- cellcount_merged %>% 
+  group_by(group) %>% 
+  summarise(total = sum(Freq))
+
+# Calculate proportions
+cellratio_merged <- cellcount_merged %>% 
+  left_join(group_totals, by = "group") %>% 
+  mutate(Ratio = Freq/total) 
+
+# Filter to include only major cell types
+cellratio_filtered <- cellratio_merged %>% 
+  filter(Var1 %in% c("CD4+ Th2", "CD4+ Naïve", "CD8+ Naïve", 
+                    "CD4+ Treg", "CD8+ Effector", 
+                    "CD8+ Effector exhausted", "CD4+ Th1"))
+
+# Reorder cell types
+cellratio_filtered$Var1 <- factor(cellratio_filtered$Var1,
+                                  levels = c("CD8+ Naïve", "CD4+ Naïve", "CD4+ Th1",
+                                             "CD4+ Th2", "CD4+ Treg", "CD8+ Effector",
+                                             "CD8+ Effector exhausted"))
+
+# Create list to store individual plots
+pplist <- list()
+sce_groups <- unique(cellratio_filtered$Var1)
+
+# Create scatter plots for each cell type - Figure 6F
+library(ggpubr)
+
+for(group_ in sce_groups){
+  # Filter data for current cell type
+  cellper_ <- cellratio_filtered %>% 
+    dplyr::filter(Var1 == group_) %>%
+    dplyr::select(Var1, group, Ratio)  
+  colnames(cellper_) <- c('CellType', 'Group', 'Percent')
+  
+  # Calculate summary statistics
+  cellper_ <- cellper_ %>% 
+    group_by(Group) %>% 
+    mutate(upper = quantile(Percent, 0.75), 
+           lower = quantile(Percent, 0.25),
+           mean = mean(Percent),
+           median = median(Percent))
+  
+  # Ensure correct ordering of groups
+  cellper_$Group <- factor(cellper_$Group, levels = c("NTC", "C9_KO"))
+  
+  # Create scatter plot with error bars
+  pp <- ggplot(cellper_, aes(x = Group, y = Percent)) + 
+    geom_jitter(shape = 21, aes(fill = Group), width = 0.16, size = 3.2) + 
+    scale_fill_manual(values = c("#2E94B9", "#D25565")) +
+    stat_summary(fun = mean, geom = "point", color = "grey60") +
+    theme_cowplot() +
+    theme(axis.text = element_text(size = 10),
+          axis.title = element_text(size = 10),
+          legend.text = element_text(size = 10),
+          legend.title = element_text(size = 10),
+          plot.title = element_text(size = 10, face = 'plain'),
+          legend.position = 'none') + 
+    labs(title = group_, y = 'Percentage') +
+    geom_errorbar(aes(ymin = lower, ymax = upper), col = "grey60", width = 0.1)
+  
+  # Add t-test comparison
+  pp <- pp + stat_compare_means(comparisons = list(c("NTC", "C9_KO")),
+                               size = 3, method = "t.test")
+  
+  pplist[[group_]] <- pp
+}
+
+# Combine all scatter plots
+library(cowplot)
+scatter_plots <- plot_grid(pplist[[1]], pplist[[2]], pplist[[3]], pplist[[4]],
+                          pplist[[5]], pplist[[6]], pplist[[7]],
+                          ncol = 4, nrow = 2)
+
+# Save Figure 6F
+ggsave("output_figures/Fig6F.Cell_proportion_scatter_plots.jpg", 
+       plot = scatter_plots,
+       width = 12, height = 6, dpi = 600)
+ggsave("output_figures/Fig6F.Cell_proportion_scatter_plots.svg", 
+       plot = scatter_plots,
+       width = 12, height = 6, dpi = 600)
+
+# Display combined plots
+scatter_plots
+```
+
+## Effector Gene Expression Analysis (Optional)
+
+```r
+# Define target genes
+target_genes <- c("Ifng", "Tnf", "Gzmb", "Prf1", "Cd3e", "Lck", "Stat1", "Irf1")
+
+# Check if genes exist in the dataset
+matched_genes <- CaseMatch(search = target_genes, match = rownames(scc9T))
+cat("Matched genes:", matched_genes, "\n")
+
+# Ensure group variable is correctly ordered
+scc9T$group <- factor(scc9T$group, levels = c("NTC", "C9_KO"))
+
+# Extract CD4+ Th1 cells
+cd4_th1_cells <- subset(scc9T, celltype3T == "CD4+ Th1")
+
+# Extract all CD8+ cells
+cd8_cell_types <- c("CD8+ Effector")
+cd8_cells <- subset(scc9T, celltype3T %in% cd8_cell_types)
+
+# Optional: Create violin plots for effector gene expression
+# Violin plots for CD4+ Th1 cells
+if(nrow(cd4_th1_cells) > 0) {
+  vln_plot_cd4 <- VlnPlot(cd4_th1_cells, features = matched_genes, group.by = "group",
+                          pt.size = 0, ncol = 2) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = "Gene expression in CD4+ Th1 cells") +
+    stat_compare_means(comparisons = list(c("NTC", "C9_KO")),
+                      method = "wilcox.test",
+                      label = "p.signif",
+                      hide.ns = FALSE,
+                      ref.group = "NTC")
+  
+  # Save plot
+  ggsave("output_figures/CD4_Th1_genes_violin_plot.jpg", 
+         plot = vln_plot_cd4,
+         width = 6, height = 13, dpi = 600)
+}
+
+# Violin plots for all CD8+ cells
+if(nrow(cd8_cells) > 0) {
+  vln_plot_cd8 <- VlnPlot(cd8_cells, features = matched_genes, group.by = "group",
+                         pt.size = 0, ncol = 2) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = "Gene expression in all CD8+ cells") +
+    stat_compare_means(comparisons = list(c("NTC", "C9_KO")),
+                      method = "wilcox.test",
+                      label = "p.signif",
+                      hide.ns = FALSE,
+                      ref.group = "NTC")
+  
+  # Save plot
+  ggsave("output_figures/CD8_all_genes_violin_plot.jpg", 
+         plot = vln_plot_cd8,
+         width = 6, height = 13, dpi = 600)
+}
+```
+
+## Session Information
+
+```r
+# Print session information for reproducibility
+sessionInfo()
+```
+
+## Data Availability
+
+The raw data and processed datasets supporting the findings of this study are available from the corresponding author upon reasonable request.
+
+## License
+
+This code is provided for academic use only. For commercial use, please contact the corresponding author.
+
+## References
+
+Please cite this work if you use any part of this analysis in your research:
+
+```
+Liu C, Zhu L, et al. (2023) C9orf50: A Novel Regulator of Immune Response in Cancer Models. iMeta Journal, DOI: [pending]
+```

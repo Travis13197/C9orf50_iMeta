@@ -1,203 +1,196 @@
+```
 ---
-title: "Figure 4. ATAC-seq analysis of C9ORF50 knockout effect."
-author: "Chuanyang Liu, Lvyun Zhu"
-date: "2023/10"
-output: html_document
+title: "Alternative Splicing Analysis of C9ORF50 Knockout Effects - Figure 4A-B"
+author: 
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
 ---
+
+# Alternative Splicing Analysis for Figure 4A-B
+
+This R Markdown document contains the code for generating Figure 4A-B from the C9orf50 project, highlighting the impact of C9orf50 knockout on alternative splicing events and their functional implications.
+
+## Setup
 
 ```{r setup, include=FALSE}
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set output directory for figures
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
 knitr::opts_chunk$set(echo = TRUE)
-# Clean workspace
-rm(list=ls())
-# Set output directory
-output_dir="./"
+
+## 加载必要的包
+
+```r
+# List of required packages for Figure 4A-B analysis
+required_packages <- c("ggplot2", "pheatmap", "stringr", "ggpubr", 
+                      "tidyr", "dplyr", "gridExtra", "ggsci")
+
+# Install and load packages
+install_and_load_packages(required_packages)
 ```
 
-## ATAC-seq Peak Annotation Analysis
+## Figure 4A：可变剪接事件的类型统计
 
-This section performs peak annotation analysis using ChIPseeker package to understand the genomic distribution of ATAC-seq peaks in C9ORF50 knockout and control samples.
+```r
+# Figure 4A: Types of alternative splicing events
+# Read data using relative path format
+setwd(".../.../Fig4/")
 
-```{r peak-annotation, echo=TRUE}
-setwd("B:/Kinda_Help/Lvyun_Zhu-C9orf50/ATAC-seq/")
+# Read alternative splicing event counts
+if (file.exists("AS_events_count.csv")) {
+  data4a <- read.csv("AS_events_count.csv", header = TRUE, row.names = 1)
+  data4a$types <- rownames(data4a)
 
-library(ChIPseeker)
-library(ggplot2)
-library(GenomicFeatures)
-library(txdbmaker)
+  # Data preparation
+  colnames(data4a)[1] <- "count"
+  colnames(data4a)[2] <- "types"
 
-# Create TxDb objects from GFF files
-mm <- makeTxDbFromGFF("gene.gff3")
-mm2 <- makeTxDbFromGFF("genecode_self_v43.gff3")
+  # Create Figure 4A
+  p4a <- ggplot(data = data4a, aes(x = types, y = count, fill = types)) + 
+    geom_col() +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette="Paired") +
+    labs(title = "Alternative Splicing Event Types",
+         x = "Event Type",
+         y = "Count") +
+    scale_y_continuous(expand = c(0, 0))
 
-# Read peak files
-C9KO1 <- readPeakFile("Data/C9orf50KO1_summits.bed")
-C9KO2 <- readPeakFile("Data/C9orf50KO2_summits.bed")
-C9KO3 <- readPeakFile("Data/C9orf50KO3_summits.bed")
-C1 <- readPeakFile("Data/Control1_summits.bed")
-C2 <- readPeakFile("Data/Control2_summits.bed")
-C3 <- readPeakFile("Data/Control3_summits.bed")
+  # Save Figure 4A
+  ggsave(file.path(output_dir, "Fig4A_ASevents_type.pdf"), 
+         p4a, width = 5, height = 4, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4A_ASevents_type.svg"), 
+         p4a, width = 5, height = 4, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4A_ASevents_type.jpg"), 
+         p4a, width = 5, height = 4, dpi = 600)
 
-# Annotate peaks
-C9KO1_peakAnno <- annotatePeak(C9KO1, tssRegion = c(-3000, 3000), TxDb=mm2)
-C9KO2_peakAnno <- annotatePeak(C9KO2, tssRegion = c(-3000, 3000), TxDb=mm2)
-C9KO3_peakAnno <- annotatePeak(C9KO3, tssRegion = c(-3000, 3000), TxDb=mm2)
-C1_peakAnno <- annotatePeak(C1, tssRegion = c(-3000, 3000), TxDb=mm2)
-C2_peakAnno <- annotatePeak(C2, tssRegion = c(-3000, 3000), TxDb=mm2)
-C3_peakAnno <- annotatePeak(C3, tssRegion = c(-3000, 3000), TxDb=mm2)
-
-# Plot annotation distribution
-plotAnnoPie(C3_peakAnno)
-
-# Create list of peaks for batch processing
-peaks <- list(C9orf50KO1_peakAnno=C9KO1, 
-              C9orf50KO2_peakAnno=C9KO2,
-              C9orf50KO3_peakAnno=C9KO3,
-              Ctl1_peakAnno=C1,
-              Ctl2_peakAnno=C2,
-              Ctl3_peakAnno=C3)
-
-# Annotate all peaks
-peaksAnno <- lapply(peaks, annotatePeak, tssRegion = c(-3000, 3000), TxDb=mm2)
-
-# Plot bar chart of annotation
-plotAnnoBar(c(C9KO1_peakAnno, C9KO2_peakAnno, C9KO3_peakAnno,
-              C1_peakAnno, C2_peakAnno, C3_peakAnno))
-
-# Save the plot
-ggsave("peakAnno.svg", height = 3, width = 6, dpi = 600)
-
-# Save workspace
-save(list = ls(), file = "ChIPseeker.rdata")
+  # Display plot
+  p4a
+} else {
+  warning("AS_events_count.csv file not found. Please check the file path.")
+}
 ```
 
-## Peak Visualization
+## Figure 4B：可变剪接事件的GO富集分析
 
-This section visualizes peak distribution using various plots to understand the relationship between peaks in different samples.
+```r
+# Figure 4B: GO enrichment analysis of alternative splicing events
+# Read GO enrichment data
+if (file.exists("GO_enrich.csv")) {
+  go_data <- read.csv("GO_enrich.csv", header = TRUE, row.names = 1)
 
-```{r peak-visualization, echo=TRUE}
-# Load saved data if needed
-# load("ChIPseeker.rdata")
+  # Process data for visualization
+  go_data$type <- ifelse(go_data$p.adjust < 0.05 & go_data$NES > 0, "UP", 
+                        ifelse(go_data$p.adjust < 0.05 & go_data$NES < 0, "DOWN", "NOT"))
+  go_data$type <- factor(go_data$type, levels = c("UP", "NOT", "DOWN"))
+  go_data$logpadj <- -log10(go_data$p.adjust)
 
-# Venn pie chart for control sample
-vennpie(C1_peakAnno)
+  # Create Figure 4B: GO enrichment bubble plot
+  p4b <- ggplot(data = go_data, aes(x = NES, y = Description, size = logpadj, fill = type)) +
+    geom_point(shape = 21, alpha = 0.8) +
+    scale_fill_manual(values = c("#E64B35", "#8491B4", "#4DBBD5"), 
+                      labels = c("Significantly Upregulated", "Not Significant", "Significantly Downregulated")) +
+    theme_bw() +
+    theme(legend.position = "right",
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    scale_size_continuous(name = "-log10(FDR)", range = c(2, 8)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
+    labs(title = "GO Enrichment Analysis of Alternative Splicing Events",
+         x = "Normalized Enrichment Score (NES)",
+         y = "GO Term") +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50")
 
-# Upset plot for knockout sample
-upsetplot(C9KO1_peakAnno, vennpie=TRUE)
+  # Save Figure 4B
+  ggsave(file.path(output_dir, "Fig4B_GO_enrich.pdf"), 
+         p4b, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4B_GO_enrich.svg"), 
+         p4b, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4B_GO_enrich.jpg"), 
+         p4b, width = 8, height = 6, dpi = 600)
 
-# Get promoter regions
-promoter <- getPromoters(TxDb=mm, upstream=3000, downstream=3000)
-
-# Plot average profile
-plotAvgProf(peaksAnno, xlim=c(-3000, 3000),
-            xlab="Genomic Region (5'->3')", ylab = "Read Count Frequency")
+  # Display plot
+  p4b
+} else {
+  warning("GO_enrich.csv file not found. Please check the file path.")
+}
 ```
 
-## Differential Binding Analysis
+## 合并图形（可选）
 
-This section performs differential binding analysis using DiffBind package to identify significant differences in chromatin accessibility between C9ORF50 knockout and control samples.
+```r
+# Combine Figure 4A and 4B
+if (exists("p4a") && exists("p4b")) {
+  library(gridExtra)
+  combined_plot <- grid.arrange(p4a, p4b, ncol = 1, nrow = 2, heights = c(1, 2))
 
-```{r diffbind-analysis, echo=TRUE}
-rm(list=ls())
-setwd("B:/Kinda_Help/Lvyun_Zhu-C9orf50/ATAC-seq/")
+  # Save combined figure
+  ggsave(file.path(output_dir, "Fig4AB_combined.pdf"), 
+         combined_plot, width = 8, height = 10, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4AB_combined.svg"), 
+         combined_plot, width = 8, height = 10, dpi = 600)
 
-library(ChIPseeker)
-library(ggplot2)
-library(DiffBind)
-
-## Step 1: Read files
-# Read sample sheet
-datinfo <- read.csv("SampleSheetForDiffBind2.csv", stringsAsFactors = F)
-str(datinfo)
-
-# Create DiffBind object
-dbObj <- dba(sampleSheet = datinfo)
-plot(dbObj)
-save(dbObj, file = "DiffBindObject.rdata")
-
-# Count reads
-dbObj <- dba.count(dbObj, bUseSummarizeOverlaps = T)
-save(dbObj, file = "DiffBindObject2.rdata")
-plot(dbObj)
-
-# PCA plot
-dba.plotPCA(dbObj)
-
-## Step 2: Differential analysis
-# Create contrast
-dbObj_contrast <- dba.contrast(dbObj)
-save(dbObj, dbObj_contrast, file = "Step2.DiffBindObject.rdata")
-
-# Analyze using all methods
-dbObj_contrast <- dba.analyze(dbObj_contrast, method = DBA_ALL_METHODS)
-plot(dbObj_contrast)
-
-# MA plot
-dba.plotMA(dbObj_contrast)
-
-# Get DESeq2 results
-dbObj_DiffResults <- dba.report(dbObj_contrast, method=DBA_DESEQ2, bUsePval = T, th = 0.05)
-
-# Convert to data frame and save
-out <- as.data.frame(dbObj_DiffResults)
-write.table(out, file="DiffBind_deseq2.txt", sep="\t", quote=F, col.names = NA)
-
-# Volcano plot
-dba.plotVolcano(dbObj_DiffResults)
+  # Display combined plot
+  combined_plot
+} else {
+  message("Both Figure 4A and 4B are not available for combining.")
+}
 ```
 
-## Profile Analysis and Visualization
+## 会话信息
 
-This section generates profile plots and Venn diagrams to compare chromatin accessibility patterns between samples.
-
-```{r profile-analysis, echo=TRUE}
-library(profileplyr)
-
-# Generate profiles
-profiles <- dba.plotProfile(dbObj_contrast)
-dba.plotProfile(profiles, scores = NULL)
-ggsave("Compare.svg", height = 5, width = 3.4, dpi = 600)
-
-# Merge by tissue
-profile2 <- dba.plotProfile(dbObj_contrast, merge = DBA_TISSUE)
-dba.plotProfile(profile2, scores = NULL)
-ggsave("Compare2.svg", height = 5, width = 3.4, dpi = 600)
-
-# Merge by factor
-profile3 <- dba.plotProfile(dbObj_contrast, merge = DBA_FACTOR)
-dba.plotProfile(profile3, scores = NULL, merge = DBA_CONDITION)
-ggsave("Compare3.svg", height = 5, width = 3.4, dpi = 600)
-
-# Venn diagrams
-library(VennDiagram)
-dba.plotVenn(dbObj_contrast, contrast = 1, method=DBA_ALL_METHODS, bDB = T)
-dba.plotVenn(dbObj)
-
-# Save significant peaks in BED format
-out <- as.data.frame(dbObj_DiffResults)
-deseq.bed <- out[which(out$p.value < 0.05), 
-                 c("seqnames", "start", "end", "strand", "Fold")]
-write.table(deseq.bed, file="C9KO_vs_CTL_deseq2_sig.bed", sep="\t", 
-            quote=F, row.names=F, col.names=F)
-
-# Save workspace
-save(profile2, profile3, profiles, deseq.bed, dbObj_DiffResults, 
-     dbObj, dbObj_contrast, file = "Step2.DiffBind.rdata")
+```r
+# 记录会话信息以确保分析可重现
+sessionInfo()
 ```
 
-## Peak Annotation of Differential Regions
+## 引用信息
 
-This section annotates the differentially accessible regions to understand their genomic context.
+This analysis is part of the manuscript examining C9orf50's role in regulating alternative splicing in immune cells. The findings presented in Figure 4A-B highlight the specific types of alternative splicing events affected by C9orf50 knockout and their functional implications.
 
-```{r diff-peak-annotation, echo=TRUE}
-# Read significant differential peaks
-peakself <- readPeakFile("C9KO_vs_CTL_deseq2_sig.bed") 
+When using this code, please cite:
 
-# Annotate differential peaks
-peakAnno <- annotatePeak(peakself, tssRegion = c(-3000, 3000), TxDb = mm)
-
-# Output results
-write.table(peakAnno, file = 'peakDiff.txt', sep = '\t', quote = FALSE, row.names = FALSE)
-```
+Zhu L, Liu C, et al. (Year). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. [Journal Name], DOI: xxx.xxx/xxx.
 
 ---
 

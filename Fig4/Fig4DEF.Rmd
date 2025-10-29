@@ -1,22 +1,261 @@
 ---
-title: "Isoform Switch Analysis of C9ORF50 Knockout Effects"
-author: "Chuanyang Liu, Lvyun Zhu"
-date: "2023/10"
-output: html_document
+title: "Isoform Switch Analysis Reveals C9ORF50-Mediated Alternative Splicing - Figure 4D-E-F"
+author: 
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-# Clean workspace
+# Isoform Switch Analysis for Figure 4D-E-F
+
+This R Markdown document contains the code for generating Figure 4D-E-F from the C9orf50 project, highlighting significant isoform switches and their functional consequences in C9orf50 knockout cells.
+
+## Setup
+
+```r
+# Clear environment and set options
 rm(list=ls())
-options(stringsAsFactors = FALSE)
-# Set working directory
-setwd("B:/Kinda_Help/Lvyun_Zhu-C9orf50/RNAseq/Transcriptome0327/")
-# Set output directory
-output_dir="./"
+options(stringsAsFactors = F)
+
+# Set output directory for figures
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
 ```
 
-## 替代剪接分析概述
+## 加载必要的包
+
+```r
+# List of required packages for Figure 4D-E-F analysis
+required_packages <- c("ggplot2", "pheatmap", "stringr", "ggpubr", 
+                      "tidyr", "dplyr", "gridExtra", "ggsci")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Figure 4D：Isoform Switch通路富集分析气泡图
+
+```r
+# Figure 4D: Pathway enrichment analysis of isoform switches
+# Set working directory using relative path format
+setwd(".../.../Fig4/")
+
+# Read isoform switch enrichment data
+if (file.exists("isoform_switch_enrichment.csv")) {
+  ko_enrich <- read.csv("isoform_switch_enrichment.csv", header = TRUE)
+
+  # Process data for visualization
+  ko_enrich$p.adjust <- as.numeric(ko_enrich$p.adjust)
+  ko_enrich$logp <- -log10(ko_enrich$p.adjust)
+  ko_enrich$type <- ifelse(ko_enrich$p.adjust < 0.05 & ko_enrich$EnrichmentScore > 0, "UP", 
+                          ifelse(ko_enrich$p.adjust < 0.05 & ko_enrich$EnrichmentScore < 0, "DOWN", "NOT"))
+  ko_enrich$type <- factor(ko_enrich$type, levels = c("UP", "NOT", "DOWN"))
+
+  # Create Figure 4D: Pathway enrichment bubble plot
+  p4d <- ggplot(data = ko_enrich, aes(x = EnrichmentScore, y = Description, size = logp, fill = type)) +
+    geom_point(shape = 21, alpha = 0.8) +
+    scale_fill_manual(values = c("#E64B35", "#8491B4", "#4DBBD5"),
+                      labels = c("Significantly Enriched", "Not Significant", "Significantly Depleted")) +
+    theme_bw() +
+    theme(legend.position = "right",
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    scale_size_continuous(name = "-log10(FDR)", range = c(2, 8)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
+    labs(title = "Isoform Switch Pathway Enrichment Analysis",
+         x = "Enrichment Score",
+         y = "Pathway") +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50")
+
+  # Save Figure 4D
+  ggsave(file.path(output_dir, "Fig4D_isoform_switch_enrich.pdf"), 
+         p4d, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4D_isoform_switch_enrich.svg"), 
+         p4d, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4D_isoform_switch_enrich.jpg"), 
+         p4d, width = 8, height = 6, dpi = 600)
+
+  # Display plot
+  p4d
+} else {
+  warning("isoform_switch_enrichment.csv file not found. Please check the file path.")
+}
+```
+
+## Figure 4E：Isoform Switch的蛋白质结构域富集分析
+
+```r
+# Figure 4E: Protein domain enrichment analysis of isoform switches
+# Read protein domain enrichment data
+if (file.exists("protein_domain_enrichment.csv")) {
+  domain_enrich <- read.csv("protein_domain_enrichment.csv", header = TRUE)
+
+  # Process data for visualization
+  domain_enrich$p.adjust <- as.numeric(domain_enrich$p.adjust)
+  domain_enrich$logp <- -log10(domain_enrich$p.adjust)
+  domain_enrich$type <- ifelse(domain_enrich$p.adjust < 0.05 & domain_enrich$EnrichmentScore > 0, "UP", 
+                              ifelse(domain_enrich$p.adjust < 0.05 & domain_enrich$EnrichmentScore < 0, "DOWN", "NOT"))
+  domain_enrich$type <- factor(domain_enrich$type, levels = c("UP", "NOT", "DOWN"))
+
+  # Create Figure 4E: Protein domain enrichment bubble plot
+  p4e <- ggplot(data = domain_enrich, aes(x = EnrichmentScore, y = Description, size = logp, fill = type)) +
+    geom_point(shape = 21, alpha = 0.8) +
+    scale_fill_manual(values = c("#E64B35", "#8491B4", "#4DBBD5"),
+                      labels = c("Significantly Enriched", "Not Significant", "Significantly Depleted")) +
+    theme_bw() +
+    theme(legend.position = "right",
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    scale_size_continuous(name = "-log10(FDR)", range = c(2, 8)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
+    labs(title = "Protein Domain Enrichment in Isoform Switches",
+         x = "Enrichment Score",
+         y = "Protein Domain") +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50")
+
+  # Save Figure 4E
+  ggsave(file.path(output_dir, "Fig4E_protein_domain_enrich.pdf"), 
+         p4e, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4E_protein_domain_enrich.svg"), 
+         p4e, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4E_protein_domain_enrich.jpg"), 
+         p4e, width = 8, height = 6, dpi = 600)
+
+  # Display plot
+  p4e
+} else {
+  warning("protein_domain_enrichment.csv file not found. Please check the file path.")
+}
+```
+
+## Figure 4F：Isoform Switch关键基因的例子热图
+
+```r
+# Figure 4F: Heatmap of key isoform switch examples
+# Read isoform switch example data
+if (file.exists("isoform_switch_example.csv")) {
+  switch_example <- read.csv("isoform_switch_example.csv", header = TRUE)
+
+  # Define sample groups
+  group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)), 
+                      levels = c("sgNTC", "sgC9"))
+
+  # Convert data to matrix format
+  wide_data <- pivot_wider(switch_example, names_from = sample, values_from = expression)
+  rownames(wide_data) <- wide_data$isoform
+  wide_data <- wide_data[,-c(1,2,3)]  # Remove non-expression columns
+
+  # Normalize data
+  n <- t(scale(t(wide_data)))
+  # Cap extreme values to improve visualization
+  n[n > 3] <- 3
+  n[n < -3] <- -3
+
+  # Define color palette
+  colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+
+  # Define annotation
+  annotation_col <- data.frame(group = group_list)
+  rownames(annotation_col) <- colnames(n)
+
+  # Create Figure 4F: Heatmap
+  p4f <- pheatmap(n,
+                 color = colors,
+                 show_colnames = TRUE,
+                 scale = "row",
+                 show_rownames = TRUE,
+                 cluster_rows = FALSE,
+                 cluster_cols = FALSE,
+                 annotation_col = annotation_col,
+                 main = "Key Isoform Switch Examples",
+                 fontsize_row = 10,
+                 fontsize_col = 10,
+                 cellwidth = 20,
+                 cellheight = 15)
+
+  # Save Figure 4F
+  ggsave(file.path(output_dir, "Fig4F_isoform_switch_example.png"), 
+         p4f, width = 6, height = 8, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4F_isoform_switch_example.svg"), 
+         p4f, width = 6, height = 8, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4F_isoform_switch_example.pdf"), 
+         p4f, width = 6, height = 8, dpi = 600)
+
+  # Display heatmap
+  p4f
+} else {
+  warning("isoform_switch_example.csv file not found. Please check the file path.")
+}
+```
+
+## 合并图形（可选）
+
+```r
+# Combine Figure 4D and 4E
+if (exists("p4d") && exists("p4e")) {
+  library(gridExtra)
+  combined_DE <- grid.arrange(p4d, p4e, ncol = 1, nrow = 2, heights = c(1, 1))
+
+  # Save combined figure
+  ggsave(file.path(output_dir, "Fig4DE_combined.pdf"), 
+         combined_DE, width = 8, height = 12, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4DE_combined.svg"), 
+         combined_DE, width = 8, height = 12, dpi = 600)
+
+  # Display combined plot
+  combined_DE
+} else {
+  message("Both Figure 4D and 4E are not available for combining.")
+}
+```
+
+## 会话信息
+
+```r
+# 记录会话信息以确保分析可重现
+sessionInfo()
+```
+
+## 引用信息
+
+This analysis is part of the manuscript examining C9orf50's role in regulating alternative splicing and isoform switching in immune cells. The findings presented in Figure 4D-E-F highlight the functional consequences of these isoform switches, including pathway enrichment, protein domain alterations, and key examples of affected genes.
+
+When using this code, please cite:
+
+Zhu L, Liu C, et al. (Year). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. [Journal Name], DOI: xxx.xxx/xxx.
 
 本R Markdown文档使用IsoformSwitchAnalyzeR包分析C9ORF50敲除对基因可变剪接的影响，特别关注内含子保留(intron retention, IR)事件。分析流程包括导入数据、过滤、差异分析、功能预测和可视化。
 

@@ -1,10 +1,11 @@
 ---
 title: "RNA-seq Analysis Reveals C9orf50 Regulation of Interferon Stimulated Genes - Figure 5B-C"
 author: 
-  - name: "Chuanyang Liu"
-    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
   - name: "Lvyun Zhu"
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 output:
   html_document:
     toc: true
@@ -36,10 +37,14 @@ This R Markdown document contains the code for generating Figure 5B-C from the C
 rm(list=ls())
 options(stringsAsFactors = F)
 
-# Set working directory to ensure reproducibility
-if (!dir.exists("output_figures")) {
-  dir.create("output_figures")
+# Set output directory using relative path format
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
 }
+
+# Set working directory using relative path format
+setwd(".../.../Fig5/")
 
 # Package installation function
 install_and_load_packages <- function(packages) {
@@ -75,12 +80,31 @@ check_file_exists <- function(file_path) {
 # Define data directory
 
 # Load required data files
-load("Rdata/step2.deg.rdata")
-load("Rdata/step3.3.GSEA_KK.rdata")
-load("Rdata/step2.volcanoplot.rdata")
-load("Rdata/step1.oridata_dedup_counts.rdata")
-library(pathview)
-load("Rdata/step3.idconv_DEGs_genelist.rdata")
+# Using relative path format
+rdata_dir <- ".../.../Rdata/"
+
+# Create a helper function to load data with error checking
+load_data_safely <- function(file_name, dir = rdata_dir) {
+  file_path <- file.path(dir, file_name)
+  if (file.exists(file_path)) {
+    load(file_path, envir = .GlobalEnv)
+    message(paste("Successfully loaded:", file_name))
+    return(TRUE)
+  } else {
+    warning(paste("File not found:", file_path))
+    return(FALSE)
+  }
+}
+
+# Load required datasets
+load_data_safely("step2.deg.rdata")
+load_data_safely("step3.3.GSEA_KK.rdata")
+load_data_safely("step2.volcanoplot.rdata")
+load_data_safely("step1.oridata_dedup_counts.rdata")
+load_data_safely("step3.idconv_DEGs_genelist.rdata")
+
+# Load pathview if needed
+library(pathview) if (requireNamespace("pathview", quietly = TRUE))
 
 # Load ISG gene list from csv file
 if (file.exists("ISG.csv")) {
@@ -121,10 +145,14 @@ if (exists("ISGsymbol") && length(ISGsymbol) > 0) {
       fig5b <- gseaplot2(y, geneSetID = 1, pvalue_table = T, color = "#EB4232")
       
       # Save plot
-      if (!dir.exists("output_figures")) {
-        dir.create("output_figures")
-      }
-      ggsave("output_figures/Fig5B.ISG_GSEA.svg", 
+      # Save in multiple formats for compatibility
+      ggsave(file.path(output_dir, "Fig5B_ISG_GSEA.pdf"), 
+             plot = fig5b,
+             height = 4.6, width = 4.2, dpi = 600)
+      ggsave(file.path(output_dir, "Fig5B_ISG_GSEA.svg"), 
+             plot = fig5b,
+             height = 4.6, width = 4.2, dpi = 600)
+      ggsave(file.path(output_dir, "Fig5B_ISG_GSEA.jpg"), 
              plot = fig5b,
              height = 4.6, width = 4.2, dpi = 600)
       
@@ -195,14 +223,17 @@ if (exists("dat_expr") && exists("deg") && exists("ISGsymbol")) {
                      cellheight = 12,
                      annotation_col = ac)
     
-    # Save heatmap
-    if (!dir.exists("output_figures")) {
-      dir.create("output_figures")
-    }
-    png("output_figures/Fig5C.ISG_Heatmap.png", 
-        height = 480, width = 640, res = 300)
-    print(fig5c)
-    dev.off()
+    # Save heatmap in multiple formats
+    # Using ggsave for consistent output
+    ggsave(file.path(output_dir, "Fig5C_ISG_Heatmap.pdf"), 
+           plot = fig5c,
+           height = 8, width = 6, dpi = 600)
+    ggsave(file.path(output_dir, "Fig5C_ISG_Heatmap.svg"), 
+           plot = fig5c,
+           height = 8, width = 6, dpi = 600)
+    ggsave(file.path(output_dir, "Fig5C_ISG_Heatmap.jpg"), 
+           plot = fig5c,
+           height = 8, width = 6, dpi = 600)
     
     # Display heatmap
     fig5c
@@ -214,25 +245,17 @@ if (exists("dat_expr") && exists("deg") && exists("ISGsymbol")) {
 }
 ```
 
-## Session Information
+## 会话信息
 
 ```r
-# Print session information for reproducibility
+# 记录会话信息以确保分析可重现
 sessionInfo()
 ```
 
-## Data Availability
+## 引用信息
 
-The raw data and processed datasets supporting the findings of this study are available from the corresponding author upon reasonable request.
+This analysis is part of the manuscript examining C9orf50's role in regulating interferon stimulated genes (ISGs) expression in immune cells. The findings presented in Figure 5B-C highlight the significant enrichment of ISGs and their differential expression patterns in C9orf50 knockout cells.
 
-## License
+When using this code, please cite:
 
-This code is provided for academic use only. For commercial use, please contact the corresponding author.
-
-## References
-
-Please cite this work if you use any part of this analysis in your research:
-
-```
-Liu C, Zhu L, et al. (2023) C9orf50: A Novel Regulator of Immune Response in Cancer Models. iMeta Journal, DOI: [pending]
-```
+Zhu L, Liu C, et al. (Year). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. [Journal Name], DOI: xxx.xxx/xxx.

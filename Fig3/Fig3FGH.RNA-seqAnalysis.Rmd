@@ -5,6 +5,7 @@ author:
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
   - name: "Lvyun Zhu"
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
 output:
   html_document:
     toc: true
@@ -27,7 +28,7 @@ fontsize: 11pt
 
 # RNA-seq Analysis for Figure 3F-G-H
 
-This R Markdown document contains the code for generating Figure 3F-G-H from the C9orf50 project, including GSVA/GSEA plots and heatmaps for gene expression analysis.
+This R Markdown document contains the code for generating Figure 3F-G-H from the C9orf50 project, highlighting C9orf50's role in regulating chemokine pathway and spliceosome function through RNA-seq analysis. This includes GSVA/GSEA plots and heatmaps for gene expression visualization.
 
 ## Setup
 
@@ -36,9 +37,10 @@ This R Markdown document contains the code for generating Figure 3F-G-H from the
 rm(list=ls())
 options(stringsAsFactors = F)
 
-# Set working directory to ensure reproducibility
-if (!dir.exists("output_figures")) {
-  dir.create("output_figures")
+# Set output directory for figures
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
 }
 
 # Package installation function
@@ -50,7 +52,7 @@ install_and_load_packages <- function(packages) {
   invisible(sapply(packages, library, character.only = TRUE))
 }
 
-# List of required packages
+# List of required packages for Figure 3F-G-H analysis
 required_packages <- c("ggplot2", "msigdbr", "tidyr", "dplyr", "stringr", 
                       "rtracklayer", "ggpubr", "data.table", "ggfortify", 
                       "clusterProfiler", "org.Mm.eg.db", "DOSE", 
@@ -63,7 +65,7 @@ install_and_load_packages(required_packages)
 ## Data Loading
 
 ```r
-# Check if data files exist
+# Data file existence check function
 check_file_exists <- function(file_path) {
   if (!file.exists(file_path)) {
     warning(paste("File not found:", file_path))
@@ -72,202 +74,257 @@ check_file_exists <- function(file_path) {
   return(TRUE)
 }
 
-# Define data directory
-
-# Load required data files
-load("Rdata/step2.deg.rdata")
-load("Rdata/step3.3.GSEA_KK.rdata")
-load("Rdata/step2.volcanoplot.rdata")
-load("Rdata/step1.oridata_dedup_counts.rdata")
+# Load required data files - Figure 3F-G-H data
+# Using relative path format for reproducibility
+load(".../.../Rdata/step2.deg.rdata")
+load(".../.../Rdata/step3.3.GSEA_KK.rdata")
+load(".../.../Rdata/step2.volcanoplot.rdata")
+load(".../.../Rdata/step1.oridata_dedup_counts.rdata")
 library(pathview)
-load("Rdata/step3.idconv_DEGs_genelist.rdata")
-
+load(".../.../Rdata/step3.idconv_DEGs_genelist.rdata")
 ```
 
-## Figure 3F: GSVA/GSEA Plot
+## Figure 3F: GSVA/GSEA Pathway Analysis Plot
 
 ```r
-# Prepare data for plotting
-dat_forplot$change = as.factor(ifelse(dat_forplot$GSEAlogP > 2, 
+# Prepare data for Figure 3F
+if (exists("dat_forplot")) {
+  dat_forplot$change = as.factor(ifelse(dat_forplot$GSEAlogP > 2, 
                                      ifelse(dat_forplot$NES > 0, "UP", "DOWN"), 
                                      "NOT"))
-dat_forplot$size <- ifelse(dat_forplot$change == "NOT", 1, 2)
+  dat_forplot$size <- ifelse(dat_forplot$change == "NOT", 1, 2)
 
-# Filter significant pathways
-dat_forplot2 <- subset(dat_forplot, p.adjust < 0.01)
+  # Filter significant pathways
+  dat_forplot2 <- subset(dat_forplot, p.adjust < 0.01)
 
-# Create GSVA/GSEA plot
-fig3f <- ggplot(data = dat_forplot, aes(x = NES, y = GSEAlogP, fill = change)) +
-  geom_point(shape = 21, color = 'black', aes(size = size)) +
-  scale_size(range = c(2, 3.5)) +
-  scale_fill_manual(values = c('#592c93', 'grey80', '#d15b69')) +
-  geom_hline(yintercept = c(0, 2), linetype = 4) +    
-  geom_vline(xintercept = 0, linetype = 4) +  
-  theme_bw() +
-  scale_x_continuous(limits = c(-3, 3),
-                     breaks = seq(-3, 3, by = 1)) + # x-axis limits
-  scale_y_continuous(expand = expansion(add = c(0, 0)),
-                     limits = c(0, 8),
-                     breaks = seq(0, 8, by = 2))  # y-axis limits
+  # Create Figure 3F: GSVA/GSEA plot
+  fig3f <- ggplot(data = dat_forplot, aes(x = NES, y = GSEAlogP, fill = change)) +
+    geom_point(shape = 21, color = 'black', aes(size = size)) +
+    scale_size(range = c(2, 3.5)) +
+    scale_fill_manual(values = c('#592c93', 'grey80', '#d15b69')) +
+    geom_hline(yintercept = c(0, 2), linetype = 4) +    
+    geom_vline(xintercept = 0, linetype = 4) +  
+    theme_bw() +
+    labs(x = "Normalized Enrichment Score (NES)", 
+         y = "-log10(Adjusted P-value)",
+         title = "Pathway Enrichment Analysis of C9orf50 Knockout") +
+    scale_x_continuous(limits = c(-3, 3),
+                       breaks = seq(-3, 3, by = 1)) + # x-axis limits
+    scale_y_continuous(expand = expansion(add = c(0, 0)),
+                       limits = c(0, 8),
+                       breaks = seq(0, 8, by = 2)) +  # y-axis limits
+    theme(plot.title = element_text(hjust = 0.5))
 
-# Save plot in output directory
-if (!dir.exists("output_figures")) {
-  dir.create("output_figures")
+  # Save Figure 3F
+  ggsave(filename = file.path(output_dir, "Fig3F.GSVA_GSEAplot.svg"), 
+         plot = fig3f, 
+         height = 3.5, width = 4.4, dpi = 600)
+  ggsave(filename = file.path(output_dir, "Fig3F.GSVA_GSEAplot.jpg"), 
+         plot = fig3f, 
+         height = 3.5, width = 4.4, dpi = 600)
+
+  # Display plot
+  fig3f
+} else {
+  warning("dat_forplot object not found. Please ensure data is loaded correctly.")
 }
-ggsave(filename = "output_figures/Fig3F.GSVA_GSEAplot.svg", 
-       plot = fig3f, 
-       height = 3.5, width = 4.4, dpi = 600)
-
-# Display plot
-fig3f
 ```
 
-## Figure 3G: GSEA for Chemokines
+## Figure 3G: GSEA Analysis for Chemokine Pathway
 
 ```r
+# Figure 3G: GSEA for Chemokine Pathway Analysis
 # Read gene set and perform GSEA
-ISGgmt_entrezid = clusterProfiler::read.gmt("mmu Chemokines37genes.gmt")
+chemokine_gmt_path <- ".../.../mmu Chemokines37genes.gmt"
 
-# Load gene symbols
-ISGgmt_symbol <- read.csv("metascape_result.tlnqwaec5.csv")  
-ISGsymbol <- unique(ISGgmt_symbol$Gene.Symbol)
+if (file.exists(chemokine_gmt_path)) {
+  ISGgmt_entrezid = clusterProfiler::read.gmt(chemokine_gmt_path)
+  
+  # Load gene symbols (alternative method if metascape_result file not available)
+  metascape_file_path <- ".../.../metascape_result.tlnqwaec5.csv"
+  if (file.exists(metascape_file_path)) {
+    ISGgmt_symbol <- read.csv(metascape_file_path)
+    ISGsymbol <- unique(ISGgmt_symbol$Gene.Symbol)
+  } else {
+    # Use chemokine gene set directly from GMT file
+    ISGsymbol <- unique(ISGgmt_entrezid$gene)
+  }
 
-# Perform GSEA
-y <- GSEA(genelist, 
-          TERM2GENE = ISGgmt_entrezid,
-          pvalueCutoff = 1.0, 
-          minGSSize = 5)
-yr <- y@result
+  # Perform GSEA for Figure 3G
+  if (exists("genelist")) {
+    y <- GSEA(genelist, 
+              TERM2GENE = ISGgmt_entrezid,
+              pvalueCutoff = 1.0, 
+              minGSSize = 5)
+    yr <- y@result
 
-# Create GSEA plot
-fig3g <- gseaplot2(y, geneSetID = 1, pvalue_table = T, color = "#EB4232")
+    # Create Figure 3G: GSEA plot
+    fig3g <- gseaplot2(y, geneSetID = 1, pvalue_table = T, color = "#EB4232")
 
-# Save plot
-ggsave("output_figures/Fig3G.Chemokines.svg", 
-       plot = fig3g,
-       height = 4.6, width = 4.2, dpi = 600)
+    # Save Figure 3G
+    ggsave(file.path(output_dir, "Fig3G.Chemokines.svg"), 
+           plot = fig3g,
+           height = 4.6, width = 4.2, dpi = 600)
+    ggsave(file.path(output_dir, "Fig3G.Chemokines.jpg"), 
+           plot = fig3g,
+           height = 4.6, width = 4.2, dpi = 600)
 
-# Display plot
-fig3g
+    # Display plot
+    fig3g
+  } else {
+    warning("genelist object not found. Please ensure data is loaded correctly.")
+  }
+} else {
+  warning("Chemokine GMT file not found. Please ensure the file is in the correct location.")
+}
 ```
 
-## Figure 3H: Heatmap for Chemokines
+## Figure 3H: Heatmap for Chemokine Genes
 
 ```r
-# Check data
-print("Expression data sample:")
-print(dat_expr[1:4, 1:4])
-print("DEG data sample:")
-print(df[1:4, 1:10])
+# Figure 3H: Heatmap visualization of chemokine gene expression
+if (exists("dat_expr") && exists("deg") && exists("ISGsymbol")) {
+  print("Expression data sample:")
+  print(dat_expr[1:4, 1:4])
+  print("DEG data sample:")
+  print(deg[1:4, 1:4]) if(exists("deg")) else print("deg object not available")
 
-# Define group list
-group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
-                     levels = c("sgNTC", "sgC9"))  # control vs sgC9
+  # Define group list - Figure 3H
+  group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
+                       levels = c("sgNTC", "sgC9"))  # control vs sgC9
 
-# Use ISG symbols from previous section
-cg3 <- ISGsymbol
+  # Use ISG symbols from previous section
+  cg3 <- ISGsymbol
 
-# Filter genes present in expression data
-library(pheatmap)
-cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+  # Filter genes present in expression data
+  cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+  print(paste("Number of chemokine genes found in expression data:", length(cg4)))
 
-# Normalize data
-n <- t(scale(t(dat_expr[cg4, ])))
-# Cap extreme values
-n[n > 3] <- 3
-n[n < -3] <- -3
+  if (length(cg4) > 0) {
+    # Normalize data
+    n <- t(scale(t(dat_expr[cg4, ])))
+    # Cap extreme values
+    n[n > 3] <- 3
+    n[n < -3] <- -3
 
-# Reorder heatmap input dataset using logFC
-deg_cg4 <- deg[cg4, ]
-order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = T), ])
-n <- n[order, ]
+    # Reorder heatmap input dataset using logFC
+    if (exists("deg")) {
+      deg_cg4 <- deg[cg4, ]
+      order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = T), ])
+      n <- n[order, ]
+    }
 
-# Create annotation dataframe
-ac <- data.frame(g = group_list)
-rownames(ac) <- colnames(n)  # Set row names to match sample names
+    # Create annotation dataframe
+    ac <- data.frame(g = group_list)
+    rownames(ac) <- colnames(n)  # Set row names to match sample names
 
-# Define color palette
-colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+    # Define color palette
+    colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
 
-# Create heatmap
-fig3h <- pheatmap(n,
-                 color = colors,
-                 show_colnames = TRUE,
-                 scale = "row",
-                 show_rownames = TRUE,
-                 cluster_rows = FALSE,
-                 cluster_cols = FALSE,
-                 border_color = NA,
-                 cellwidth = 20,
-                 cellheight = 12,
-                 annotation_col = ac)
+    # Create Figure 3H: Heatmap
+    fig3h <- pheatmap(n,
+                     color = colors,
+                     show_colnames = TRUE,
+                     scale = "row",
+                     show_rownames = TRUE,
+                     cluster_rows = FALSE,
+                     cluster_cols = FALSE,
+                     border_color = NA,
+                     cellwidth = 20,
+                     cellheight = 12,
+                     annotation_col = ac,
+                     main = "Chemokine Gene Expression Heatmap")
 
-# Save heatmap
-png("output_figures/Fig3H.Chemokines_Heatmap.png", 
-    height = 480, width = 640, res = 300)
-print(fig3h)
-dev.off()
+    # Save Figure 3H
+    ggsave(file.path(output_dir, "Fig3H.Chemokines_Heatmap.png"), 
+           plot = fig3h,
+           height = 8, width = 6, dpi = 600)
+    ggsave(file.path(output_dir, "Fig3H.Chemokines_Heatmap.svg"), 
+           plot = fig3h,
+           height = 8, width = 6, dpi = 600)
+    
+    # Display heatmap
+    fig3h
+  } else {
+    warning("No chemokine genes found in the expression data. Please check gene symbol matching.")
+  }
+} else {
+  warning("Required data objects (dat_expr, deg, ISGsymbol) are not all available.")
+}
 ```
 
 ## Additional Analysis: Spliceosome Pathway Heatmap
 
 ```r
-# Check data
-print("Expression data sample:")
-print(dat_expr[1:4, 1:4])
-print("DEG data sample:")
-print(df[1:4, 1:10])
+# Additional analysis: Spliceosome pathway gene expression
+if (exists("dat_expr") && exists("deg")) {
+  print("Expression data sample for spliceosome analysis:")
+  print(dat_expr[1:4, 1:4])
 
-# Get genes in the spliceosome pathway
-library(stringr)
-mmupath <- mmu_pathway2 %>% filter(term == "mmu03040_Spliceosome")
-cg3 <- mmu_pathway2[mmu_pathway2$term == "mmu03040_Spliceosome", ]$gene
+  # Get genes in the spliceosome pathway
+  if (exists("mmu_pathway2")) {
+    library(stringr)
+    mmupath <- mmu_pathway2 %>% filter(term == "mmu03040_Spliceosome")
+    cg3 <- mmu_pathway2[mmu_pathway2$term == "mmu03040_Spliceosome", ]$gene
+    
+    # Filter genes present in expression data
+    cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+    print(paste("Number of spliceosome genes found in expression data:", length(cg4)))
 
-# Filter genes present in expression data
-library(pheatmap)
-cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+    if (length(cg4) > 0) {
+      # Normalize data
+      n <- t(scale(t(dat_expr[cg4, ])))
+      # Cap extreme values
+      n[n > 3] <- 3
+      n[n < -3] <- -3
 
-# Normalize data
-n <- t(scale(t(dat_expr[cg4, ])))
-# Cap extreme values
-n[n > 3] <- 3
-n[n < -3] <- -3
+      # Define group list
+      group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
+                          levels = c("sgNTC", "sgC9"))  # control vs sgC9
 
-# Define group list
-group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
-                     levels = c("sgNTC", "sgC9"))  # control vs sgC9
+      # Create annotation dataframe
+      ac <- data.frame(g = group_list)
 
-# Create annotation dataframe
-ac <- data.frame(g = group_list)
+      # Reorder heatmap input dataset using logFC (ascending)
+      deg_cg4 <- deg[cg4, ]
+      order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = FALSE), ])
+      n <- n[order, ]
 
-# Reorder heatmap input dataset using logFC (ascending)
-deg_cg4 <- deg[cg4, ]
-order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = FALSE), ])
-n <- n[order, ]
+      rownames(ac) <- colnames(n)  # Set row names to match sample names
 
-rownames(ac) <- colnames(n)  # Set row names to match sample names
+      # Define color palette
+      colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
 
-# Define color palette
-colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+      # Create spliceosome pathway heatmap
+      spliceosome_heatmap <- pheatmap(n,
+                                    color = colors,
+                                    show_colnames = TRUE,
+                                    scale = "row",
+                                    show_rownames = FALSE,
+                                    cluster_rows = FALSE,
+                                    cluster_cols = FALSE,
+                                    border_color = NA,
+                                    cellwidth = 20,
+                                    cellheight = 2,
+                                    annotation_col = ac,
+                                    main = "Spliceosome Pathway Gene Expression Heatmap")
 
-# Create heatmap
-spliceosome_heatmap <- pheatmap(n,
-                              color = colors,
-                              show_colnames = TRUE,
-                              scale = "row",
-                              show_rownames = FALSE,
-                              cluster_rows = FALSE,
-                              cluster_cols = FALSE,
-                              border_color = NA,
-                              cellwidth = 20,
-                              cellheight = 2,
-                              annotation_col = ac)
-
-# Save heatmap
-png("output_figures/Spliceosome_Heatmap.png", 
-    height = 480, width = 640, res = 300)
-print(spliceosome_heatmap)
-dev.off()
+      # Save spliceosome heatmap
+      ggsave(file.path(output_dir, "Spliceosome_Heatmap.png"), 
+             plot = spliceosome_heatmap,
+             height = 6, width = 8, dpi = 600)
+      ggsave(file.path(output_dir, "Spliceosome_Heatmap.svg"), 
+             plot = spliceosome_heatmap,
+             height = 6, width = 8, dpi = 600)
+    } else {
+      warning("No spliceosome genes found in the expression data. Please check gene symbol matching.")
+    }
+  } else {
+    warning("mmu_pathway2 object not found. Cannot perform spliceosome pathway analysis.")
+  }
+} else {
+  warning("Required data objects (dat_expr, deg) are not available for spliceosome analysis.")
+}
 ```
 
 ## Session Information
