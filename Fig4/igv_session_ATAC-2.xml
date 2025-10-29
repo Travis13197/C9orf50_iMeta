@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Session genome="mm10" locus="chr1:54983168-55029478" version="8">
+    <Resources>
+        <Resource path="20230327transcriptome\ATAC-Seq_ori_files\C9orf50KO1.bw" type="bw"/>
+        <Resource path="20230327transcriptome\ATAC-Seq_ori_files\Control3.bw" type="bw"/>
+        <Resource path="20230327transcriptome\ATAC-Seq_ori_files\C9orf50KO3.bw" type="bw"/>
+        <Resource path="20230327transcriptome\ATAC-Seq_ori_files\Control1.bw" type="bw"/>
+        <Resource path="20230327transcriptome\ATAC-Seq_ori_files\Control2.bw" type="bw"/>
+        <Resource path="20230327transcriptome\ATAC-Seq_ori_files\C9orf50KO2.bw" type="bw"/>
+    </Resources>
+    <Panel height="364" name="DataPanel" width="1115">
+        <Track attributeKey="C9orf50KO1.bw" autoScale="false" clazz="org.broad.igv.track.DataSourceTrack" colorScale="ContinuousColorScale;0.3;0.0;0.3;0.699999988079071;0,153,255;255,255,255;255,51,51" fontSize="10" id="B:\Kinda_Help\Lvyun_Zhu-C9orf50\ATAC-seq\20230327transcriptome\ATAC-Seq_ori_files\C9orf50KO1.bw" name="C9orf50KO1.bw" renderer="BAR_CHART" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="0.7" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track attributeKey="C9orf50KO2.bw" autoScale="false" clazz="org.broad.igv.track.DataSourceTrack" colorScale="ContinuousColorScale;0.3;0.0;0.3;0.699999988079071;51,153,255;255,255,255;255,102,102" fontSize="10" id="B:\Kinda_Help\Lvyun_Zhu-C9orf50\ATAC-seq\20230327transcriptome\ATAC-Seq_ori_files\C9orf50KO2.bw" name="C9orf50KO2.bw" renderer="BAR_CHART" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="0.7" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track attributeKey="C9orf50KO3.bw" autoScale="false" clazz="org.broad.igv.track.DataSourceTrack" colorScale="ContinuousColorScale;0.0;0.699999988079071;255,255,255;0,0,178" fontSize="10" id="B:\Kinda_Help\Lvyun_Zhu-C9orf50\ATAC-seq\20230327transcriptome\ATAC-Seq_ori_files\C9orf50KO3.bw" name="C9orf50KO3.bw" renderer="BAR_CHART" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="0.7" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track attributeKey="Control1.bw" autoScale="false" clazz="org.broad.igv.track.DataSourceTrack" color="204,204,204" colorScale="ContinuousColorScale;0.0;0.699999988079071;255,255,255;0,0,178" fontSize="10" id="B:\Kinda_Help\Lvyun_Zhu-C9orf50\ATAC-seq\20230327transcriptome\ATAC-Seq_ori_files\Control1.bw" name="Control1.bw" renderer="BAR_CHART" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="0.7" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track attributeKey="Control2.bw" autoScale="false" clazz="org.broad.igv.track.DataSourceTrack" color="204,204,204" colorScale="ContinuousColorScale;0.0;0.699999988079071;255,255,255;0,0,178" fontSize="10" id="B:\Kinda_Help\Lvyun_Zhu-C9orf50\ATAC-seq\20230327transcriptome\ATAC-Seq_ori_files\Control2.bw" name="Control2.bw" renderer="BAR_CHART" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="0.7" minimum="0.0" type="LINEAR"/>
+        </Track>
+        <Track attributeKey="Control3.bw" autoScale="false" clazz="org.broad.igv.track.DataSourceTrack" color="204,204,204" colorScale="ContinuousColorScale;0.0;0.699999988079071;255,255,255;0,0,178" fontSize="10" id="B:\Kinda_Help\Lvyun_Zhu-C9orf50\ATAC-seq\20230327transcriptome\ATAC-Seq_ori_files\Control3.bw" name="Control3.bw" renderer="BAR_CHART" visible="true" windowFunction="mean">
+            <DataRange baseline="0.0" drawBaseline="true" flipAxis="false" maximum="0.7" minimum="0.0" type="LINEAR"/>
+        </Track>
+    </Panel>
+    <Panel height="1790" name="FeaturePanel" width="1115">
+        <Track attributeKey="Reference sequence" clazz="org.broad.igv.track.SequenceTrack" fontSize="10" id="Reference sequence" name="Reference sequence" sequenceTranslationStrandValue="POSITIVE" shouldShowTranslation="false" visible="true"/>
+        <Track attributeKey="Refseq Genes" clazz="org.broad.igv.track.FeatureTrack" colorScale="ContinuousColorScale;0.0;466.0;255,255,255;0,0,178" displayMode="EXPANDED" fontSize="10" groupByStrand="false" id="https://hgdownload.soe.ucsc.edu/goldenPath/mm10/database/ncbiRefSeq.txt.gz" name="Refseq Genes" visible="true"/>
+    </Panel>
+    <PanelLayout dividerFractions="0.6678832116788321"/>
+    <HiddenAttributes>
+        <Attribute name="DATA FILE"/>
+        <Attribute name="DATA TYPE"/>
+        <Attribute name="NAME"/>
+    </HiddenAttributes>
+</Session>

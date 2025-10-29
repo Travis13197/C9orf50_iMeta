@@ -1,0 +1,7 @@
+SampleID,Tissue,Factor,Condition,Treatment,Replicate,bamReads,ControlID,bamControl,Peaks,PeakCaller
+C9orf50KO1,HEK293T,C9orf50KO,KO,NA,1,Data/C9orf50KO1.bam,NA,NA,Data/C9orf50KO1_summits.bed,bed
+C9orf50KO2,HEK293T,C9orf50KO,KO,NA,2,Data/C9orf50KO2.bam,NA,NA,Data/C9orf50KO2_summits.bed,bed
+C9orf50KO3,HEK293T,C9orf50KO,KO,NA,3,Data/C9orf50KO3.bam,NA,NA,Data/C9orf50KO3_summits.bed,bed
+Control1,HEK293T,Control,CTL,NA,1,Data/Control1.bam,NA,NA,Data/Control1_summits.bed,bed
+Control2,HEK293T,Control,CTL,NA,2,Data/Control2.bam,NA,NA,Data/Control2_summits.bed,bed
+Control3,HEK293T,Control,CTL,NA,3,Data/Control3.bam,NA,NA,Data/Control3_summits.bed,bed
