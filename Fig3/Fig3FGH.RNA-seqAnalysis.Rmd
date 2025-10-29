@@ -1,0 +1,295 @@
+---
+title: "RNA-seq Analysis Reveals C9orf50 Regulation of Chemokine Pathway and Spliceosome Function - Figure 3F-G-H"
+author: 
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Immunology, Institute of Cancer Research"
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Immunology, Institute of Cancer Research"
+date: "`r format(Sys.Date(), '%Y年%m月%d日')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+# RNA-seq Analysis for Figure 3F-G-H
+
+This R Markdown document contains the code for generating Figure 3F-G-H from the C9orf50 project, including GSVA/GSEA plots and heatmaps for gene expression analysis.
+
+## Setup
+
+```r
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set working directory to ensure reproducibility
+if (!dir.exists("output_figures")) {
+  dir.create("output_figures")
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
+# List of required packages
+required_packages <- c("ggplot2", "msigdbr", "tidyr", "dplyr", "stringr", 
+                      "rtracklayer", "ggpubr", "data.table", "ggfortify", 
+                      "clusterProfiler", "org.Mm.eg.db", "DOSE", 
+                      "enrichplot", "pheatmap")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Data Loading
+
+```r
+# Check if data files exist
+check_file_exists <- function(file_path) {
+  if (!file.exists(file_path)) {
+    warning(paste("File not found:", file_path))
+    return(FALSE)
+  }
+  return(TRUE)
+}
+
+# Define data directory
+
+# Load required data files
+load("Rdata/step2.deg.rdata")
+load("Rdata/step3.3.GSEA_KK.rdata")
+load("Rdata/step2.volcanoplot.rdata")
+load("Rdata/step1.oridata_dedup_counts.rdata")
+library(pathview)
+load("Rdata/step3.idconv_DEGs_genelist.rdata")
+
+```
+
+## Figure 3F: GSVA/GSEA Plot
+
+```r
+# Prepare data for plotting
+dat_forplot$change = as.factor(ifelse(dat_forplot$GSEAlogP > 2, 
+                                     ifelse(dat_forplot$NES > 0, "UP", "DOWN"), 
+                                     "NOT"))
+dat_forplot$size <- ifelse(dat_forplot$change == "NOT", 1, 2)
+
+# Filter significant pathways
+dat_forplot2 <- subset(dat_forplot, p.adjust < 0.01)
+
+# Create GSVA/GSEA plot
+fig3f <- ggplot(data = dat_forplot, aes(x = NES, y = GSEAlogP, fill = change)) +
+  geom_point(shape = 21, color = 'black', aes(size = size)) +
+  scale_size(range = c(2, 3.5)) +
+  scale_fill_manual(values = c('#592c93', 'grey80', '#d15b69')) +
+  geom_hline(yintercept = c(0, 2), linetype = 4) +    
+  geom_vline(xintercept = 0, linetype = 4) +  
+  theme_bw() +
+  scale_x_continuous(limits = c(-3, 3),
+                     breaks = seq(-3, 3, by = 1)) + # x-axis limits
+  scale_y_continuous(expand = expansion(add = c(0, 0)),
+                     limits = c(0, 8),
+                     breaks = seq(0, 8, by = 2))  # y-axis limits
+
+# Save plot in output directory
+if (!dir.exists("output_figures")) {
+  dir.create("output_figures")
+}
+ggsave(filename = "output_figures/Fig3F.GSVA_GSEAplot.svg", 
+       plot = fig3f, 
+       height = 3.5, width = 4.4, dpi = 600)
+
+# Display plot
+fig3f
+```
+
+## Figure 3G: GSEA for Chemokines
+
+```r
+# Read gene set and perform GSEA
+ISGgmt_entrezid = clusterProfiler::read.gmt("mmu Chemokines37genes.gmt")
+
+# Load gene symbols
+ISGgmt_symbol <- read.csv("metascape_result.tlnqwaec5.csv")  
+ISGsymbol <- unique(ISGgmt_symbol$Gene.Symbol)
+
+# Perform GSEA
+y <- GSEA(genelist, 
+          TERM2GENE = ISGgmt_entrezid,
+          pvalueCutoff = 1.0, 
+          minGSSize = 5)
+yr <- y@result
+
+# Create GSEA plot
+fig3g <- gseaplot2(y, geneSetID = 1, pvalue_table = T, color = "#EB4232")
+
+# Save plot
+ggsave("output_figures/Fig3G.Chemokines.svg", 
+       plot = fig3g,
+       height = 4.6, width = 4.2, dpi = 600)
+
+# Display plot
+fig3g
+```
+
+## Figure 3H: Heatmap for Chemokines
+
+```r
+# Check data
+print("Expression data sample:")
+print(dat_expr[1:4, 1:4])
+print("DEG data sample:")
+print(df[1:4, 1:10])
+
+# Define group list
+group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
+                     levels = c("sgNTC", "sgC9"))  # control vs sgC9
+
+# Use ISG symbols from previous section
+cg3 <- ISGsymbol
+
+# Filter genes present in expression data
+library(pheatmap)
+cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+
+# Normalize data
+n <- t(scale(t(dat_expr[cg4, ])))
+# Cap extreme values
+n[n > 3] <- 3
+n[n < -3] <- -3
+
+# Reorder heatmap input dataset using logFC
+deg_cg4 <- deg[cg4, ]
+order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = T), ])
+n <- n[order, ]
+
+# Create annotation dataframe
+ac <- data.frame(g = group_list)
+rownames(ac) <- colnames(n)  # Set row names to match sample names
+
+# Define color palette
+colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+
+# Create heatmap
+fig3h <- pheatmap(n,
+                 color = colors,
+                 show_colnames = TRUE,
+                 scale = "row",
+                 show_rownames = TRUE,
+                 cluster_rows = FALSE,
+                 cluster_cols = FALSE,
+                 border_color = NA,
+                 cellwidth = 20,
+                 cellheight = 12,
+                 annotation_col = ac)
+
+# Save heatmap
+png("output_figures/Fig3H.Chemokines_Heatmap.png", 
+    height = 480, width = 640, res = 300)
+print(fig3h)
+dev.off()
+```
+
+## Additional Analysis: Spliceosome Pathway Heatmap
+
+```r
+# Check data
+print("Expression data sample:")
+print(dat_expr[1:4, 1:4])
+print("DEG data sample:")
+print(df[1:4, 1:10])
+
+# Get genes in the spliceosome pathway
+library(stringr)
+mmupath <- mmu_pathway2 %>% filter(term == "mmu03040_Spliceosome")
+cg3 <- mmu_pathway2[mmu_pathway2$term == "mmu03040_Spliceosome", ]$gene
+
+# Filter genes present in expression data
+library(pheatmap)
+cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+
+# Normalize data
+n <- t(scale(t(dat_expr[cg4, ])))
+# Cap extreme values
+n[n > 3] <- 3
+n[n < -3] <- -3
+
+# Define group list
+group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
+                     levels = c("sgNTC", "sgC9"))  # control vs sgC9
+
+# Create annotation dataframe
+ac <- data.frame(g = group_list)
+
+# Reorder heatmap input dataset using logFC (ascending)
+deg_cg4 <- deg[cg4, ]
+order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = FALSE), ])
+n <- n[order, ]
+
+rownames(ac) <- colnames(n)  # Set row names to match sample names
+
+# Define color palette
+colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+
+# Create heatmap
+spliceosome_heatmap <- pheatmap(n,
+                              color = colors,
+                              show_colnames = TRUE,
+                              scale = "row",
+                              show_rownames = FALSE,
+                              cluster_rows = FALSE,
+                              cluster_cols = FALSE,
+                              border_color = NA,
+                              cellwidth = 20,
+                              cellheight = 2,
+                              annotation_col = ac)
+
+# Save heatmap
+png("output_figures/Spliceosome_Heatmap.png", 
+    height = 480, width = 640, res = 300)
+print(spliceosome_heatmap)
+dev.off()
+```
+
+## Session Information
+
+```r
+# Print session information for reproducibility
+sessionInfo()
+```
+
+## Data Availability
+
+The raw data and processed datasets supporting the findings of this study are available from the corresponding author upon reasonable request.
+
+## License
+
+This code is provided for academic use only. For commercial use, please contact the corresponding author.
+
+## References
+
+Please cite this work if you use any part of this analysis in your research:
+
+```
+Liu C, Zhu L, et al. (2023) C9orf50: A Novel Regulator of Immune Response in Cancer Models. iMeta Journal, DOI: [pending]
+```
