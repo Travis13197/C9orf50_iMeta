@@ -55,7 +55,7 @@ install_and_load_packages <- function(packages) {
 
 knitr::opts_chunk$set(echo = TRUE)
 
-## 加载必要的包
+## Load Required Packages
 
 ```r
 # List of required packages for Figure 4A-B analysis
@@ -66,7 +66,7 @@ required_packages <- c("ggplot2", "pheatmap", "stringr", "ggpubr",
 install_and_load_packages(required_packages)
 ```
 
-## Figure 4A：可变剪接事件的类型统计
+## Figure 4A: Types of Alternative Splicing Events
 
 ```r
 # Figure 4A: Types of alternative splicing events
@@ -110,7 +110,7 @@ if (file.exists("AS_events_count.csv")) {
 }
 ```
 
-## Figure 4B：可变剪接事件的GO富集分析
+## Figure 4B: GO Enrichment Analysis of Alternative Splicing Events
 
 ```r
 # Figure 4B: GO enrichment analysis of alternative splicing events
@@ -156,7 +156,7 @@ if (file.exists("GO_enrich.csv")) {
 }
 ```
 
-## 合并图形（可选）
+## Combine Figures (Optional)
 
 ```r
 # Combine Figure 4A and 4B
@@ -177,10 +177,10 @@ if (exists("p4a") && exists("p4b")) {
 }
 ```
 
-## 会话信息
+## Session Information
 
 ```r
-# 记录会话信息以确保分析可重现
+# Record session information for reproducibility
 sessionInfo()
 ```
 
@@ -190,7 +190,7 @@ This analysis is part of the manuscript examining C9orf50's role in regulating a
 
 When using this code, please cite:
 
-Zhu L, Liu C, et al. (Year). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. [Journal Name], DOI: xxx.xxx/xxx.
+Shao T, Liu C, et al. (2025). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. iMeta
 
 ---
 

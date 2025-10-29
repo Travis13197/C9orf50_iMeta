@@ -1,0 +1,259 @@
+---
+title: "C9ORF50 Clinical Analysis - Figure 7"
+author: 
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+# C9ORF50 Clinical Outcome Correlation Analysis
+
+This R Markdown document contains the code for generating Figure 7 from the C9orf50 project, highlighting the correlation between C9ORF50 expression and clinical outcomes in colorectal cancer patients.
+
+## Setup
+
+```{r setup, include=FALSE}
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set output directory for figures
+output_dir <- "../../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Load Required Packages
+
+```r
+# List of required packages for clinical analysis
+required_packages <- c("ggplot2", "survival", "survminer", "dplyr", "ggpubr")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Figure 7A: C9ORF50 Expression Across Clinical Stages in Colorectal Cancer
+
+```r
+# Set working directory to where clinical data is stored
+setwd("B:/Kinda_Help/Lvyun_Zhu-C9orf50/TCGA/")
+
+# Read colorectal cancer clinical data
+data <- read.table("Xena COADREAD clinical.tsv",
+                   comment.char = "!",
+                   header = TRUE,
+                   sep = "\t")
+
+# Clean and prepare clinical stage data
+data <- data[(data$pathologic_stage != ""),]
+data <- data[(data$pathologic_stage != "[Discrepancy]"),]
+
+# Recode pathologic stages into simplified stages
+data$PathoStage <- ifelse(data$pathologic_stage %in% c("Stage I", "Stage IA"), "Stage I",
+                          ifelse(data$pathologic_stage %in% c("Stage II", "Stage IIA", "Stage IIC", "Stage IIB"), "Stage II",
+                                 ifelse(data$pathologic_stage %in% c("Stage III", "Stage IIIA", "Stage IIIC", "Stage IIIB"), "Stage III", "Stage IV")))
+
+# Filter out any remaining NA values in C9ORF50 expression
+data <- data[!is.na(data$C9orf50),]
+
+# Count samples per stage
+stage_counts <- table(data$PathoStage)
+print("Sample counts per clinical stage:")
+print(stage_counts)
+
+# Create Figure 7A: C9ORF50 expression across clinical stages
+fig7a <- ggplot(data, aes(x = PathoStage, y = C9orf50, color = PathoStage)) +
+  # Set color scheme consistent with publication standards
+  scale_fill_manual(values = c("#3699DD", "#3699DD", "#3699DD", "#3699DD")) +
+  scale_color_manual(values = c("#3699DD", "#3699DD", "#3699DD", "#3699DD")) +
+  # Violin plot with transparency
+  geom_violin(aes(fill = PathoStage), size = 1, alpha = 0.2, 
+              outlier.shape = NA, notchwidth = 0.3, trim = FALSE) +
+  # Add jittered points for data distribution
+  geom_jitter(aes(fill = PathoStage), size = 2, alpha = 0.25, width = 0.2) +
+  # Add boxplot for summary statistics
+  geom_boxplot(aes(fill = PathoStage), size = 1, alpha = 0.2, 
+               outlier.shape = NA, notchwidth = 0.3, width = 0.2) +
+  # Set theme and text size
+  theme_bw() +
+  theme(text = element_text(size = 16),
+        legend.position = "none",
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  # Add statistical comparisons
+  stat_compare_means() +
+  # Set axis labels
+  labs(title = "C9ORF50 Expression Across Clinical Stages",
+       x = "Clinical Stage",
+       y = "C9ORF50 Expression")
+
+# Display the plot
+fig7a
+
+# Save Figure 7A in multiple formats
+# Using ggsave for consistent output
+ggsave(file.path(output_dir, "Fig7A_C9orf50_Stage_Expression.pdf"), 
+       plot = fig7a,
+       height = 6, width = 8, dpi = 600)
+ggsave(file.path(output_dir, "Fig7A_C9orf50_Stage_Expression.svg"), 
+       plot = fig7a,
+       height = 6, width = 8, dpi = 600)
+ggsave(file.path(output_dir, "Fig7A_C9orf50_Stage_Expression.jpg"), 
+       plot = fig7a,
+       height = 6, width = 8, dpi = 600)
+```
+
+## Figure 7B: Kaplan-Meier Survival Analysis Stratified by C9ORF50 Expression
+
+```r
+# Read clinical and expression data for survival analysis
+setwd("XXX/XXXX/Clinical analysis/")
+
+data_surv <- read.table("3.pdl2-antiPDL1.txt",
+                       comment.char = "!",
+                       header = TRUE,
+                       sep = "\t")
+
+# Select and rename relevant columns for survival analysis
+dat <- data_surv[,3:5]
+colnames(dat) <- c("Expression", "Time", "Event")
+
+# Calculate optimal cutpoint for expression levels
+res.cut <- surv_cutpoint(data = dat, time = "Time", event = "Event",
+                         variables = c("Expression"))
+
+# Print cutpoint information
+summary(res.cut)
+
+# Categorize patients into high and low expression groups
+res.cat <- surv_categorize(res.cut)
+
+# Count samples in each group
+group_counts <- table(res.cat$Expression)
+print("Sample counts by expression group:")
+print(group_counts)
+
+# Perform survival analysis
+fit <- surv_fit(Surv(Time, Event) ~ Expression, data = res.cat)
+
+# Calculate hazard ratio and p-value using log-rank test
+surv_diff <- survdiff(Surv(Time, Event) ~ Expression, data = res.cat)
+p_val <- 1 - pchisq(surv_diff$chisq, length(surv_diff$n) - 1)
+HR <- (surv_diff$obs[1]/surv_diff$exp[1])/(surv_diff$obs[2]/surv_diff$exp[2])
+up95 <- exp(log(HR) + qnorm(0.975)*sqrt(1/surv_diff$exp[1]+1/surv_diff$exp[2]))
+low95 <- exp(log(HR) - qnorm(0.975)*sqrt(1/surv_diff$exp[1]+1/surv_diff$exp[2]))
+ci_text <- paste0(sprintf("%.3f", HR), " [", sprintf("%.3f", low95), ", ", sprintf("%.3f", up95), "]")
+
+# Print survival analysis results
+print(paste0("Log-rank test p-value: ", sprintf("%.6f", p_val)))
+print(paste0("Hazard ratio with 95% CI: ", ci_text))
+
+# Create Figure 7B: Kaplan-Meier survival curve
+fig7b <- ggsurvplot(fit, 
+                   risk.table = TRUE,
+                   pval = TRUE,
+                   conf.int = TRUE,
+                   xlab = "Time in years",
+                   ylab = "Overall Survival Probability",
+                   palette = c("#3699DD", "#EB4232"),  # Blue for low, red for high
+                   title = "Overall Survival Stratified by C9ORF50 Expression",
+                   surv.median.line = "hv",
+                   ggtheme = theme_bw(base_size = 13),
+                   legend.title = "C9ORF50 Expression",
+                   legend.labs = c("Low", "High"),
+                   ncensor.plot = FALSE,
+                   fontsize = 1.1,
+                   risk.table.height = 0.25,
+                   risk.table.fontsize = 11)
+
+# Customize the plot further
+fig7b$plot <- fig7b$plot + 
+  annotate("text", x = max(dat$Time)/2, y = 0.1, 
+           label = paste0("HR = ", ci_text), 
+           size = 4, hjust = 0.5)
+
+# Display the plot
+fig7b
+
+# Save Figure 7B in multiple formats
+ggsave(file.path(output_dir, "Fig7B_Kaplan_Meier_Survival.pdf"), 
+       plot = fig7b,
+       height = 8, width = 7, dpi = 600)
+ggsave(file.path(output_dir, "Fig7B_Kaplan_Meier_Survival.svg"), 
+       plot = fig7b,
+       height = 8, width = 7, dpi = 600)
+ggsave(file.path(output_dir, "Fig7B_Kaplan_Meier_Survival.jpg"), 
+       plot = fig7b,
+       height = 8, width = 7, dpi = 600)
+```
+
+## Combine Figures (Optional)
+
+```r
+# Combine Figure 7A and 7B using gridExtra
+library(gridExtra)
+
+# For proper combination, we need to extract just the plot components
+# First, ensure both figures are properly sized
+fig7a_plot <- fig7a + theme(plot.margin = unit(c(1,1,1,1), "cm"))
+
+# For the survival plot, we need to handle the risk table properly
+fig7b_combined <- arrangeGrob(fig7b$plot, fig7b$table, heights = c(3, 1))
+
+# Combine both figures vertically
+combined_fig7 <- grid.arrange(fig7a_plot, fig7b_combined, ncol = 1, nrow = 2, heights = c(1, 1.5))
+
+# Save combined figure
+ggsave(file.path(output_dir, "Fig7_Combined.pdf"), 
+       plot = combined_fig7,
+       height = 15, width = 8, dpi = 600)
+ggsave(file.path(output_dir, "Fig7_Combined.svg"), 
+       plot = combined_fig7,
+       height = 15, width = 8, dpi = 600)
+```
+
+## Session Information
+
+```r
+# Record session information for reproducibility
+sessionInfo()
+```
+
+## References
+
+When using this code, please cite:
+
+Shao T, Liu C, et al. (2025). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. iMeta
