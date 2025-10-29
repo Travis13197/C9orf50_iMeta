@@ -2,10 +2,9 @@
 title: "RNA-seq Analysis Reveals C9orf50 Regulation of Chemokine Pathway and Spliceosome Function - Figure 3F-G-H"
 author: 
   - name: "Chuanyang Liu"
-    affiliation: "Department of Immunology, Institute of Cancer Research"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
   - name: "Lvyun Zhu"
-    affiliation: "Department of Immunology, Institute of Cancer Research"
-date: "`r format(Sys.Date(), '%Y年%m月%d日')`"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
 output:
   html_document:
     toc: true
