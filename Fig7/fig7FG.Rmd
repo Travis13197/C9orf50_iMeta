@@ -1,0 +1,133 @@
+---
+title: "fig7F,G"
+author: l1ming
+output: html_document
+date: "2025-10-30"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+```
+
+```{r}
+library(cowplot)
+library(ggplot2)
+library(dplyr)
+```
+
+
+
+```{r}
+cor_Plot = function(dat, p_cut=0.05, cor_cut=0.1){
+    source("Util.R")
+    dat2 = dat %>% mutate(Group = if_else(p_value >= p_cut | 
+                                              abs(cor_value) < cor_cut, "NS", 
+                                   if_else(cor_value > 0, "Up", "Down")))
+    
+    p1 = ggplot(dat2, aes(x=cor_value, y=-log10(p_value)))+
+        geom_point(aes(color = Group, size=2))+
+        geom_vline(xintercept = c(-cor_cut, cor_cut), linetype='dashed')+
+        geom_hline(yintercept = -log10(p_cut), linetype='dashed')+
+        labs(x="Pearson correlation",
+             y=expression(-log[10]~"(P value)")) +
+        ggrepel::geom_text_repel(data=dat2 %>% dplyr::filter(Group != "NS"), 
+                   mapping=aes(x=cor_value, y=-log10(p_value), label = Label), 
+                                  max.overlaps = 500)+
+        # coord_cartesian(xlim=c(-8,8), ylim=c(0, 50))+
+        scale_color_manual(
+            limits = c("Up", "NS", "Down"),
+            labels = c("Pos", "None", "Neg"),
+            values = ggsci::pal_aaas(alpha = 0.4)(9)[c(6, 9, 5)]
+        ) +
+        my_theme +
+        theme(axis.text = element_text(size=14),
+              plot.title = element_text(size=18),
+              axis.title = element_text(size=16),
+              legend.text = element_text(size=12),
+              legend.title = element_text(size=14))
+    return(p1)
+}
+```
+
+
+## Fig7F
+
+
+```{r}
+
+load("fig7F.Rdata")
+
+prj = 'COAD'
+gene = 'C9orf50'
+
+plot_list = NULL
+
+pg_df = all_df %>% dplyr::filter(Project == prj & Gene == gene) %>%
+    mutate(Label = Cell)
+p = cor_Plot(dat = pg_df) +
+    labs(title = "Correlation with TIFs") +
+    theme(legend.position = "none")
+
+
+
+ggsave(
+    plot = p,
+    filename = "fig7F.pdf",
+    limitsize = F,
+    width = 10,
+    height = 10,
+    units = 'cm'
+)
+```
+
+
+```{r}
+p
+```
+
+
+
+## Fig7G
+
+
+```{r}
+load("fig7G.Rdata")
+
+gene = 'C9orf50'
+cells = c("CD4+ Tcm","CD8+ T-cells","Th2 cells")
+
+all_df = NULL
+plot_list = NULL
+
+for(cell in cells){
+    df  = NULL
+    for(prj in unique(Inter_df$Project)){
+        tdf = Inter_df %>% dplyr::filter(Project == prj) %>% 
+            dplyr::select(Gene=all_of(gene), Cell=all_of(cell))
+        a = cor.test(tdf$Gene, tdf$Cell)
+        p_Val = a$p.value
+        cor_Val = a$estimate
+        df = rbind(df, 
+                   data.frame(p_value=p_Val, 
+                              cor_value=cor_Val, Project=prj,
+                              Gene=gene, Cell=cell))
+    }
+    p = cor_Plot(dat = df %>% dplyr::rename(Label=Project)) +
+        labs(title = paste0(toupper(gene), " vs ", cell)) +
+        theme(legend.position = "none")
+    plot_list[[paste0(toupper(gene), "_vs_", cell)]] = p
+    
+    all_df = rbind(all_df, df)
+
+}
+
+ggsave(plot = plot_grid(plotlist = plot_list, ncol = length(cells)),
+   filename = "fig7G.pdf", limitsize = F,
+   width = 40, height = 12, units = 'cm')
+
+```
+
+```{r}
+plot_list
+```
+
