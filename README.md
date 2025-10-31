@@ -72,4 +72,5 @@ If you use this code or data in your research, please cite:
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
-For questions or issues regarding this repository, please contact the corresponding author of the manuscript.
+For questions or issues regarding this repository, please contact：
+liuchuanyang13@nudt.edu.cn
