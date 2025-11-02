@@ -1,0 +1,29 @@
+注释结果汇总
+
+结果文件展示：
+    1.GO_KEGG_COG_IPR_Subcell_TF.anno.xls      GO、KEGG、COG 、IPR、亚细胞定位、转录因子数据库注释的综合结果（仅动物/植物做转录因子注释，其他物种注释结果中，转录因子列均为“--”）
+    2.stat.venn.{svg,png}       GO、KEGG、COG 、IPR4个数据库注释结果的韦恩图，其中svg为高清图，用网页打开
+   
+===========================================================================
+
+表头说明：
+1.GO_KEGG_COG_IPR_Subcell_TF.anno.xls
+
+    Protein_ID                  蛋白编号
+    Description                 对应的蛋白描述
+    Gene                        对应的基因编号
+    GO_NUM                      GO数据库中蛋白比对到的GO条目数
+    GO_Description              所有GO条目的详细描述
+    KEGG_Description            KEGG数据库中KO的描述
+    KEGG_EC                     KEGG数据库中对应的EC号
+    KEGG_ko                     KEGG数据库中蛋白涉及到的通路信息
+    COG_Function_Description    COG数据库中注释出的功能描述 
+    COG_Function_Class          COG数据库中功能所属的功能分类
+    COG_Class_Description       COG数据库中功能分类的描述
+    IPR_Term                    IPR数据库中蛋白涉及到的结构域信息
+    Subcellular_localization    亚细胞定位结果
+    TF_family                   转录因子家族
+
+
+
+

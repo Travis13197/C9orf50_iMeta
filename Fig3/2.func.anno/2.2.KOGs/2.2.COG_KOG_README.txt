@@ -1,0 +1,32 @@
+鉴定蛋白COG注释
+
+COG，即Clusters of Orthologous Groups of proteins。构成每个COG的蛋白都是被假定为来自于一个祖先蛋白。Orthologs是指来自于不同物种的由垂直家系（物种形成）进化而来的蛋白，并且典型的保留与原始蛋白有相同的功能。NCBI收录了包括原核生物COG数据库和真核生物KOG数据库，分析时将按物种类别选择相应的数据库进行COG注释分析。
+
+以COG结果为例，结果文件展示：
+    1.COG.anno.xls                COG注释的结果
+    2.COG.anno.cog2protein.xls    COG注释的整理结果，以COG注释条目为基础统计相应条目的蛋白数
+    3.COG.anno.{pdf,png}          COG注释结果的展示图，其中pdf为高清图
+
+===========================================================================
+
+表头说明：
+1.COG.anno.xls
+
+    Protein_id                    蛋白编号
+    Description                   对应的蛋白描述
+    Gene                          对应的基因编号
+    Identity                      blast比对的相一致性打分
+    E_value                       blast比对的e-value
+    COG_gene_id                   COG数据库中对应的基因ID
+    COG_num                       COG数据库中对应的编号
+    Functional_description        注释出的功能描述
+    Functional_class              所属的功能分类
+    Class_description             功能分类的描述
+
+2.COG.anno.cog2protein.xls
+
+    Functional_class              COG注释的分类
+    Class_description             分类的描述
+    Protein_number                该分类的蛋白个数
+    Protein_id                    该分类的蛋白编号
+    Description                   蛋白的详细信息，逗号隔开，与上一列一一对应

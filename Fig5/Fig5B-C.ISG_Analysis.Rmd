@@ -1,11 +1,12 @@
 ---
 title: "RNA-seq Analysis Reveals C9orf50 Regulation of Interferon Stimulated Genes - Figure 5B-C"
 author: 
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"  
   - name: "Lvyun Zhu"
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
-  - name: "Chuanyang Liu"
-    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
-date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+
+
 output:
   html_document:
     toc: true
@@ -258,4 +259,4 @@ This analysis is part of the manuscript examining C9orf50's role in regulating i
 
 When using this code, please cite:
 
-Shao T, Liu C, et al. (2025). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. iMeta
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta

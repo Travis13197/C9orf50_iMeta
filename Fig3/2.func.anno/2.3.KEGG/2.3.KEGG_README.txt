@@ -1,0 +1,32 @@
+鉴定蛋白KEGG注释
+
+KEGG是Kyoto Encyclopedia of Genes and Genomes的简称，是系统分析蛋白和化合物在细胞中的代谢途径以及这些蛋白的功能的数据库。KO（KEGG ORTHOLOG）系统将各个KEGG注释系统联系在一起，KEGG已建立了一套完整KO注释的系统，可完成新测序物种的基因组或转录组的功能注释。详见 http://www.genome.jp/kegg/
+
+结果文件展示：
+    1.KEGG.anno.xls                KEGG注释的结果
+    2.KEGG.anno.ko2protein.xls     KEGG注释的整理结果，以注释到的ko号为基础统计每个ko中的蛋白个数
+    3.KEGG.anno.{pdf,png}}         KEGG注释结果的展示图，其中pdf为高清图
+
+===========================================================================
+
+表头说明：
+1.KEGG.anno.xls
+
+    Protein_ID                     蛋白编号
+    Description                    对应的蛋白描述
+    Gene                           对应的基因编号
+    KEGG_GENE                      KEGG数据库中对应的基因编号
+    E-value                        blast比对的e-value
+    KO                             对应的KO号
+    KO_name                        KO的名称
+    KO_Description                 KO的描述
+    EC                             对应的EC号
+    KO_Class                       蛋白涉及到的通路信息
+
+2.KEGG.anno.ko2protein.xls
+
+    KO_Pathway_Level1              相应pathway的第一层级名称
+    KO_Pathway_Level2              相应pathway的第二层级名称
+    Protein_Num                    第二层级中注释到的蛋白个数
+    Proteins                       第二层级中注释到的蛋白名称
+    Description                    相应的蛋白描述信息，逗号隔开，与上一列一一对应

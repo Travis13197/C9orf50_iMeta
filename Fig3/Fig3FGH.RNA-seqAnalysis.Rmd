@@ -5,7 +5,7 @@ author:
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
   - name: "Lvyun Zhu"
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
-date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+
 output:
   html_document:
     toc: true
@@ -347,5 +347,5 @@ This code is provided for academic use only. For commercial use, please contact 
 Please cite this work if you use any part of this analysis in your research:
 
 ```
-Liu C, Zhu L, et al. (2023) C9orf50: A Novel Regulator of Immune Response in Cancer Models. iMeta Journal, DOI: [pending]
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta
 ```

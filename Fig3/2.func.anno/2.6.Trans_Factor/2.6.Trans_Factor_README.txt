@@ -1,0 +1,29 @@
+鉴定蛋白的转录因子注释
+
+转录因子(Transcription Factor，TF)是指能够以序列特异性方式结合DNA并且调节转录的蛋白质，由于转录因子有特殊的功能，会对这类蛋白进行注释并进行深入分析。PlantTFDB[[1]（Plant TranscriptionFactor Database）和AnimalTFDB[2] （Animal Transcription Factor Database）数据库分别包含植物和动物的转录因子及转录因子家族信息，可预测所关注的蛋白是否为转录因子，以及所属的转录因子家族。
+
+
+结果文件展示：
+    1.TF.anno.xls    转录因子注释结果文件
+    2.TF.anno.{pdf,png}    转录因子注释结果展示图（最多展示20个条目）
+    3.TF.anno.tf2protein.xls    转录因子注释结果展示图对应数据（包括所有条目）
+    
+===========================================================================
+动物注释结果表头说明：
+1.TF.anno.xls
+    Protein_id    蛋白ID
+    TF_family    蛋白注释到转录因子家族
+植物注释结果表头说明：
+1.TF.anno.xls
+    Protein_id    蛋白ID
+    TF_name    转录因子名称
+    TF_type    转录因子类型(分为transcription factor，transcriptional regulator两种)
+    TF_family    转录因子家族名称
+
+2.TF.anno.tf2protein.xls
+    Category    转录因子家族
+    Proteins_nums    该条目注释到鉴定蛋白数目
+    Proteins_id    该条目注释到鉴定蛋白ID
+
+[1] Jin J, Zhang H, Kong L, et al. PlantTFDB 3.0: a portal for the functional and evolutionary study of plant transcription factors[J]. Nucleic acids research, 2013, 42(D1): D1182-D1187.
+[2] Zhang H M, Chen H, Liu W, et al. AnimalTFDB: a comprehensive animal transcription factor database[J]. Nucleic acids research, 2011, 40(D1):D144-D149.

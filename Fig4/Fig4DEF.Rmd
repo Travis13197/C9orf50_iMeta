@@ -1,11 +1,12 @@
 ---
 title: "Isoform Switch Analysis Reveals C9ORF50-Mediated Alternative Splicing - Figure 4D-E-F"
 author: 
-  - name: "Lvyun Zhu"
-    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
   - name: "Chuanyang Liu"
     affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
-date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+
+
 output:
   html_document:
     toc: true
@@ -255,7 +256,7 @@ This analysis is part of the manuscript examining C9orf50's role in regulating a
 
 When using this code, please cite:
 
-Shao T, Liu C, et al. (2025). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. iMeta
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta
 
 This R Markdown document uses the IsoformSwitchAnalyzeR package to analyze the effects of C9ORF50 knockout on alternative splicing, with special focus on intron retention (IR) events. The analysis workflow includes data import, filtering, differential analysis, functional prediction, and visualization.
 

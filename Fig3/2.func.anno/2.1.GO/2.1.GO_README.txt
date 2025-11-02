@@ -1,0 +1,29 @@
+鉴定蛋白的GO注释
+
+GO(Gene Ontology)是一套国际标准化的基因功能描述的分类系统。GO分为三大类ontology：生物过程（Biological Process）、分子功能（Molecular Function）和细胞组分(Cellular Component)，分别用来描述基因编码的产物所参与的生物过程、所具有的分子功能及所处的细胞环境。GO的基本单元是term，每个term有一个唯一的标示符（由“GO:”加上7个数字组成，例如GO:0072669）；每类ontology的term通过它们之间的联系（is_a, part_of, regulate）构成一个有向无环的拓扑结构。详见http://www.geneontology.org/。利用interproscan-5进行蛋白的GO注释，涉及到的数据库有Pfam,PRINTS,ProDom,SMART,ProSiteProfiles,PANTHER。
+
+
+结果文件展示：
+    1.GO.anno.xls               GO注释的结果,以鉴定蛋白为基础展示注释的条目信息
+    2.GO.anno.go2protein.xls    GO注释的整理结果，以GO注释条目为基础统计相应条目的蛋白数
+    3.GO.anno.{pdf,png}}        GO注释结果的展示图，其中pdf为高清图
+
+===========================================================================
+
+表头说明：
+1.GO.anno.xls
+
+    Protein                     蛋白编号
+    Description                 对应的蛋白描述
+    Gene                        对应的基因编号
+    GO_NUM                      蛋白比对到的GO条目数
+    GO_Description              所有GO条目的详细描述
+
+2.GO.anno.go2protein.xls
+
+    GO_id                       GO条目的编号
+    GO_class                    GO条目所属类别
+    GO_description              GO条目的详细描述
+    Protein_nums                对应到该条目的蛋白个数
+    Proteins                    对应到该条目的蛋白编号
+    Description                 对应的蛋白描述，逗号隔开，与上一列一一对应

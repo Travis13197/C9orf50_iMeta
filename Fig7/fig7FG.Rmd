@@ -94,7 +94,7 @@ p
 load("fig7G.Rdata")
 
 gene = 'C9orf50'
-cells = c("CD4+ Tcm","CD8+ T-cells","Th2 cells")
+cells = c("CD4+ memory T-cells","CD8+ Tcm","Th2 cells")
 
 all_df = NULL
 plot_list = NULL
