@@ -1,0 +1,262 @@
+---
+title: "RNA-seq Analysis Reveals C9orf50 Regulation of Interferon Stimulated Genes - Figure 5B-C"
+author: 
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"  
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+
+
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+# RNA-seq Analysis for Figure 5B-C
+
+This R Markdown document contains the code for generating Figure 5B-C from the C9orf50 project, including GSEA plot and heatmap for Interferon Stimulated Genes (ISGs) expression analysis.
+
+## Setup
+
+```r
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set output directory using relative path format
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Set working directory using relative path format
+setwd(".../.../Fig5/")
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
+# List of required packages
+required_packages <- c("ggplot2", "msigdbr", "tidyr", "dplyr", "stringr", 
+                      "rtracklayer", "ggpubr", "data.table", "ggfortify", 
+                      "clusterProfiler", "org.Mm.eg.db", "DOSE", 
+                      "enrichplot", "pheatmap")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Data Loading
+
+```r
+# Check if data files exist
+check_file_exists <- function(file_path) {
+  if (!file.exists(file_path)) {
+    warning(paste("File not found:", file_path))
+    return(FALSE)
+  }
+  return(TRUE)
+}
+
+# Define data directory
+
+# Load required data files
+# Using relative path format
+rdata_dir <- ".../.../Rdata/"
+
+# Create a helper function to load data with error checking
+load_data_safely <- function(file_name, dir = rdata_dir) {
+  file_path <- file.path(dir, file_name)
+  if (file.exists(file_path)) {
+    load(file_path, envir = .GlobalEnv)
+    message(paste("Successfully loaded:", file_name))
+    return(TRUE)
+  } else {
+    warning(paste("File not found:", file_path))
+    return(FALSE)
+  }
+}
+
+# Load required datasets
+load_data_safely("step2.deg.rdata")
+load_data_safely("step3.3.GSEA_KK.rdata")
+load_data_safely("step2.volcanoplot.rdata")
+load_data_safely("step1.oridata_dedup_counts.rdata")
+load_data_safely("step3.idconv_DEGs_genelist.rdata")
+
+# Load pathview if needed
+library(pathview) if (requireNamespace("pathview", quietly = TRUE))
+
+# Load ISG gene list from csv file
+if (file.exists("ISG.csv")) {
+  ISG_df <- read.csv("ISG.csv")
+  ISGsymbol <- unique(ISG_df$Gene.Symbol)  # Assuming column name is Gene.Symbol
+  print(paste("Loaded", length(ISGsymbol), "ISGs from ISG.csv"))
+} else {
+  warning("ISG.csv not found. Please ensure the file exists in the working directory.")
+}
+```
+
+## Figure 5B: GSEA for Interferon Stimulated Genes (ISGs)
+
+```r
+# Check if ISG symbol list is available
+if (exists("ISGsymbol") && length(ISGsymbol) > 0) {
+  # Create TERM2GENE dataframe for GSEA
+  # Convert gene symbols to ENTREZ IDs if necessary
+  if (exists("genelist") && is.numeric(genelist)) {
+    # Create a simple term2gene dataframe with all ISGs
+    ISGgmt_entrezid <- data.frame(
+      term = rep("Interferon_Stimulated_Genes", length(ISGsymbol)),
+      gene = names(genelist)[names(genelist) %in% ISGsymbol]
+    )
+    
+    # Filter out any empty entries
+    ISGgmt_entrezid <- ISGgmt_entrezid[!is.na(ISGgmt_entrezid$gene), ]
+    
+    if (nrow(ISGgmt_entrezid) > 0) {
+      # Perform GSEA
+      y <- GSEA(genelist, 
+                TERM2GENE = ISGgmt_entrezid,
+                pvalueCutoff = 1.0, 
+                minGSSize = 5)
+      yr <- y@result
+      
+      # Create GSEA plot
+      fig5b <- gseaplot2(y, geneSetID = 1, pvalue_table = T, color = "#EB4232")
+      
+      # Save plot
+      # Save in multiple formats for compatibility
+      ggsave(file.path(output_dir, "Fig5B_ISG_GSEA.pdf"), 
+             plot = fig5b,
+             height = 4.6, width = 4.2, dpi = 600)
+      ggsave(file.path(output_dir, "Fig5B_ISG_GSEA.svg"), 
+             plot = fig5b,
+             height = 4.6, width = 4.2, dpi = 600)
+      ggsave(file.path(output_dir, "Fig5B_ISG_GSEA.jpg"), 
+             plot = fig5b,
+             height = 4.6, width = 4.2, dpi = 600)
+      
+      # Display plot
+      fig5b
+    } else {
+      warning("No matching ISGs found in the genelist for GSEA analysis.")
+    }
+  } else {
+    warning("genelist not found or not in the correct format for GSEA analysis.")
+  }
+} else {
+  warning("ISGsymbol list is not available. Please check the ISG.csv file.")
+}
+```
+
+## Figure 5C: Heatmap for Interferon Stimulated Genes (ISGs)
+
+```r
+# Check data availability
+if (exists("dat_expr") && exists("deg") && exists("ISGsymbol")) {
+  print("Expression data sample:")
+  print(dat_expr[1:4, 1:4])
+  print("DEG data sample:")
+  print(deg[1:4, 1:4])
+  
+  # Define group list
+  group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)),
+                       levels = c("sgNTC", "sgC9"))  # control vs sgC9
+  
+  # Use ISG symbols from previous section
+  cg3 <- ISGsymbol
+  
+  # Filter genes present in expression data
+  library(pheatmap)
+  cg4 <- cg3[cg3 %in% rownames(dat_expr)]
+  print(paste("Number of ISGs found in expression data:", length(cg4)))
+  
+  if (length(cg4) > 0) {
+    # Normalize data
+    n <- t(scale(t(dat_expr[cg4, ])))
+    # Cap extreme values
+    n[n > 3] <- 3
+    n[n < -3] <- -3
+    
+    # Reorder heatmap input dataset using logFC
+    deg_cg4 <- deg[cg4, ]
+    order <- rownames(deg_cg4[order(deg_cg4$logFC, decreasing = T), ])
+    n <- n[order, ]
+    
+    # Create annotation dataframe
+    ac <- data.frame(g = group_list)
+    rownames(ac) <- colnames(n)  # Set row names to match sample names
+    
+    # Define color palette
+    colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+    
+    # Create heatmap
+    fig5c <- pheatmap(n,
+                     color = colors,
+                     show_colnames = TRUE,
+                     scale = "row",
+                     show_rownames = TRUE,
+                     cluster_rows = FALSE,
+                     cluster_cols = FALSE,
+                     border_color = NA,
+                     cellwidth = 20,
+                     cellheight = 12,
+                     annotation_col = ac)
+    
+    # Save heatmap in multiple formats
+    # Using ggsave for consistent output
+    ggsave(file.path(output_dir, "Fig5C_ISG_Heatmap.pdf"), 
+           plot = fig5c,
+           height = 8, width = 6, dpi = 600)
+    ggsave(file.path(output_dir, "Fig5C_ISG_Heatmap.svg"), 
+           plot = fig5c,
+           height = 8, width = 6, dpi = 600)
+    ggsave(file.path(output_dir, "Fig5C_ISG_Heatmap.jpg"), 
+           plot = fig5c,
+           height = 8, width = 6, dpi = 600)
+    
+    # Display heatmap
+    fig5c
+  } else {
+    warning("No ISGs found in the expression data. Please check the gene symbol matching.")
+  }
+} else {
+  warning("Required data objects (dat_expr, deg, ISGsymbol) are not available.")
+}
+```
+
+## Session Information
+
+```r
+# Record session information for reproducibility
+sessionInfo()
+```
+
+## References
+
+This analysis is part of the manuscript examining C9orf50's role in regulating interferon stimulated genes (ISGs) expression in immune cells. The findings presented in Figure 5B-C highlight the significant enrichment of ISGs and their differential expression patterns in C9orf50 knockout cells.
+
+When using this code, please cite:
+
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta

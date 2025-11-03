@@ -1,0 +1,557 @@
+---
+title: "Isoform Switch Analysis Reveals C9ORF50-Mediated Alternative Splicing - Figure 4D-E-F"
+author: 
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+
+
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+# Isoform Switch Analysis for Figure 4D-E-F
+
+This R Markdown document contains the code for generating Figure 4D-E-F from the C9orf50 project, highlighting significant isoform switches and their functional consequences in C9orf50 knockout cells.
+
+## Setup
+
+```r
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set output directory for figures
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+```
+
+## Load Required Packages
+
+```r
+# List of required packages for Figure 4D-E-F analysis
+required_packages <- c("ggplot2", "pheatmap", "stringr", "ggpubr", 
+                      "tidyr", "dplyr", "gridExtra", "ggsci")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Figure 4D: Isoform Switch Pathway Enrichment Bubble Plot
+
+```r
+# Figure 4D: Pathway enrichment analysis of isoform switches
+# Set working directory using relative path format
+setwd(".../.../Fig4/")
+
+# Read isoform switch enrichment data
+if (file.exists("isoform_switch_enrichment.csv")) {
+  ko_enrich <- read.csv("isoform_switch_enrichment.csv", header = TRUE)
+
+  # Process data for visualization
+  ko_enrich$p.adjust <- as.numeric(ko_enrich$p.adjust)
+  ko_enrich$logp <- -log10(ko_enrich$p.adjust)
+  ko_enrich$type <- ifelse(ko_enrich$p.adjust < 0.05 & ko_enrich$EnrichmentScore > 0, "UP", 
+                          ifelse(ko_enrich$p.adjust < 0.05 & ko_enrich$EnrichmentScore < 0, "DOWN", "NOT"))
+  ko_enrich$type <- factor(ko_enrich$type, levels = c("UP", "NOT", "DOWN"))
+
+  # Create Figure 4D: Pathway enrichment bubble plot
+  p4d <- ggplot(data = ko_enrich, aes(x = EnrichmentScore, y = Description, size = logp, fill = type)) +
+    geom_point(shape = 21, alpha = 0.8) +
+    scale_fill_manual(values = c("#E64B35", "#8491B4", "#4DBBD5"),
+                      labels = c("Significantly Enriched", "Not Significant", "Significantly Depleted")) +
+    theme_bw() +
+    theme(legend.position = "right",
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    scale_size_continuous(name = "-log10(FDR)", range = c(2, 8)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
+    labs(title = "Isoform Switch Pathway Enrichment Analysis",
+         x = "Enrichment Score",
+         y = "Pathway") +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50")
+
+  # Save Figure 4D
+  ggsave(file.path(output_dir, "Fig4D_isoform_switch_enrich.pdf"), 
+         p4d, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4D_isoform_switch_enrich.svg"), 
+         p4d, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4D_isoform_switch_enrich.jpg"), 
+         p4d, width = 8, height = 6, dpi = 600)
+
+  # Display plot
+  p4d
+} else {
+  warning("isoform_switch_enrichment.csv file not found. Please check the file path.")
+}
+```
+
+## Figure 4E: Protein Domain Enrichment Analysis of Isoform Switches
+
+```r
+# Figure 4E: Protein domain enrichment analysis of isoform switches
+# Read protein domain enrichment data
+if (file.exists("protein_domain_enrichment.csv")) {
+  domain_enrich <- read.csv("protein_domain_enrichment.csv", header = TRUE)
+
+  # Process data for visualization
+  domain_enrich$p.adjust <- as.numeric(domain_enrich$p.adjust)
+  domain_enrich$logp <- -log10(domain_enrich$p.adjust)
+  domain_enrich$type <- ifelse(domain_enrich$p.adjust < 0.05 & domain_enrich$EnrichmentScore > 0, "UP", 
+                              ifelse(domain_enrich$p.adjust < 0.05 & domain_enrich$EnrichmentScore < 0, "DOWN", "NOT"))
+  domain_enrich$type <- factor(domain_enrich$type, levels = c("UP", "NOT", "DOWN"))
+
+  # Create Figure 4E: Protein domain enrichment bubble plot
+  p4e <- ggplot(data = domain_enrich, aes(x = EnrichmentScore, y = Description, size = logp, fill = type)) +
+    geom_point(shape = 21, alpha = 0.8) +
+    scale_fill_manual(values = c("#E64B35", "#8491B4", "#4DBBD5"),
+                      labels = c("Significantly Enriched", "Not Significant", "Significantly Depleted")) +
+    theme_bw() +
+    theme(legend.position = "right",
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    scale_size_continuous(name = "-log10(FDR)", range = c(2, 8)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
+    labs(title = "Protein Domain Enrichment in Isoform Switches",
+         x = "Enrichment Score",
+         y = "Protein Domain") +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50")
+
+  # Save Figure 4E
+  ggsave(file.path(output_dir, "Fig4E_protein_domain_enrich.pdf"), 
+         p4e, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4E_protein_domain_enrich.svg"), 
+         p4e, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4E_protein_domain_enrich.jpg"), 
+         p4e, width = 8, height = 6, dpi = 600)
+
+  # Display plot
+  p4e
+} else {
+  warning("protein_domain_enrichment.csv file not found. Please check the file path.")
+}
+```
+
+## Figure 4F: Heatmap of Key Isoform Switch Examples
+
+```r
+# Figure 4F: Heatmap of key isoform switch examples
+# Read isoform switch example data
+if (file.exists("isoform_switch_example.csv")) {
+  switch_example <- read.csv("isoform_switch_example.csv", header = TRUE)
+
+  # Define sample groups
+  group_list <- factor(c(rep("sgNTC", 3), rep("sgC9", 3)), 
+                      levels = c("sgNTC", "sgC9"))
+
+  # Convert data to matrix format
+  wide_data <- pivot_wider(switch_example, names_from = sample, values_from = expression)
+  rownames(wide_data) <- wide_data$isoform
+  wide_data <- wide_data[,-c(1,2,3)]  # Remove non-expression columns
+
+  # Normalize data
+  n <- t(scale(t(wide_data)))
+  # Cap extreme values to improve visualization
+  n[n > 3] <- 3
+  n[n < -3] <- -3
+
+  # Define color palette
+  colors <- colorRampPalette(c("#37A8DB", "#FFFFFF", "#EB4232"))(100)
+
+  # Define annotation
+  annotation_col <- data.frame(group = group_list)
+  rownames(annotation_col) <- colnames(n)
+
+  # Create Figure 4F: Heatmap
+  p4f <- pheatmap(n,
+                 color = colors,
+                 show_colnames = TRUE,
+                 scale = "row",
+                 show_rownames = TRUE,
+                 cluster_rows = FALSE,
+                 cluster_cols = FALSE,
+                 annotation_col = annotation_col,
+                 main = "Key Isoform Switch Examples",
+                 fontsize_row = 10,
+                 fontsize_col = 10,
+                 cellwidth = 20,
+                 cellheight = 15)
+
+  # Save Figure 4F
+  ggsave(file.path(output_dir, "Fig4F_isoform_switch_example.png"), 
+         p4f, width = 6, height = 8, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4F_isoform_switch_example.svg"), 
+         p4f, width = 6, height = 8, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4F_isoform_switch_example.pdf"), 
+         p4f, width = 6, height = 8, dpi = 600)
+
+  # Display heatmap
+  p4f
+} else {
+  warning("isoform_switch_example.csv file not found. Please check the file path.")
+}
+```
+
+## Combine Figures (Optional)
+
+```r
+# Combine Figure 4D and 4E
+if (exists("p4d") && exists("p4e")) {
+  library(gridExtra)
+  combined_DE <- grid.arrange(p4d, p4e, ncol = 1, nrow = 2, heights = c(1, 1))
+
+  # Save combined figure
+  ggsave(file.path(output_dir, "Fig4DE_combined.pdf"), 
+         combined_DE, width = 8, height = 12, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4DE_combined.svg"), 
+         combined_DE, width = 8, height = 12, dpi = 600)
+
+  # Display combined plot
+  combined_DE
+} else {
+  message("Both Figure 4D and 4E are not available for combining.")
+}
+```
+
+## Session Information
+
+```r
+# Record session information for reproducibility
+sessionInfo()
+```
+
+## 引用信息
+
+This analysis is part of the manuscript examining C9orf50's role in regulating alternative splicing and isoform switching in immune cells. The findings presented in Figure 4D-E-F highlight the functional consequences of these isoform switches, including pathway enrichment, protein domain alterations, and key examples of affected genes.
+
+When using this code, please cite:
+
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta
+
+This R Markdown document uses the IsoformSwitchAnalyzeR package to analyze the effects of C9ORF50 knockout on alternative splicing, with special focus on intron retention (IR) events. The analysis workflow includes data import, filtering, differential analysis, functional prediction, and visualization.
+
+## 1. Package Installation and Loading
+
+以下代码块包含了所需R包的安装命令（已注释掉）和实际需要加载的包。
+
+```{r package-setup, echo=TRUE}
+# The following are package installation commands, uncomment only for first run
+# BiocManager::install("IsoformSwitchAnalyzeR")
+# BiocManager::install("dplyr")
+# BiocManager::install("org.Mm.eg.db")
+# BiocManager::install("clusterProfiler")
+# BiocManager::install("forcats")
+
+# Load required packages
+library(IsoformSwitchAnalyzeR)
+library(dplyr)
+```
+
+## 2. Import and Prepare Expression Data
+
+This section imports transcript expression data quantified by Salmon and creates an experimental design matrix.
+
+```{r data-import, echo=TRUE}
+# Import transcript expression data (from Salmon quantification results)
+isoformExpr <- importIsoformExpression(parentDir="SalmonQuan", 
+                                      pattern="quant.sf")
+# View data structure
+str(isoformExpr)
+
+# Create experimental design matrix
+samples <- c("sgC9_1", "sgC9_2", "sgC9_3", "sgNTC_1", "sgNTC_2", "sgNTC_3")
+conditions <- c(rep_len("sgC9", 3), rep_len("sgNTC", 3))  # 3个C9ORF50敲除样本和3个对照样本
+designM <- data.frame(sampleID=samples, condition=conditions)
+designM  # Display design matrix
+```
+
+## 3. Build IsoformSwitchAnalyzeR Object
+
+The expression data and annotation information are integrated into a SwitchAnalyzeRlist object, which serves as the foundation for subsequent analyses.
+
+```{r create-switchlist, echo=TRUE}
+# Import GTF file (optional)
+gtf <- importGTF("B:/before/BigZips/Mus_musculus.GRCm39.109.chr.gtf")
+
+# Build SwitchAnalyzeRlist object
+switchList <- importRdata(isoformCountMatrix=isoformExpr$counts, 
+                         isoformRepExpression=isoformExpr$abundance, 
+                         designMatrix=designM, 
+                         isoformExonAnnoation="B:/before/BigZips/gencode.vM32.annotation.gtf", 
+                         isoformNtFasta="B:/before/BigZips/gencode.vM32.transcripts.fa")
+
+# Data pre-filtering to remove low quality data
+switchListF <- preFilter(switchList)
+```
+
+## 4. Differential Splicing Analysis (Figure 4D)
+
+Uses DEXSeq for differential splicing analysis to identify transcripts with significant expression changes after C9ORF50 knockout.
+
+```{r differential-splicing, echo=TRUE}
+# Use DEXSeq for differential splicing analysis, significance level set to 0.05
+switchListD <- isoformSwitchTestDEXSeq(switchAnalyzeRlist=switchListF, alpha=0.05)
+
+# Analyze open reading frame (ORF)
+switchListO <- analyzeORF(switchListD)
+
+# Extract transcript sequences for further analysis
+switchListS <- extractSequence(switchListO, pathToOutput="IsoformSequence")
+
+# Extract and display splicing switch summary information
+extractSwitchSummary(switchListS)
+```
+
+## 5. Alternative Splicing Event Analysis
+
+Analyzes different types of alternative splicing events, with special focus on intron retention (IR), ORF sequence similarity, and NMD status changes.
+
+```{r alternative-splicing, echo=TRUE}
+# Analyze alternative splicing events
+switchListA <- analyzeAlternativeSplicing(switchListS)
+
+# Analyze functional consequences of splicing switches
+switchListCQ <- analyzeSwitchConsequences(switchListA, 
+                                         consequencesToAnalyze=c("intron_retention", 
+                                                                "ORF_seq_similarity", 
+                                                                "NMD_status"))
+
+# Plot most significant splicing switch events
+switchPlotTopSwitches(switchListCQ, n=Inf, pathToOutput="ASEvents")
+```
+
+## 6. Extract and Save Key Results
+
+Extracts the most significant splicing switch genes and saves them to files.
+
+```{r extract-results, echo=TRUE}
+# View analysis result structure
+switchListCQ$isoformSwitchAnalysis %>% head()
+
+# Extract most significant splicing switch genes
+c9.ge_df <- extractTopSwitches(
+  switchListCQ, 
+  filterForConsequences = FALSE,
+  n = NA,                # 提取所有结果
+  extractGenes = TRUE,   # 按基因汇总结果
+  sortByQvals = TRUE     # 按q值排序
+)
+
+# Save results to CSV file
+write.csv(c9.ge_df, file = "C9TopSwitches.csv")
+
+# Save R data objects for further analysis
+save(switchListS, switchListCQ, file = "SwitchR.rdata")
+```
+
+## 7. Intron Retention (IR) Gene Analysis
+
+Filters and analyzes genes with intron retention, which is a type of splicing event of particular interest in this study.
+
+```{r ir-analysis, echo=TRUE}
+# Load saved data (not needed if running directly from previous steps)
+# load("SwitchR.rdata")
+
+# Extract transcript feature data
+ASdata <- switchListCQ$isoformFeatures  
+
+# Filter significant differential splicing genes with intron retention (top 500)
+sigIR_sorted <- ASdata %>%
+  filter(IR > 0, isoform_switch_q_value < 0.05) %>%  # IR>0 indicates presence of intron retention
+  arrange(desc(abs(dIF))) %>%                        # Sort by absolute dIF value
+  distinct(gene_name, .keep_all = TRUE) %>%          # Keep one record per gene
+  head(500)                                          # Take top 500
+
+# Merge gene annotation information
+library(org.Mm.eg.db)
+sigIR_annotated <- AnnotationDbi::select(
+  org.Mm.eg.db,
+  keys = sigIR_sorted$gene_name,
+  columns = c("SYMBOL", "GENENAME", "ENTREZID"),
+  keytype = "SYMBOL"
+) %>%
+  left_join(sigIR_sorted, by = c("SYMBOL" = "gene_name"))
+
+# Output results (actually 185 significant IR genes)
+write.csv(sigIR_annotated, "Top500_IR_genes.csv", row.names = FALSE)
+```
+
+## 8. GO Enrichment Analysis
+
+Performs GO enrichment analysis on genes with intron retention to understand the biological processes these genes may be involved in.
+
+```{r go-enrichment, echo=TRUE}
+library(clusterProfiler)
+
+# Perform GO biological process (BP) enrichment analysis
+sigIR <- enrichGO(gene    = sigIR_annotated$ENTREZID,
+                  OrgDb   = org.Mm.eg.db,
+                  keyType = 'ENTREZID',
+                  ont     = "BP",
+                  pvalueCutoff  = 0.2,  # Relax p-value threshold to get more results
+                  qvalueCutoff  = 0.2,
+                  readable = TRUE)
+
+# Extract results and calculate gene ratio
+dat <- sigIR@result
+library(forcats)
+dat$generatio <- as.numeric(str_split(dat$GeneRatio, "/", simplify = T)[,1]) / 137
+
+# Select top 12 most enriched GO terms
+dat2 <- dat[order(dat$GeneRatio, decreasing = T), ][1:12,]
+
+# 绘制GO富集结果点图
+go_plot <- ggplot(dat2, aes(generatio, fct_reorder(Description, generatio), color=generatio)) + 
+  geom_point(aes(size = -log10(pvalue)))+  # Point size indicates significance
+  scale_color_gradient2(low='#46bac2', mid="grey95", high='#cb4319', 
+                       guide=guide_colorbar(reverse=TRUE))+  # Custom colors
+  theme_minimal() + 
+  ylab(NULL) +
+  theme(text = element_text(family = "Arial", colour = "black")) +
+  theme(axis.text.y = element_text(size = 10, colour = "black"))
+
+go_plot  # Display plot
+
+# Save plot
+ggsave(filename = "Figs/Isoformswithch4.svg", height = 4.2, width = 8.0)
+```
+
+## 9. Visualize Top IR Genes
+
+Plots the dIF values (differential isoform fraction) of top differentially spliced genes to visually show the extent of splicing changes.
+
+```{r visualize-top-ir, echo=TRUE}
+# Visualize dIF values of top IR genes
+top_ir_plot <- ggplot(sigIR_sorted %>% head(10),  # Show only top 10 genes
+                     aes(x = reorder(SYMBOL, dIF), y = dIF)) +
+  geom_col(aes(fill = dIF > 0), width = 0.7) +  # Color by positive/negative values
+  scale_fill_manual(values = c("#377EB8", "#E41A1C")) +  # Blue indicates negative change, red indicates positive change
+  coord_flip() +  # Horizontal bar chart
+  labs(x = "Gene", y = "dIF value", title = "Top10 IR Genes") +
+  theme_minimal()
+
+top_ir_plot  # 显示图形
+
+# 保存图形
+ggsave("Top10_IR_genes.svg", width = 6, height = 4, dpi = 600)
+```
+
+## 10. Splicing Event Summary Statistics (Figure 4E)
+
+Generates global splicing event statistics and enrichment analysis.
+
+```{r splicing-summary, echo=TRUE}
+# 加载保存的数据（如果从前面步骤直接运行则不需要）
+# load("SwitchR.rdata")
+
+# Visualize splicing changes of specific genes
+switchPlot(switchListCQ, gene = 'Rnf8')  # 例如Rnf8基因
+
+# Generate splicing event summary statistics
+summary_plot <- extractSplicingSummary(switchListCQ, asFractionTotal = FALSE)
+summary_plot  # Display summary plot
+
+# Generate splicing event enrichment analysis
+enrichment_plot <- extractSplicingEnrichment(switchListCQ)
+enrichment_plot  # Display enrichment plot
+
+# Save splicing summary plot
+ggsave("isoformSummary.svg", height = 3.5, width = 7.2, dpi = 600)
+
+# 保存富集分析图
+splicingEnrichment <- extractSplicingEnrichment(
+  switchListCQ,
+  splicingToAnalyze='all',
+  returnResult=TRUE,
+  returnSummary=TRUE,
+  plot = FALSE
+)
+splicingEnrichment + xlim(0.25, 0.75)  # Adjust x-axis range
+
+ggsave("isoformSummary_stat.svg", height = 4.8, width = 7.8, dpi = 600)
+```
+
+## 11. Volcano Plots and Correlation Analysis (Figure 4F)
+
+Plots volcano plots to visually show the significance and effect size of differential splicing events, and analyzes the correlation between gene expression and splicing changes.
+
+```{r volcano-plots, echo=TRUE}
+# Filter different types of differential splicing events
+sigIR <- filter(ASdata, IR > 0 & abs(dIF) > 0.1 & isoform_switch_q_value < 0.05)  # Significant IR events
+sigothers <- filter(ASdata, IR == 0 & abs(dIF) > 0.1 & isoform_switch_q_value < 0.05)  # Other significant events
+non <- filter(ASdata, IR == 0 & abs(dIF) <= 0.1 & isoform_switch_q_value >= 0.05)  # Non-significant events
+
+# Plot volcano plot for specific types of splicing events
+volcano_selected <- ggplot(data=ASdata, aes(x=dIF, y=-log10(isoform_switch_q_value))) +
+  geom_point(data=non, alpha=1, size=2, color="grey85") +  # Non-significant points in gray
+  geom_point(data=sigothers, alpha=1, size=2, color="#426CAA") +  # Other significant events in blue
+  geom_point(data=sigIR, alpha=1, size=2, color="#C0595A") +  # IR events in red
+  geom_hline(yintercept = -log10(0.05), linetype='dashed') +  # Significance threshold line
+  geom_vline(xintercept = c(-0.1, 0.1), linetype='dashed') +  # Effect size threshold lines
+  facet_wrap(~ condition_2) +
+  theme_set(theme_set(theme_bw(base_size=15))) +
+  labs(x='dIF', y='-Log10 ( Isoform Switch Q Value )') +
+  theme_bw() + 
+  theme(plot.title = element_text(size=15, hjust = 0.5))
+
+volcano_selected  # 显示图形
+
+# Save selective volcano plot
+ggsave("volcano_AS_SELECTED.svg", width = 2.9, height = 3.4, dpi = 600)
+
+# Plot correlation between gene expression changes and splicing changes
+correlation_plot <- ggplot(data=switchListCQ$isoformFeatures, 
+                          aes(x=gene_log2_fold_change, y=dIF)) +
+  geom_point(aes(color=abs(dIF) > 0.1 & isoform_switch_q_value < 0.05), size=2) + 
+  facet_wrap(~ condition_2) +
+  geom_hline(yintercept = 0, linetype='dashed') +  # Zero effect line
+  geom_vline(xintercept = 0, linetype='dashed') +  # Zero expression change line
+  scale_color_manual('Significant\nIsoform Switch', 
+                    values = c("grey85", "#fb1f0a")) +
+  labs(x='Gene log2 fold change', y='dIF') +
+  theme_bw()
+
+correlation_plot  # 显示图形
+
+# Save correlation plot
+ggsave("gene_expression_splicing_correlation.svg", width = 4.0, height = 3.4, dpi = 600)
+```
+
+## Conclusion
+
+This analysis reveals significant effects of C9ORF50 knockout on alternative splicing patterns, particularly in intron retention events. By identifying differentially spliced genes and performing functional enrichment analysis, we can better understand the role of C9ORF50 in regulating mRNA splicing and how these changes affect cancer immunotherapy response.
+
+---
+
+*This analysis is part of the paper: "Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy"
+Running title: "Splicing regulator C9ORF50 controls immune evasion and immunotherapy response"*

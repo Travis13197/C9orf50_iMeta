@@ -1,0 +1,199 @@
+```
+---
+title: "Alternative Splicing Analysis of C9ORF50 Knockout Effects - Figure 4A-B"
+author: 
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+# Alternative Splicing Analysis for Figure 4A-B
+
+This R Markdown document contains the code for generating Figure 4A-B from the C9orf50 project, highlighting the impact of C9orf50 knockout on alternative splicing events and their functional implications.
+
+## Setup
+
+```{r setup, include=FALSE}
+# Clear environment and set options
+rm(list=ls())
+options(stringsAsFactors = F)
+
+# Set output directory for figures
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+## Load Required Packages
+
+```r
+# List of required packages for Figure 4A-B analysis
+required_packages <- c("ggplot2", "pheatmap", "stringr", "ggpubr", 
+                      "tidyr", "dplyr", "gridExtra", "ggsci")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+```
+
+## Figure 4A: Types of Alternative Splicing Events
+
+```r
+# Figure 4A: Types of alternative splicing events
+# Read data using relative path format
+setwd(".../.../Fig4/")
+
+# Read alternative splicing event counts
+if (file.exists("AS_events_count.csv")) {
+  data4a <- read.csv("AS_events_count.csv", header = TRUE, row.names = 1)
+  data4a$types <- rownames(data4a)
+
+  # Data preparation
+  colnames(data4a)[1] <- "count"
+  colnames(data4a)[2] <- "types"
+
+  # Create Figure 4A
+  p4a <- ggplot(data = data4a, aes(x = types, y = count, fill = types)) + 
+    geom_col() +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          legend.position = "none") +
+    scale_fill_brewer(palette="Paired") +
+    labs(title = "Alternative Splicing Event Types",
+         x = "Event Type",
+         y = "Count") +
+    scale_y_continuous(expand = c(0, 0))
+
+  # Save Figure 4A
+  ggsave(file.path(output_dir, "Fig4A_ASevents_type.pdf"), 
+         p4a, width = 5, height = 4, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4A_ASevents_type.svg"), 
+         p4a, width = 5, height = 4, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4A_ASevents_type.jpg"), 
+         p4a, width = 5, height = 4, dpi = 600)
+
+  # Display plot
+  p4a
+} else {
+  warning("AS_events_count.csv file not found. Please check the file path.")
+}
+```
+
+## Figure 4B: GO Enrichment Analysis of Alternative Splicing Events
+
+```r
+# Figure 4B: GO enrichment analysis of alternative splicing events
+# Read GO enrichment data
+if (file.exists("GO_enrich.csv")) {
+  go_data <- read.csv("GO_enrich.csv", header = TRUE, row.names = 1)
+
+  # Process data for visualization
+  go_data$type <- ifelse(go_data$p.adjust < 0.05 & go_data$NES > 0, "UP", 
+                        ifelse(go_data$p.adjust < 0.05 & go_data$NES < 0, "DOWN", "NOT"))
+  go_data$type <- factor(go_data$type, levels = c("UP", "NOT", "DOWN"))
+  go_data$logpadj <- -log10(go_data$p.adjust)
+
+  # Create Figure 4B: GO enrichment bubble plot
+  p4b <- ggplot(data = go_data, aes(x = NES, y = Description, size = logpadj, fill = type)) +
+    geom_point(shape = 21, alpha = 0.8) +
+    scale_fill_manual(values = c("#E64B35", "#8491B4", "#4DBBD5"), 
+                      labels = c("Significantly Upregulated", "Not Significant", "Significantly Downregulated")) +
+    theme_bw() +
+    theme(legend.position = "right",
+          plot.title = element_text(hjust = 0.5, face = "bold"),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank()) +
+    scale_size_continuous(name = "-log10(FDR)", range = c(2, 8)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, width = 30)) +
+    labs(title = "GO Enrichment Analysis of Alternative Splicing Events",
+         x = "Normalized Enrichment Score (NES)",
+         y = "GO Term") +
+    geom_vline(xintercept = 0, linetype = "dashed", color = "gray50")
+
+  # Save Figure 4B
+  ggsave(file.path(output_dir, "Fig4B_GO_enrich.pdf"), 
+         p4b, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4B_GO_enrich.svg"), 
+         p4b, width = 8, height = 6, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4B_GO_enrich.jpg"), 
+         p4b, width = 8, height = 6, dpi = 600)
+
+  # Display plot
+  p4b
+} else {
+  warning("GO_enrich.csv file not found. Please check the file path.")
+}
+```
+
+## Combine Figures (Optional)
+
+```r
+# Combine Figure 4A and 4B
+if (exists("p4a") && exists("p4b")) {
+  library(gridExtra)
+  combined_plot <- grid.arrange(p4a, p4b, ncol = 1, nrow = 2, heights = c(1, 2))
+
+  # Save combined figure
+  ggsave(file.path(output_dir, "Fig4AB_combined.pdf"), 
+         combined_plot, width = 8, height = 10, dpi = 600)
+  ggsave(file.path(output_dir, "Fig4AB_combined.svg"), 
+         combined_plot, width = 8, height = 10, dpi = 600)
+
+  # Display combined plot
+  combined_plot
+} else {
+  message("Both Figure 4A and 4B are not available for combining.")
+}
+```
+
+## Session Information
+
+```r
+# Record session information for reproducibility
+sessionInfo()
+```
+
+## 引用信息
+
+This analysis is part of the manuscript examining C9orf50's role in regulating alternative splicing in immune cells. The findings presented in Figure 4A-B highlight the specific types of alternative splicing events affected by C9orf50 knockout and their functional implications.
+
+When using this code, please cite:
+
+```
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta
+```
+
+---
+
+*This analysis is part of the paper: "Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy"*

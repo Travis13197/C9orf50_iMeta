@@ -1,0 +1,195 @@
+---
+title: "IP-MS KOG Analysis Reveals C9ORF50 Protein Interaction Networks - Figure 3A"
+author: 
+  - name: "Chuanyang Liu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+  - name: "Lvyun Zhu"
+    affiliation: "Department of Biology and Chemistry, National University of Defense Technology"
+
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: "hide"
+    theme: paper
+    highlight: tango
+    number_sections: true
+  pdf_document:
+    toc: true
+    number_sections: true
+    latex_engine: pdflatex
+    highlight: tango
+    geometry: margin=1in
+fig_width: 8
+fig_height: 6
+fig_caption: yes
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  dpi = 600  # Higher resolution for publication quality
+)
+
+# Clean workspace
+rm(list=ls())
+
+# Set output directory for figures
+output_dir <- ".../.../output_figures/"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+```
+
+# KOG Functional Annotation for Figure 3A
+
+This R Markdown document contains the code for generating Figure 3A from the C9orf50 project, including KOG (EuKaryotic Orthologous Groups) functional annotation and visualization of proteins identified in IP-MS experiments.
+
+## Setup
+
+### Load Required Libraries
+
+```{r load_data, echo=TRUE}
+# Package installation function
+install_and_load_packages <- function(packages) {
+  new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
+  if(length(new_packages)) {
+    install.packages(new_packages, dependencies = TRUE)
+  }
+  invisible(sapply(packages, library, character.only = TRUE))
+}
+
+# List of required packages
+required_packages <- c("xlsx", "ggstatsplot", "ggpubr", "ggplot2", "tidyverse")
+
+# Install and load packages
+install_and_load_packages(required_packages)
+
+# Read KOG annotation data - Figure 3A Data
+# Using relative path format for reproducibility
+data_path <- ".../.../IP-MS/New/2.func.anno/2.func.anno/2.2.KOGs/kog.csv"
+
+# Check if data file exists
+check_file_exists <- function(file_path) {
+  if (!file.exists(file_path)) {
+    warning(paste("File not found:", file_path))
+    return(FALSE)
+  }
+  return(TRUE)
+}
+
+if (check_file_exists(data_path)) {
+  dat <- read.csv(data_path)
+} else {
+  # Alternative path for running in the C9orf50-iMeta directory
+  data_path_alt <- "../../../2.func.anno/2.2.KOGs/kog.csv"
+  if (file.exists(data_path_alt)) {
+    dat <- read.csv(data_path_alt)
+  } else {
+    stop("KOG data file not found. Please ensure kog.csv is in the correct location.")
+  }
+}
+
+# Check data structure
+print("Data columns:")
+print(colnames(dat))
+print("\nData structure:")
+str(dat)
+```
+
+## Figure 3A: KOG Categories Dot Plot
+
+```{r first_plot, echo=TRUE}
+# Generate Figure 3A: Dot chart showing all KOG categories
+ggdotchart(dat, x = "Class_description", y = "Protein_number",
+           color = "Protein_number",
+           rotate = FALSE,
+           sort.by.groups = TRUE,
+           add = "segments",
+           add.params = list(color = "lightgray", size = 1.2),
+           font.label = list(color = "black", size = 8,
+                            vjust = -2),
+           ggtheme = theme_pubr()) +
+  labs(x = "KOG Functional Categories", y = "Number of Proteins", title = "KOG Functional Classification") +
+  theme(axis.text.x = element_text(face = "bold", size = 10, color = "gray40",
+                                   angle = 70, vjust = 1, hjust = 1),
+        axis.text.y = element_text(size = 10, color = "gray40",
+                                   vjust = 1, hjust = 1))
+
+# Save Figure 3A
+ggsave(filename = file.path(output_dir, "Fig3A.KOG_all_categories.svg"), width = 10, height = 8, dpi = 600)
+ggsave(filename = file.path(output_dir, "Fig3A.KOG_all_categories.jpg"), width = 10, height = 8, dpi = 600)
+```
+
+## Data Quality Check
+
+```{r quality_check, echo=TRUE}
+# Basic quality check of the data
+print("KOG annotation data summary statistics:")
+summary(dat$Protein_number)
+
+print("\nNumber of unique KOG functional classes:")
+length(unique(dat$Class_description))
+```
+
+## Alternative Visualization: Top KOG Categories
+
+```{r second_plot, echo=TRUE}
+# Filter data to include only categories with more than 20 proteins
+# and exclude the "General function prediction only" category
+dat2 <- dat[dat$Protein_number > 20 & 
+             dat$Class_description != "General function prediction only ",]
+
+# Generate alternative dot chart showing top KOG categories
+ggdotchart(dat2, x = "Class_description", y = "Protein_number",
+           color = "Color",
+           size = "Protein_number",
+           sorting = "descending",
+           palette = c("#9f1a1c", "grey", "#17629d"),
+           rotate = TRUE,
+           sort.by.groups = TRUE,
+           add = "segments",
+           add.params = list(color = "lightgrey", size = 1.0),
+           y.text.col = TRUE,
+           font.label = list(color = "black", size = 8,
+                            hjust = -0.5, vjust = 0),
+           ggtheme = theme_pubr()) +
+  labs(x = "KOG Functional Categories", y = "Number of Proteins", title = "Top KOG Categories") +
+  # Remove p-value threshold lines as they don't apply to this visualization
+  theme(axis.text.x = element_text(face = "bold", size = 10, color = "gray40",
+                                   vjust = 0, hjust = 0),
+        axis.text.y = element_text(size = 10, color = "gray40",
+                                   vjust = 0, hjust = 1))
+
+# Save alternative visualization
+ggsave(filename = file.path(output_dir, "KOG_top_categories.svg"), width = 6.0, height = 5.0, dpi = 600)
+ggsave(filename = file.path(output_dir, "KOG_top_categories.jpg"), width = 6.0, height = 5.0, dpi = 600)
+```
+
+## Session Information
+
+```{r session_info, echo=TRUE}
+# Print session information for reproducibility
+sessionInfo()
+```
+
+## Data Availability
+
+The KOG annotation data used in this analysis should be placed in the appropriate directory as indicated in the code. All figures will be saved to the `output_figures` directory.
+
+## License
+
+This code is provided for academic use only. For commercial use, please contact the corresponding author.
+
+## References
+
+Please cite this work if you use any part of this analysis in your research:
+
+```
+Shao T, Liu C, et al. (2025). Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta
+```
