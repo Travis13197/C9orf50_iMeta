@@ -119,7 +119,7 @@ All analyses are fully reproducible using the provided R Markdown files. The scr
 ## Citation
 If you use this code or data in your research, please cite:
 
-Shao T#, Liu C#, et al. (2025). C9orf50 regulates alternative splicing and chemokine signaling in immune cells. iMeta
+Tong Shao#, Chuanyang Liu#, et al. (2025).Genome-wide CRISPR screen reveals an uncharacterized spliceosome regulator as a potential immunotherapeutic target for cancer therapy. iMeta
 
 Chuanyang Liu, et al. Predator: A novel method for targeted protein degradation. bioRxiv 2020. https://www.biorxiv.org/content/10.1101/2020.07.31.231787v1
 
